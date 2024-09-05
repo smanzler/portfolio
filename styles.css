@@ -38,12 +38,8 @@ body {
   align-items: center;
   z-index: 5;
 }
-.scrolled {
-  background-color: #0000004d;
-}
-
 .logo {
-  font-size: 7rem;
+  font-size: 5vw;
   color: var(--text-color);
   font-weight: 800;
   cursor: pointer;
