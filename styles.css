@@ -93,12 +93,7 @@ span {
 .logo span {
   color: var(--main-color);
 }
-.home-content h3 {
-  margin-bottom: 2rem;
-  margin-top: 1rem;
-  font-size: 3.5rem;
-}
-.home-content h1 {
+h1 {
   font-size: 7rem;
   font-weight: 700;
   margin-top: 1.5rem;
@@ -157,6 +152,10 @@ span {
 }
 
 .typewriter-container {
+  min-width: 640px;
+  display: inline-block;
+}
+.fill-container {
   display: inline-block;
 }
 
@@ -198,5 +197,20 @@ span {
   }
   100% {
     width: 0;
+  }
+}
+
+.education {
+  background-color: var(--accent);
+  color: var(--text-color);
+}
+
+@media screen and (min-width: 1200px) {
+  #menu-icon {
+    display: block;
+  }
+
+  .navbar {
+    display: none;
   }
 }
