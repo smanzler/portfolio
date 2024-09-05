@@ -9,10 +9,11 @@
   font-family: "Poppins", sans-serif;
 }
 :root {
-  --bg-color: #080808;
-  --second-bg-color: #131313;
-  --text-color: white;
-  --main-color: #00ffee;
+  --bg-color: #1a231e;
+  --grey: #7b6d61;
+  --accent: #c19257;
+  --text-color: #f5f3ed;
+  --main-color: #973734;
 }
 
 html {
@@ -30,15 +31,19 @@ body {
   left: 0;
   width: 100%;
   padding: 4rem 12% 4rem;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  background-color: transparent;
+  transition: background-color 0.5s ease;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 5;
 }
+.scrolled {
+  background-color: #0000004d;
+}
+
 .logo {
-  font-size: 3rem;
+  font-size: 7rem;
   color: var(--text-color);
   font-weight: 800;
   cursor: pointer;
@@ -46,9 +51,6 @@ body {
 }
 .logo:hover {
   transform: scale(1.1);
-}
-.logo span {
-  text-shadow: 0 0 25px var(--main-color);
 }
 .navbar a {
   font-size: 1.8rem;
@@ -59,7 +61,7 @@ body {
   border-bottom: 3px solid transparent;
 }
 .navbar a:hover,
-.navber a.active {
+.navbar a.active {
   color: var(--main-color);
   border-bottom: 3px solid var(--main-color);
 }
@@ -99,7 +101,6 @@ span {
   margin-bottom: 2rem;
   margin-top: 1rem;
   font-size: 3.5rem;
-  align-items: center;
 }
 .home-content h1 {
   font-size: 7rem;
@@ -113,15 +114,8 @@ span {
 .home-img img {
   position: relative;
   top: 3rem;
-  width: 32vw;
+  width: 25vw;
   border-radius: 50%;
-  box-shadow: 0 0 25px var(--main-color);
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
-}
-.home-img img:hover {
-  box-shadow: 0 0 25px var(--main-color), 0 0 50px var(--main-color),
-    0 0 100px var(--main-color);
 }
 .home-content p {
   font-size: 1.5rem;
@@ -153,7 +147,6 @@ span {
   display: inline-block;
   padding: 1rem 2.8rem;
   background: var(--main-color);
-  box-shadow: 0 0 25px var(--main-color);
   border-radius: 4rem;
   font-size: 1.6rem;
   color: black;
@@ -164,8 +157,7 @@ span {
   cursor: pointer;
 }
 .btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 50px var(--main-color);
+  translate: 0 -5px;
 }
 
 .typewriter-container {
@@ -184,7 +176,7 @@ span {
   display: inline-block;
   width: 100%;
   height: 100%;
-  font-size: 3.5rem;
+  font-size: inherit;
   white-space: nowrap;
   overflow: hidden;
 }
