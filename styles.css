@@ -9,11 +9,10 @@
   font-family: "Poppins", sans-serif;
 }
 :root {
-  --bg-color: #1a231e;
+  --bg-color: #000000;
   --grey: #7b6d61;
-  --accent: #c19257;
-  --text-color: #f5f3ed;
   --main-color: #973734;
+  --text-color: #ffffff;
 }
 
 html {
@@ -39,13 +38,27 @@ body {
   z-index: 5;
 }
 .logo {
-  font-size: 5vw;
+  background-color: pink;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 40%;
   color: var(--text-color);
   font-weight: 800;
+  font-size: 5vw;
   cursor: pointer;
   transition: 0.3s ease;
 }
-.logo:hover {
+.scrolled {
+  position: fixed;
+  text-align: left;
+  font-size: 3rem;
+  transform: translate(0, 0);
+  top: 0;
+  left: 0;
+}
+.header-logo .logo:hover {
   transform: scale(1.1);
 }
 .navbar a {
@@ -201,11 +214,9 @@ h1 {
 }
 
 .education {
-  background-color: var(--accent);
-  color: var(--text-color);
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 1200px) {
   #menu-icon {
     display: block;
   }
