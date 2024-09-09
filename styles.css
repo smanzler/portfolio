@@ -9,10 +9,10 @@
   font-family: "Poppins", sans-serif;
 }
 :root {
-  --bg-color: #000000;
+  --bg-color: #ffffff;
   --grey: #7b6d61;
   --main-color: #973734;
-  --text-color: #ffffff;
+  --text-color: #000000;
 }
 
 html {
@@ -22,7 +22,6 @@ html {
 body {
   background: var(--bg-color);
   color: var(--text-color);
-  cursor: url("assets/image.png"), default;
 }
 .header {
   position: fixed;
@@ -37,29 +36,46 @@ body {
   align-items: center;
   z-index: 5;
 }
-.logo {
-  background-color: pink;
-  position: absolute;
-  text-align: center;
-  left: 0;
-  right: 0;
-  top: 40%;
+.header-logo {
   color: var(--text-color);
+  letter-spacing: -2px;
+  font-size: 3rem;
   font-weight: 800;
-  font-size: 5vw;
-  cursor: pointer;
   transition: 0.3s ease;
 }
-.scrolled {
-  position: fixed;
-  text-align: left;
-  font-size: 3rem;
-  transform: translate(0, 0);
-  top: 0;
-  left: 0;
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-color);
+  font-weight: 800;
+  font-size: 8vw;
+  white-space: nowrap;
+  transition: 0.3s ease;
 }
-.header-logo .logo:hover {
+.logo-container {
+  margin-top: 3rem;
+  position: relative;
+  letter-spacing: -9px;
+  background: repeating-linear-gradient(
+    -60deg,
+    transparent,
+    transparent 10px,
+    pink 10px,
+    pink 20px
+  );
+  transition: 0.3s ease;
+  height: 250px;
+}
+.header-logo:hover {
   transform: scale(1.1);
+}
+.logo-container:hover .logo {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.logo-container:hover .home-img {
+  transform: translate(-50%, -50%) scale(1.3);
 }
 .navbar a {
   font-size: 1.8rem;
@@ -86,7 +102,7 @@ section {
 }
 
 .home {
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
   gap: 15rem;
@@ -113,13 +129,14 @@ h1 {
   line-height: 1;
 }
 .home-img {
-  border-radius: 50%;
+  transition: 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .home-img img {
-  position: relative;
-  top: 3rem;
-  width: 25vw;
-  border-radius: 50%;
+  height: 300px;
 }
 .home-content p {
   font-size: 1.5rem;
@@ -199,13 +216,13 @@ h1 {
   0% {
     width: 0;
   }
-  30% {
+  20% {
     width: 100%;
   }
   50% {
     width: 100%;
   }
-  80% {
+  70% {
     width: 0;
   }
   100% {
