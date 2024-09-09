@@ -29,8 +29,12 @@ window.addEventListener("scroll", (e) => {
     console.log("scroll");
     header.style.backgroundColor = "#0000001a";
     header.style.backdropFilter = "blur(5px)";
+
+    headerLogo.style.opacity = 100;
   } else {
     header.style.backgroundColor = "transparent";
     header.style.backdropFilter = "none";
+
+    headerLogo.style.opacity = 0;
   }
 });

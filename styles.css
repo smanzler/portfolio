@@ -56,6 +56,7 @@ body {
   z-index: 5;
 }
 .header-logo {
+  opacity: 0;
   color: var(--text-color);
   letter-spacing: -2px;
   font-size: 3rem;
@@ -76,7 +77,6 @@ body {
 }
 .logo-container {
   cursor: default;
-  margin-top: 3rem;
   position: relative;
   letter-spacing: -9px;
   background: repeating-linear-gradient(
@@ -134,11 +134,9 @@ section {
 
 .home-content {
   display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  text-align: left;
-  justify-content: center;
-  max-width: 600px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 span {
   color: var(--main-color);
@@ -146,10 +144,9 @@ span {
 .logo span {
   color: var(--main-color);
 }
-h1 {
+.home h1 {
   font-size: 5rem;
   font-weight: 700;
-  margin-top: 1.5rem;
   line-height: 1;
 }
 .home-img {
@@ -191,19 +188,22 @@ h1 {
 }
 .btn {
   display: inline-block;
-  padding: 1rem 2.8rem;
+  padding: 1rem 2rem;
   background: var(--main-color);
-  border-radius: 4rem;
+  border-radius: 3rem;
   font-size: 1.6rem;
+  height: 4.5rem;
   color: black;
-  border: 2px solid transparent;
+  border: 2px solid var(--main-color);
+  align-items: center;
   letter-spacing: 0.1rem;
   font-weight: 600;
   transition: 0.3s ease-in-out;
   cursor: pointer;
 }
 .btn:hover {
-  translate: 0 -5px;
+  transform: translateY(-5px);
+  background: var(--bg-color);
 }
 .btn-container {
   display: inline-flex;
@@ -211,8 +211,7 @@ h1 {
 }
 
 .typewriter-container {
-  min-width: 640px;
-  display: block;
+  display: inline-block;
 }
 .fill-container {
   display: inline-block;
