@@ -14,7 +14,7 @@ function changePhrase() {
   phraseIndex = (phraseIndex + 1) % phrases.length;
 }
 
-setInterval(changePhrase, 8000);
+setInterval(changePhrase, 6000);
 
 changePhrase();
 
