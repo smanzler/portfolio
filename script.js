@@ -32,7 +32,7 @@ window.addEventListener("scroll", (e) => {
   progress.style.height = progressHeight + "%";
 
   if (scrollPosition > 50) {
-    header.style.backgroundColor = "#0000001a";
+    header.style.backgroundColor = "#0000004d";
     header.style.backdropFilter = "blur(5px)";
 
     headerLogo.style.opacity = 100;
