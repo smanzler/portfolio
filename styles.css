@@ -394,7 +394,7 @@ p {
 .tech-item::before {
   background: radial-gradient(
     800px circle at var(--mouse-x) var(--mouse-y),
-    rgb(255, 192, 203, 0.6),
+    rgb(255, 192, 203),
     transparent 50%
   );
   border-radius: inherit;
