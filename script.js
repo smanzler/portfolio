@@ -5,6 +5,7 @@ const headerLogo = document.getElementById("header-logo");
 const progress = document.getElementById("progress-bar");
 const menuIcon = document.getElementById("menu-icon");
 const navLinks = document.querySelectorAll(".nav-drawer a");
+const techContent = document.getElementById("tech-content");
 const body = document.body;
 
 const backdrop = document.createElement("div");
@@ -57,5 +58,15 @@ backdrop.addEventListener("click", () => {
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     body.classList.remove("drawer-open");
+  });
+});
+
+techContent.addEventListener("mousemove", (e) => {
+  document.querySelectorAll(".tech-item").forEach((item) => {
+    const rect = item.getBoundingClientRect(),
+      x = e.clientX - rect.left,
+      y = e.clientY - rect.top;
+    item.style.setProperty("--mouse-x", `${x}px`);
+    item.style.setProperty("--mouse-y", `${y}px`);
   });
 });

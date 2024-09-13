@@ -369,6 +369,7 @@ p {
 
 .tech-content {
   display: grid;
+  position: relative;
   grid-auto-rows: 150px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 3rem;
@@ -379,7 +380,38 @@ p {
   flex: 1;
   text-align: center;
   align-content: center;
-  background-color: pink;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3);
+  border: 1px solid gray;
+  position: relative;
+  border-radius: 10px;
+}
+
+.tech-content:hover > .tech-item::before {
+  opacity: 1;
+}
+
+.tech-item::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgb(255, 192, 203, 0.6),
+    transparent 50%
+  );
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 500ms;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+}
+
+.tech h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .tech-item i {
