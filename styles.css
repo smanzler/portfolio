@@ -418,6 +418,52 @@ p {
   font-size: 6rem;
 }
 
+.projects-content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.projects-item {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  align-items: center;
+}
+
+.projects h2 {
+  font-size: 2.5rem;
+  font-weight: 200;
+}
+
+.projects-item i {
+  font-size: 3rem;
+  cursor: pointer;
+  transition: 0.2;
+}
+
+.projects-item i:hover {
+  transform: scale(1.1);
+}
+
+.projects-content > .projects-item {
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.projects-content > .projects-item:last-child {
+  border-bottom: none;
+}
+
+#image {
+  height: 200px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
 @media screen and (max-width: 1200px) {
   .home-container {
     width: 700px;

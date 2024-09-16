@@ -6,6 +6,9 @@ const progress = document.getElementById("progress-bar");
 const menuIcon = document.getElementById("menu-icon");
 const navLinks = document.querySelectorAll(".nav-drawer a");
 const techContent = document.getElementById("tech-content");
+const projectsContent = document.getElementById("projects-content");
+const projectItems = document.querySelectorAll(".projects-item");
+const image = document.getElementById("image");
 const body = document.body;
 
 const backdrop = document.createElement("div");
@@ -68,5 +71,25 @@ techContent.addEventListener("mousemove", (e) => {
       y = e.clientY - rect.top;
     item.style.setProperty("--mouse-x", `${x}px`);
     item.style.setProperty("--mouse-y", `${y}px`);
+  });
+});
+
+projectsContent.addEventListener("mousemove", (e) => {
+  image.style.opacity = 1;
+  const rect = projectsContent.getBoundingClientRect(),
+    x = e.clientX - rect.left + 50,
+    y = e.clientY - rect.top - 100;
+  image.style.left = `${x}px`;
+  image.style.top = `${y}px`;
+});
+
+projectsContent.addEventListener("mouseleave", () => {
+  image.style.opacity = 0;
+});
+
+projectItems.forEach((item) => {
+  item.addEventListener("mouseenter", () => {
+    const imageUrl = item.getAttribute("data-image");
+    image.src = imageUrl;
   });
 });
