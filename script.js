@@ -9,6 +9,7 @@ const techContent = document.getElementById("tech-content");
 const projectsContent = document.getElementById("projects-content");
 const projectItems = document.querySelectorAll(".projects-item");
 const image = document.getElementById("image");
+const imageContainer = document.getElementById("image-container");
 const body = document.body;
 
 const backdrop = document.createElement("div");
@@ -29,6 +30,12 @@ function changePhrase() {
 setInterval(changePhrase, 6000);
 
 changePhrase();
+
+let screenWidth = window.innerWidth;
+
+window.addEventListener("resize", () => {
+  screenWidth = window.innerWidth;
+});
 
 window.addEventListener("scroll", (e) => {
   const scrollPosition = window.scrollY;
@@ -75,16 +82,21 @@ techContent.addEventListener("mousemove", (e) => {
 });
 
 projectsContent.addEventListener("mousemove", (e) => {
-  image.style.opacity = 1;
-  const rect = projectsContent.getBoundingClientRect(),
-    x = e.clientX - rect.left + 50,
-    y = e.clientY - rect.top - 100;
-  image.style.left = `${x}px`;
-  image.style.top = `${y}px`;
+  imageContainer.style.opacity = 1;
+  const rect = projectsContent.getBoundingClientRect();
+  let x = e.clientX - rect.left + 50;
+  let y = e.clientY - rect.top - 100;
+
+  if (x > screenWidth - 700) {
+    x -= 500;
+  }
+
+  imageContainer.style.left = `${x}px`;
+  imageContainer.style.top = `${y}px`;
 });
 
 projectsContent.addEventListener("mouseleave", () => {
-  image.style.opacity = 0;
+  imageContainer.style.opacity = 0;
 });
 
 projectItems.forEach((item) => {
