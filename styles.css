@@ -346,6 +346,7 @@ p {
 
 .about-content {
   width: 40%;
+  max-width: 500px;
 }
 
 .about-content p {
@@ -540,6 +541,16 @@ p {
     font-size: 100px;
   }
 
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+
+  .about-content {
+    width: 80%;
+  }
+
   .input-container {
     flex-direction: column;
   }
@@ -580,6 +591,39 @@ p {
 @media screen and (max-width: 570px) {
   .home h1 {
     font-size: 4.5rem;
+  }
+
+  .about-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .about-content p {
+    font-size: 1.4rem;
+  }
+
+  .about-img img {
+    width: 100%;
+    filter: drop-shadow(-10px -5px orange);
+  }
+
+  .tech-content {
+    display: grid;
+    position: relative;
+    grid-auto-rows: 150px;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    justify-content: center;
+  }
+
+  .tech-item {
+    flex: 1;
+    text-align: center;
+    align-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3);
+    border: 1px solid gray;
+    position: relative;
+    border-radius: 10px;
   }
 }
 
