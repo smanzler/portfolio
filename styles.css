@@ -520,6 +520,16 @@ p {
   border-radius: 3rem;
   font-size: 2rem;
   background-color: lightblue;
+  border: 2px solid lightblue;
+  transition: 0.3s;
+}
+
+.contact button:hover {
+  border: 2px solid #0096ff;
+}
+
+.contact button:active {
+  background-color: #f0ffff;
 }
 
 @media screen and (max-width: 1200px) {
