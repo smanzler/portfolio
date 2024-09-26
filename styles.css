@@ -539,6 +539,10 @@ p {
   .logo {
     font-size: 100px;
   }
+
+  .input-container {
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 900px) {
