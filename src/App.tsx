@@ -1,8 +1,14 @@
+import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "./components/mode-toggle";
+
 function App() {
   return (
-    <div>
-      <h1>Simon Manzler</h1>
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div>
+        <h1>Simon Manzler</h1>
+        <ModeToggle />
+      </div>
+    </ThemeProvider>
   );
 }
 
