@@ -1,12 +1,21 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "./components/mode-toggle";
+import { Header } from "./components/Header";
+import { Home } from "./components/sections/Home";
+import { About } from "./components/sections/About";
+import { Projects } from "./components/sections/Projects";
+import { Contact } from "./components/sections/Contact";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div>
-        <h1>Simon Manzler</h1>
-        <ModeToggle />
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+          <Home />
+          <About />
+          <Projects />
+          <Contact />
+        </main>
       </div>
     </ThemeProvider>
   );
