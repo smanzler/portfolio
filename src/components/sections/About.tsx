@@ -6,6 +6,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "../ui/hover-card";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export function About() {
   const frontendSkills = [
@@ -30,7 +36,29 @@ export function About() {
     <section id="about" className="py-12 md:py-24 max-w-7xl mx-auto">
       <div className="flex flex-col items-center gap-8 text-center mb-16 animate-fade-up">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          About Me
+          About Me{" "}
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <span className="text-blue-500 hover:text-blue-600 cursor-pointer">
+                @Simon
+              </span>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <div className="flex items-center gap-4">
+                <Avatar className="size-25">
+                  <AvatarImage src="https://github.com/vercel.png" />
+                  <AvatarFallback>SM</AvatarFallback>
+                </Avatar>
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold">Simon Manzler</h4>
+                  <p className="text-sm">Full-Stack Developer</p>
+                  <div className="text-muted-foreground text-xs">
+                    From Cincinnati, OH
+                  </div>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
         </h2>
         <p className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
           Passionate about creating exceptional web experiences and solving
