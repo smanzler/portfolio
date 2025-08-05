@@ -40,7 +40,6 @@ export function Contact() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          whileHover={{ y: -5 }}
         >
           <Card>
             <CardHeader>
@@ -82,7 +81,6 @@ export function Contact() {
                 <h4 className="font-semibold mb-2">Social</h4>
                 <div className="flex gap-4">
                   <motion.a
-                    whileHover={{ scale: 1.1 }}
                     href="https://github.com"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -91,7 +89,6 @@ export function Contact() {
                     GitHub
                   </motion.a>
                   <motion.a
-                    whileHover={{ scale: 1.1 }}
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -100,7 +97,6 @@ export function Contact() {
                     LinkedIn
                   </motion.a>
                   <motion.a
-                    whileHover={{ scale: 1.1 }}
                     href="https://twitter.com"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -119,7 +115,6 @@ export function Contact() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          whileHover={{ y: -5 }}
         >
           <Card>
             <CardHeader>
@@ -166,7 +161,6 @@ export function Contact() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.9 }}
-                  whileHover={{ scale: 1.02 }}
                 >
                   <Button className="w-full">Send Message</Button>
                 </motion.div>

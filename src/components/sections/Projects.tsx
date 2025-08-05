@@ -55,7 +55,6 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            whileHover={{ y: -5 }}
           >
             <Card className="overflow-hidden">
               <div className="flex flex-col h-full gap-6">

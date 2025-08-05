@@ -53,7 +53,6 @@ export function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-              whileHover={{ scale: 1.1 }}
             >
               <Badge variant="secondary">{skill.name}</Badge>
             </motion.div>
@@ -67,7 +66,6 @@ export function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.8 }}
-          whileHover={{ y: -5 }}
         >
           <Card>
             <CardHeader>
@@ -93,7 +91,6 @@ export function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 1 }}
-          whileHover={{ y: -5 }}
         >
           <Card>
             <CardHeader>
@@ -119,7 +116,6 @@ export function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 1.2 }}
-          whileHover={{ y: -5 }}
         >
           <Card>
             <CardHeader>

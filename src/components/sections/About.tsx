@@ -45,10 +45,7 @@ export function About() {
           About Me{" "}
           <HoverCard>
             <HoverCardTrigger asChild>
-              <motion.span
-                whileHover={{ scale: 1.1 }}
-                className="text-blue-500 hover:text-blue-600 cursor-pointer inline-block"
-              >
+              <motion.span className="text-blue-500 hover:text-blue-600 cursor-pointer inline-block">
                 @Simon
               </motion.span>
             </HoverCardTrigger>
@@ -59,7 +56,7 @@ export function About() {
                 transition={{ duration: 0.2 }}
                 className="flex items-center gap-4"
               >
-                <motion.div whileHover={{ scale: 1.1 }}>
+                <motion.div>
                   <Avatar className="size-25">
                     <AvatarImage src="https://github.com/vercel.png" />
                     <AvatarFallback>SM</AvatarFallback>
@@ -112,7 +109,6 @@ export function About() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          whileHover={{ y: -5 }}
         >
           <Card>
             <CardHeader>
@@ -146,7 +142,6 @@ export function About() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          whileHover={{ y: -5 }}
         >
           <Card>
             <CardHeader>
@@ -173,7 +168,6 @@ export function About() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.2, delay: 0.7 + index * 0.1 }}
-                      whileHover={{ scale: 1.1 }}
                     >
                       <Badge variant="secondary">{skill}</Badge>
                     </motion.div>
@@ -197,7 +191,6 @@ export function About() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.2, delay: 1 + index * 0.1 }}
-                      whileHover={{ scale: 1.1 }}
                     >
                       <Badge variant="outline">{skill}</Badge>
                     </motion.div>
