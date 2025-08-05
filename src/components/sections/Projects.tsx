@@ -12,24 +12,24 @@ import { Badge } from "@/components/ui/badge";
 export function Projects() {
   const projects = [
     {
-      title: "E-commerce Platform",
+      title: "Rep Workout Tracker",
       description:
-        "A full-stack e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, product management, and payment processing.",
-      tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
+        "Workout tracker built with React Native and Supabase. It allows users to track their workouts and progress and share their progress with their friends. Supports offline mode and syncs once connected to the internet.",
+      tags: ["React Native", "Supabase", "Expo"],
       image: "https://placehold.co/600x400",
     },
     {
-      title: "Task Management App",
+      title: "INVT",
       description:
-        "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      tags: ["Next.js", "TypeScript", "TailwindCSS", "Prisma"],
+        "Web app that allows users to find and rsvp to events made by others. Also allows users to invite friends through a QR code.",
+      tags: ["React", "TypeScript", "TailwindCSS", "Shadcn UI", "Firebase"],
       image: "https://placehold.co/600x400",
     },
     {
-      title: "Portfolio Website",
+      title: "Portfolio",
       description:
-        "A modern portfolio website built with React and TailwindCSS, featuring smooth animations and responsive design.",
-      tags: ["React", "TailwindCSS", "Framer Motion"],
+        "Modern portfolio website built with React and TailwindCSS and responsive design. It showcases my projects and skills.",
+      tags: ["React", "TailwindCSS", "Shadcn UI", "Github Pages"],
       image: "https://placehold.co/600x400",
     },
   ];
@@ -53,24 +53,27 @@ export function Projects() {
             className="overflow-hidden animate-fade-up"
             style={{ animationDelay: `${(index + 1) * 200}ms` }}
           >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-48 object-cover"
-            />
-            <CardHeader>
-              <CardTitle>{project.title}</CardTitle>
-              <CardDescription>{project.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Badge key={tag} variant="secondary">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </CardContent>
+            <div className="flex flex-col h-full gap-6">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-48 object-cover"
+              />
+              <CardHeader>
+                <CardTitle>{project.title}</CardTitle>
+                <CardDescription>{project.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </div>
+
             <CardFooter>
               <Button variant="outline" className="w-full">
                 View Project
