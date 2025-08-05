@@ -34,7 +34,7 @@ export function About() {
 
   return (
     <section id="about" className="py-12 md:py-24 max-w-7xl mx-auto">
-      <div className="flex flex-col items-center gap-8 text-center mb-16 animate-fade-up">
+      <div className="flex flex-col items-center gap-8 text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           About Me{" "}
           <HoverCard>
@@ -67,7 +67,7 @@ export function About() {
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
-        <Card className="animate-fade-up" style={{ animationDelay: "200ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle>Background</CardTitle>
             <CardDescription>
@@ -86,7 +86,7 @@ export function About() {
           </CardContent>
         </Card>
 
-        <Card className="animate-fade-up" style={{ animationDelay: "400ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle>Technical Skills</CardTitle>
             <CardDescription>

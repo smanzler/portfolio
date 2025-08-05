@@ -22,7 +22,7 @@ export function Home() {
       id="home"
       className="py-12 md:py-24 max-w-7xl mx-auto min-h-screen flex flex-col justify-center"
     >
-      <div className="flex flex-col items-center gap-8 text-center animate-fade-up">
+      <div className="flex flex-col items-center gap-8 text-center">
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
           Full-Stack Developer
         </h1>
@@ -40,7 +40,7 @@ export function Home() {
       </div>
 
       <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="animate-fade-up" style={{ animationDelay: "200ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle>Web Development</CardTitle>
             <CardDescription>
@@ -50,15 +50,15 @@ export function Home() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Modern Frontend Frameworks</li>
-              <li>• Responsive Design</li>
-              <li>• Performance Optimization</li>
-              <li>• SEO Best Practices</li>
+              <li>Modern Frontend Frameworks</li>
+              <li>Responsive Design</li>
+              <li>Performance Optimization</li>
+              <li>SEO Best Practices</li>
             </ul>
           </CardContent>
         </Card>
 
-        <Card className="animate-fade-up" style={{ animationDelay: "400ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle>UI/UX Design</CardTitle>
             <CardDescription>
@@ -68,15 +68,15 @@ export function Home() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• User-Centered Design</li>
-              <li>• Wireframing & Prototyping</li>
-              <li>• Design Systems</li>
-              <li>• Accessibility</li>
+              <li>User-Centered Design</li>
+              <li>Wireframing & Prototyping</li>
+              <li>Design Systems</li>
+              <li>Accessibility</li>
             </ul>
           </CardContent>
         </Card>
 
-        <Card className="animate-fade-up" style={{ animationDelay: "600ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle>Mobile Development</CardTitle>
             <CardDescription>
@@ -85,10 +85,10 @@ export function Home() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>• Native Performance</li>
-              <li>• Cross-Platform Development</li>
-              <li>• App Store Deployment</li>
-              <li>• Mobile-First Design</li>
+              <li>Native Performance</li>
+              <li>Cross-Platform Development</li>
+              <li>App Store Deployment</li>
+              <li>Mobile-First Design</li>
             </ul>
           </CardContent>
         </Card>

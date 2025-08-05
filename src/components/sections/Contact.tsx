@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 export function Contact() {
   return (
     <section id="contact" className="py-12 md:py-24 max-w-7xl mx-auto">
-      <div className="flex flex-col items-center gap-8 text-center mb-16 animate-fade-up">
+      <div className="flex flex-col items-center gap-8 text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           Get in Touch
         </h2>
@@ -24,7 +24,7 @@ export function Contact() {
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
-        <Card className="animate-fade-up" style={{ animationDelay: "200ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle>Contact Information</CardTitle>
             <CardDescription>Here's how you can reach me</CardDescription>
@@ -77,7 +77,7 @@ export function Contact() {
           </CardContent>
         </Card>
 
-        <Card className="animate-fade-up" style={{ animationDelay: "400ms" }}>
+        <Card>
           <CardHeader>
             <CardTitle>Send a Message</CardTitle>
             <CardDescription>

@@ -36,7 +36,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-12 md:py-24 max-w-7xl mx-auto">
-      <div className="flex flex-col items-center gap-8 text-center mb-16 animate-fade-up">
+      <div className="flex flex-col items-center gap-8 text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           Featured Projects
         </h2>
@@ -50,7 +50,7 @@ export function Projects() {
         {projects.map((project, index) => (
           <Card
             key={project.title}
-            className="overflow-hidden animate-fade-up"
+            className="overflow-hidden"
             style={{ animationDelay: `${(index + 1) * 200}ms` }}
           >
             <div className="flex flex-col h-full gap-6">
