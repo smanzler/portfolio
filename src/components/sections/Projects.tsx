@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -48,38 +49,43 @@ export function Projects() {
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
-          <Card
+          <motion.div
             key={project.title}
-            className="overflow-hidden"
-            style={{ animationDelay: `${(index + 1) * 200}ms` }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            whileHover={{ y: -5 }}
           >
-            <div className="flex flex-col h-full gap-6">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-              />
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </div>
+            <Card className="overflow-hidden">
+              <div className="flex flex-col h-full gap-6">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
+                <CardHeader>
+                  <CardTitle>{project.title}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </div>
 
-            <CardFooter>
-              <Button variant="outline" className="w-full">
-                View Project
-              </Button>
-            </CardFooter>
-          </Card>
+              <CardFooter>
+                <Button variant="outline" className="w-full">
+                  View Project
+                </Button>
+              </CardFooter>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </section>
