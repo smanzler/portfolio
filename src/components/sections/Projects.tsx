@@ -10,6 +10,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+// Import images
+import repImage from "@/assets/rep.png";
+import invtImage from "@/assets/invt.png";
+import portfolioImage from "@/assets/portfolio.png";
+
 export function Projects() {
   const projects = [
     {
@@ -17,21 +22,21 @@ export function Projects() {
       description:
         "Workout tracker built with React Native and Supabase. It allows users to track their workouts and progress and share their progress with their friends. Supports offline mode and syncs once connected to the internet.",
       tags: ["React Native", "Supabase", "Expo"],
-      image: "https://placehold.co/600x400",
+      image: repImage,
     },
     {
       title: "INVT",
       description:
         "Web app that allows users to find and rsvp to events made by others. Also allows users to invite friends through a QR code.",
       tags: ["React", "TypeScript", "TailwindCSS", "Shadcn UI", "Firebase"],
-      image: "https://placehold.co/600x400",
+      image: invtImage,
     },
     {
       title: "Portfolio",
       description:
         "Modern portfolio website built with React and TailwindCSS and responsive design. It showcases my projects and skills.",
       tags: ["React", "TailwindCSS", "Shadcn UI", "Github Pages"],
-      image: "https://placehold.co/600x400",
+      image: portfolioImage,
     },
   ];
 
@@ -56,12 +61,13 @@ export function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
           >
-            <Card className="overflow-hidden">
+            <Card className="pt-0">
               <div className="flex flex-col h-full gap-6">
-                <img
+                <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 object-cover object-top rounded-xl border"
+                  whileHover={{ scale: 1.25 }}
                 />
                 <CardHeader>
                   <CardTitle>{project.title}</CardTitle>

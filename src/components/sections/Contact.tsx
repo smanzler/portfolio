@@ -55,10 +55,10 @@ export function Contact() {
               >
                 <h4 className="font-semibold mb-2">Email</h4>
                 <a
-                  href="mailto:contact@example.com"
+                  href="mailto:simanzler@gmail.com"
                   className="text-gray-500 dark:text-gray-400 hover:text-primary"
                 >
-                  contact@example.com
+                  simanzler@gmail.com
                 </a>
               </motion.div>
               <motion.div
@@ -69,7 +69,7 @@ export function Contact() {
               >
                 <h4 className="font-semibold mb-2">Location</h4>
                 <p className="text-gray-500 dark:text-gray-400">
-                  San Francisco, CA
+                  Cincinnati, OH
                 </p>
               </motion.div>
               <motion.div
@@ -81,7 +81,7 @@ export function Contact() {
                 <h4 className="font-semibold mb-2">Social</h4>
                 <div className="flex gap-4">
                   <motion.a
-                    href="https://github.com"
+                    href="https://github.com/smanzler"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 dark:text-gray-400 hover:text-primary"
@@ -89,20 +89,12 @@ export function Contact() {
                     GitHub
                   </motion.a>
                   <motion.a
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/in/simonmanzler"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 dark:text-gray-400 hover:text-primary"
                   >
                     LinkedIn
-                  </motion.a>
-                  <motion.a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 dark:text-gray-400 hover:text-primary"
-                  >
-                    Twitter
                   </motion.a>
                 </div>
               </motion.div>
