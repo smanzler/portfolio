@@ -10,10 +10,10 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+        <main className="container mx-auto px-4 sm:px-6">
           <Home />
-          <About />
           <Projects />
+          <About />
           <Contact />
         </main>
       </div>
