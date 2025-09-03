@@ -11,10 +11,12 @@ function App() {
       <div className="min-h-screen bg-background">
         <Header />
         <main className="container mx-auto px-4 sm:px-6">
-          <Home />
-          <Projects />
-          <About />
-          <Contact />
+          <div className="mx-auto px-4 max-w-7xl">
+            <Home />
+            <Projects />
+            <About />
+            <Contact />
+          </div>
         </main>
       </div>
     </ThemeProvider>

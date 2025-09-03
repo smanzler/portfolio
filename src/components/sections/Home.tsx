@@ -76,7 +76,7 @@ export function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-[700px] text-gray-500 md:text-xl lg:text-2xl dark:text-gray-400 mb-8"
+          className="max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl mb-8"
         >
           Building modern, responsive, and user-friendly web applications
         </motion.p>
@@ -100,81 +100,85 @@ export function Home() {
       </div>
 
       <motion.div
-        className="flex flex-col gap-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
+        className="w-full sm:w-fit mx-auto"
       >
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl font-bold text-center"
+          className="text-3xl font-bold"
         >
           Featured Projects
         </motion.h2>
-
-        <div className="w-fit mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {projects.map((project) => (
+        <motion.h3
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-1xl text-muted-foreground pb-3"
+        >
+          Here are some of my favourite projects
+        </motion.h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {projects.map((project) => (
+            <motion.div
+              key={project.name}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+              className="relative"
+            >
               <motion.div
-                key={project.name}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                className="relative"
+                layoutId={`project-card-${project.name}`}
+                onClick={() => handleProjectClick?.(project)}
               >
-                <motion.div
-                  layoutId={`project-card-${project.name}`}
-                  onClick={() => handleProjectClick?.(project)}
-                >
-                  <Card className="p-4">
+                <Card className="p-4">
+                  <motion.div
+                    layoutId={`project-container-${project.name}`}
+                    className="flex flex-row gap-4"
+                  >
                     <motion.div
-                      layoutId={`project-container-${project.name}`}
-                      className="flex flex-row gap-4"
+                      layoutId={`project-image-container-${project.name}`}
+                      className="h-16 w-16 overflow-hidden rounded-xl"
                     >
-                      <motion.div
-                        layoutId={`project-image-container-${project.name}`}
-                        className="h-16 w-16 overflow-hidden rounded-xl"
-                      >
-                        {project.icon ? (
-                          <motion.img
-                            layoutId={`project-image-${project.name}`}
-                            src={project.icon}
-                            alt={project.name}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : (
-                          <motion.div
-                            layoutId={`project-placeholder-${project.name}`}
-                            className="h-full w-full flex items-center justify-center bg-muted"
-                          >
-                            <span className="text-2xl">{project.name[0]}</span>
-                          </motion.div>
-                        )}
-                      </motion.div>
-                      <div>
-                        <motion.h3
-                          layoutId={`project-title-${project.name}`}
-                          className="text-lg font-medium truncate"
-                        >
-                          {project.name}
-                        </motion.h3>
+                      {project.icon ? (
+                        <motion.img
+                          layoutId={`project-image-${project.name}`}
+                          src={project.icon}
+                          alt={project.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
                         <motion.div
-                          layoutId={`project-status-${project.name}`}
-                          className="mt-1"
+                          layoutId={`project-placeholder-${project.name}`}
+                          className="h-full w-full flex items-center justify-center bg-muted"
                         >
-                          <Badge variant="outline" className="text-xs">
-                            {project.status}
-                          </Badge>
+                          <span className="text-2xl">{project.name[0]}</span>
                         </motion.div>
-                      </div>
+                      )}
                     </motion.div>
-                  </Card>
-                </motion.div>
+                    <div>
+                      <motion.h3
+                        layoutId={`project-title-${project.name}`}
+                        className="text-lg font-medium truncate"
+                      >
+                        {project.name}
+                      </motion.h3>
+                      <motion.div
+                        layoutId={`project-status-${project.name}`}
+                        className="mt-1"
+                      >
+                        <Badge variant="outline" className="text-xs">
+                          {project.status}
+                        </Badge>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </Card>
               </motion.div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
 
@@ -265,82 +269,6 @@ export function Home() {
           </>
         )}
       </AnimatePresence>
-
-      {/*  <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Web Development</CardTitle>
-              <CardDescription>
-                Creating modern web applications with React, TypeScript, and
-                TailwindCSS.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Modern Frontend Frameworks</li>
-                <li>Responsive Design</li>
-                <li>Performance Optimization</li>
-                <li>SEO Best Practices</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 1 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>UI/UX Design</CardTitle>
-              <CardDescription>
-                Designing intuitive and beautiful user interfaces with modern
-                design principles.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>User-Centered Design</li>
-                <li>Wireframing & Prototyping</li>
-                <li>Design Systems</li>
-                <li>Accessibility</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 1.2 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Mobile Development</CardTitle>
-              <CardDescription>
-                Building cross-platform mobile applications with React Native.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Native Performance</li>
-                <li>Cross-Platform Development</li>
-                <li>App Store Deployment</li>
-                <li>Mobile-First Design</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </div> */}
     </section>
   );
 }

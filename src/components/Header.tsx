@@ -17,8 +17,8 @@ export function Header() {
 
   return (
     <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex h-16 items-center justify-between">
+      <div className="container mx-auto">
+        <div className="h-14 flex mx-auto justify-between items-center px-4 max-w-7xl">
           <a
             href="#home"
             onClick={(e) => {
