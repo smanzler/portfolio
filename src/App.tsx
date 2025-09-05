@@ -11,7 +11,7 @@ function App() {
       <div className="min-h-screen bg-background">
         <Header />
         <main className="container mx-auto px-4">
-          <div className="mx-auto px-4 max-w-7xl">
+          <div className="mx-auto max-w-7xl">
             <Home />
             <Projects />
             <About />
