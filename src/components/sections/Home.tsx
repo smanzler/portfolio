@@ -65,7 +65,7 @@ export function Home() {
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-1"
         >
           Software
@@ -73,9 +73,9 @@ export function Home() {
           Developer
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl mb-8"
         >
           Building modern, responsive, and user-friendly web applications
@@ -83,7 +83,7 @@ export function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-wrap gap-2"
         >
           {skills.map((skill, index) => (
@@ -108,6 +108,7 @@ export function Home() {
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className="text-3xl font-bold"
         >
           Featured Projects
@@ -115,17 +116,21 @@ export function Home() {
         <motion.h3
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="text-1xl text-muted-foreground pb-3"
         >
           Here are some of my favourite projects
         </motion.h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
               whileHover={{
                 scale: 1.05,
-                transition: { duration: 0.2 },
+                transition: { duration: 0.2, delay: 0 },
               }}
               className="relative"
             >
