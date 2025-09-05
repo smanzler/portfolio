@@ -59,9 +59,9 @@ export function Home() {
   return (
     <section
       id="home"
-      className="mx-auto min-h-screen grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-24"
+      className="mx-auto min-h-screen flex flex-col sm:flex-row justify-between items-center gap-24"
     >
-      <div className="flex flex-col max-w-[600px]">
+      <div className="flex flex-col max-w-[400px]">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,13 +103,13 @@ export function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full sm:w-fit mx-auto"
+        className=""
       >
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold"
+          className="text-3xl font-bold text-right"
         >
           Featured Projects
         </motion.h2>
@@ -117,7 +117,7 @@ export function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-1xl text-muted-foreground pb-3"
+          className="text-1xl text-muted-foreground pb-3 text-right"
         >
           Here are some of my favourite projects
         </motion.h3>
