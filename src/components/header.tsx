@@ -74,8 +74,8 @@ export function Header() {
               <span className="text-xl font-bold">Simon Manzler</span>
             </a>
 
-            <nav className="flex items-center gap-6">
-              <div className="hidden gap-6 md:flex">
+            <nav className="flex items-center">
+              <div className="hidden md:flex">
                 <Button
                   variant="ghost"
                   className="text-lg"
@@ -99,11 +99,11 @@ export function Header() {
                 </Button>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center">
                 <ModeToggle />
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild className="md:hidden">
-                    <Button variant="outline" size="icon">
+                    <Button variant="ghost" size="icon">
                       <MenuIcon className="h-6 w-6" />
                     </Button>
                   </DropdownMenuTrigger>
