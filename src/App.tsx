@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "./components/header";
+import { Header } from "@/components/header";
 import { Home } from "@/components/sections/Home";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
