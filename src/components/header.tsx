@@ -71,30 +71,21 @@ export function Header() {
               }}
               className="flex items-center space-x-2"
             >
-              <span className="text-xl font-bold">Simon Manzler</span>
+              <span className="font-bold">Simon Manzler</span>
             </a>
 
             <nav className="flex items-center">
               <div className="hidden md:flex">
                 <Button
                   variant="ghost"
-                  className="text-lg"
                   onClick={() => handleScroll("projects")}
                 >
                   Projects
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="text-lg"
-                  onClick={() => handleScroll("about")}
-                >
+                <Button variant="ghost" onClick={() => handleScroll("about")}>
                   About
                 </Button>
-                <Button
-                  variant="ghost"
-                  className="text-lg"
-                  onClick={() => handleScroll("contact")}
-                >
+                <Button variant="ghost" onClick={() => handleScroll("contact")}>
                   Contact
                 </Button>
               </div>
