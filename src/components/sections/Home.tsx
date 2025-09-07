@@ -16,7 +16,7 @@ export function Home() {
   return (
     <section
       id="home"
-      className="mx-auto min-h-screen flex flex-col items-center justify-center"
+      className="mx-auto min-h-screen flex flex-col text-center items-center justify-center"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl mb-8"
+        className="text-muted-foreground md:text-xl lg:text-2xl mb-8"
       >
         Building modern, responsive, and user-friendly web applications
       </motion.p>
@@ -49,7 +49,7 @@ export function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className="flex flex-wrap gap-2"
+        className="flex flex-wrap gap-2 justify-center"
       >
         {skills.map((skill, index) => (
           <motion.div
