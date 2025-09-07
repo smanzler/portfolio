@@ -16,7 +16,7 @@ export function Home() {
   return (
     <section
       id="home"
-      className="mx-auto min-h-screen flex flex-col text-center items-center justify-center"
+      className="min-h-screen flex flex-col text-center items-center justify-center"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

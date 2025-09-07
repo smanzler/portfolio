@@ -45,7 +45,7 @@ export function Header() {
     <motion.header
       className="fixed w-full z-50"
       animate={{
-        top: isScrolled ? (isVisible ? "20px" : "-100px") : "0",
+        top: isScrolled ? (isVisible ? "20px" : "-80px") : "0",
       }}
       transition={{ duration: 0.4, ease: [0.1, 0.6, 0.3, 0.95] }}
     >
