@@ -79,16 +79,16 @@ export function Header() {
                 <Button
                   variant="ghost"
                   className="text-lg"
-                  onClick={() => handleScroll("about")}
+                  onClick={() => handleScroll("projects")}
                 >
-                  About
+                  Projects
                 </Button>
                 <Button
                   variant="ghost"
                   className="text-lg"
-                  onClick={() => handleScroll("projects")}
+                  onClick={() => handleScroll("about")}
                 >
-                  Projects
+                  About
                 </Button>
                 <Button
                   variant="ghost"
@@ -108,11 +108,11 @@ export function Header() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem onSelect={() => handleScroll("about")}>
-                      About
-                    </DropdownMenuItem>
                     <DropdownMenuItem onSelect={() => handleScroll("projects")}>
                       Projects
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={() => handleScroll("about")}>
+                      About
                     </DropdownMenuItem>
                     <DropdownMenuItem onSelect={() => handleScroll("contact")}>
                       Contact
