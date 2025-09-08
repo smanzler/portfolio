@@ -18,6 +18,16 @@ const LAYOUT_OPTIONS = {
 export function Home() {
   const [imageSelected, setImageSelected] = useState(false);
 
+  const handleImageSelected = () => {
+    if (!imageSelected) {
+      setImageSelected(true);
+      return;
+    }
+
+    setImageSelected(false);
+    handleNavigateToAboutMe();
+  };
+
   const handleNavigateToAboutMe = () => {
     setImageSelected(false);
 
@@ -41,71 +51,36 @@ export function Home() {
       id="home"
       className="min-h-screen flex flex-col text-center items-center justify-center"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-        className="size-50 mb-4 rounded-full overflow-hidden cursor-pointer"
-        layoutId="profile-image"
-        whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-        onClick={() => setImageSelected(true)}
-      >
-        <Avatar>
-          <AvatarImage src={profileImage} />
-          <AvatarFallback>SM</AvatarFallback>
-        </Avatar>
-      </motion.div>
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-1"
-      >
-        Software Developer
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="text-muted-foreground md:text-xl lg:text-2xl mb-8"
-      >
-        Building modern, responsive, and user-friendly web applications
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-        className="flex flex-wrap gap-2 justify-center"
-      >
-        {skills.map((skill, index) => (
-          <motion.div
-            key={skill.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.7 + index * 0.1 }}
-          >
-            <Badge variant="secondary">{skill.name}</Badge>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      <AnimatePresence>
-        {imageSelected && (
-          <>
-            <motion.div
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
-              exit={{ opacity: 0 }}
-              {...LAYOUT_OPTIONS}
-            />
-            <motion.div
-              className="fixed inset-0 flex items-center justify-center z-50 p-4"
-              onClick={() => setImageSelected(false)}
-            >
+      <div className="relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+          className="size-50 mb-4 rounded-full overflow-hidden cursor-pointer"
+          onClick={handleImageSelected}
+          onMouseEnter={() => setImageSelected(true)}
+        >
+          <Avatar className="absolute size-50 top-0 left-0 z-53 overflow-hidden rounded-full">
+            <AvatarImage src={profileImage} />
+            <AvatarFallback>SM</AvatarFallback>
+          </Avatar>
+        </motion.div>
+        <AnimatePresence>
+          {imageSelected && (
+            <>
+              <motion.div
+                className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
+                exit={{ opacity: 0 }}
+                {...LAYOUT_OPTIONS}
+              />
               <motion.div
                 onClick={(e) => e.stopPropagation()}
-                {...LAYOUT_OPTIONS}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.1 } }}
                 exit={{ opacity: 0 }}
+                className="w-[min(calc(100vw-2rem),400px)] absolute left-1/2 -translate-x-1/2 -top-4 z-51"
+                onMouseLeave={() => setImageSelected(false)}
               >
-                <Card className="py-4 w-[min(calc(100vw-2rem),400px)] relative">
+                <Card className="py-4 relative">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -115,15 +90,8 @@ export function Home() {
                     <XIcon className="size-4" />
                   </Button>
                   <CardHeader className="flex flex-col items-center gap-0">
-                    <motion.div
-                      layoutId="profile-image"
-                      className="size-40 rounded-full overflow-hidden mb-2"
-                    >
-                      <Avatar>
-                        <AvatarImage src={profileImage} />
-                        <AvatarFallback>SM</AvatarFallback>
-                      </Avatar>
-                    </motion.div>
+                    {/* Profile image placeholder */}
+                    <div className="size-50 mb-2" />
 
                     <motion.h2
                       transition={{ duration: DURATION, delay: 1 * DELAY }}
@@ -198,10 +166,43 @@ export function Home() {
                   </CardFooter>
                 </Card>
               </motion.div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-1"
+      >
+        Software Developer
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="text-muted-foreground md:text-xl lg:text-2xl mb-8"
+      >
+        Building modern, responsive, and user-friendly web applications
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="flex flex-wrap gap-2 justify-center"
+      >
+        {skills.map((skill, index) => (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.7 + index * 0.1 }}
+          >
+            <Badge variant="secondary">{skill.name}</Badge>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   );
 }
