@@ -60,7 +60,7 @@ export function Home() {
           onMouseEnter={() => setImageSelected(true)}
         >
           <Avatar className="absolute size-50 top-0 left-0 z-53 overflow-hidden rounded-full">
-            <AvatarImage src={profileImage} />
+            <AvatarImage src={profileImage} alt="Simon Manzler" />
             <AvatarFallback>SM</AvatarFallback>
           </Avatar>
         </motion.div>
