@@ -45,12 +45,12 @@ export function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-12 md:py-24">
-      <div className="flex flex-col items-center gap-8 text-center mb-16">
+    <section id="projects" className="min-h-screen py-12">
+      <div className="flex flex-col items-center gap-2 text-center mb-16">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           Featured Projects
         </h2>
-        <p className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+        <p className="max-w-[700px] text-muted-foreground md:text-xl">
           Here are some of my recent projects that showcase my skills and
           experience.
         </p>
@@ -65,8 +65,8 @@ export function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
           >
-            <Card className="pt-0 overflow-hidden">
-              <div className="flex flex-col h-full gap-6">
+            <Card className="pt-0 overflow-hidden h-full">
+              <div className="flex flex-col flex-1 gap-6">
                 <Dialog>
                   <DialogTrigger asChild>
                     <div className="relative overflow-hidden cursor-pointer">
