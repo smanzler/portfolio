@@ -180,10 +180,7 @@ export function Projects() {
 
                   <div className="flex flex-col gap-4">
                     <div>
-                      <motion.div
-                        whileHover={{ x: 4 }}
-                        transition={{ duration: 0.2 }}
-                      >
+                      <motion.div transition={{ duration: 0.2 }}>
                         <CardTitle className="text-2xl mb-2">
                           {project.title}
                         </CardTitle>
@@ -195,11 +192,7 @@ export function Projects() {
 
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
-                        <motion.div
-                          key={tag}
-                          whileHover={{ scale: 1.05, y: -2 }}
-                          transition={{ duration: 0.2 }}
-                        >
+                        <motion.div key={tag} transition={{ duration: 0.2 }}>
                           <Badge variant="outline" className="rounded-full">
                             {tag}
                           </Badge>
@@ -207,21 +200,23 @@ export function Projects() {
                       ))}
                     </div>
 
-                    <div className="flex md:justify-end gap-3 mt-auto">
-                      <motion.div whileHover={{ scale: 1.05 }}>
+                    <div className="flex md:justify-end gap-2 mt-auto">
+                      <motion.div>
                         <Button
                           onClick={() => window.open(project.link, "_blank")}
+                          className="cursor-pointer"
                         >
                           <EyeIcon className="w-4 h-4" />
                         </Button>
                       </motion.div>
                       {project.github && (
-                        <motion.div whileHover={{ scale: 1.05 }}>
+                        <motion.div>
                           <Button
                             variant="outline"
                             onClick={() =>
                               window.open(project.github, "_blank")
                             }
+                            className="cursor-pointer"
                           >
                             <svg
                               role="img"
@@ -268,10 +263,7 @@ export function Projects() {
           {smallerProjects.map((project) => (
             <motion.div key={project.title} variants={item}>
               <Card className="flex flex-col group">
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <motion.div transition={{ duration: 0.2 }}>
                   <CardHeader>
                     <CardTitle className="text-xl">{project.title}</CardTitle>
                     <CardDescription>{project.description}</CardDescription>
@@ -280,11 +272,7 @@ export function Projects() {
                   <CardContent className="flex-1">
                     <div className="flex flex-wrap gap-1.5">
                       {project.tags.map((tag) => (
-                        <motion.div
-                          key={tag}
-                          whileHover={{ scale: 1.05, y: -2 }}
-                          transition={{ duration: 0.2 }}
-                        >
+                        <motion.div key={tag} transition={{ duration: 0.2 }}>
                           <Badge variant="secondary" className="text-xs">
                             {tag}
                           </Badge>
@@ -294,18 +282,20 @@ export function Projects() {
                   </CardContent>
 
                   <CardFooter className="flex gap-2 justify-end">
-                    <motion.div whileHover={{ scale: 1.05 }}>
+                    <motion.div>
                       <Button
                         onClick={() => window.open(project.link, "_blank")}
+                        className="cursor-pointer"
                       >
                         <EyeIcon className="w-4 h-4" />
                       </Button>
                     </motion.div>
                     {project.github && (
-                      <motion.div whileHover={{ scale: 1.05 }}>
+                      <motion.div>
                         <Button
                           variant="outline"
                           onClick={() => window.open(project.github, "_blank")}
+                          className="cursor-pointer"
                         >
                           <svg
                             role="img"
