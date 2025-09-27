@@ -25,13 +25,13 @@ export function Home() {
     }
 
     setImageSelected(false);
-    handleNavigateToAboutMe();
+    handleScroll("about");
   };
 
-  const handleNavigateToAboutMe = () => {
+  const handleScroll = (id: string) => {
     setImageSelected(false);
 
-    const element = document.getElementById("about");
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -158,7 +158,7 @@ export function Home() {
                       <Button
                         variant="outline"
                         className="w-full"
-                        onClick={handleNavigateToAboutMe}
+                        onClick={() => handleScroll("about")}
                       >
                         More About Me
                       </Button>
@@ -202,6 +202,15 @@ export function Home() {
             <Badge variant="secondary">{skill.name}</Badge>
           </motion.div>
         ))}
+      </motion.div>
+      <motion.div className="mt-12">
+        <Button
+          variant="outline"
+          className="w-[min(calc(100vw-2rem),200px)]"
+          onClick={() => handleScroll("projects")}
+        >
+          View Projects
+        </Button>
       </motion.div>
     </section>
   );
