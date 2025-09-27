@@ -43,7 +43,7 @@ export function Header() {
 
   return (
     <motion.header
-      className="fixed w-full z-50"
+      className="fixed w-full z-55"
       animate={{
         top: isScrolled ? (isVisible ? "20px" : "-80px") : "0",
       }}

@@ -30,16 +30,6 @@ interface Project {
 export function Projects() {
   const projects: Project[] = [
     {
-      title: "Rep Workout Tracker",
-      description:
-        "Workout tracker built with React Native and Supabase. It allows users to track their workouts and progress and share their progress with their friends. Supports offline mode and syncs once connected to the internet.",
-      tags: ["React Native", "Supabase", "Expo"],
-      image: repImage,
-      link: "https://github.com/smanzler/workout-tracker",
-      featured: true,
-      github: "https://github.com/smanzler/workout-tracker",
-    },
-    {
       title: "INVT",
       description:
         "Web app that allows users to find and rsvp to events made by others. Also allows users to invite friends through a QR code.",
@@ -48,6 +38,16 @@ export function Projects() {
       link: "https://invt.rsvp",
       featured: true,
       github: "https://github.com/smanzler/invt",
+    },
+    {
+      title: "Rep Workout Tracker",
+      description:
+        "Workout tracker built with React Native and Supabase. It allows users to track their workouts and progress and share their progress with their friends. Supports offline mode and syncs once connected to the internet.",
+      tags: ["React Native", "Supabase", "Expo"],
+      image: repImage,
+      link: "https://github.com/smanzler/workout-tracker",
+      featured: true,
+      github: "https://github.com/smanzler/workout-tracker",
     },
     {
       title: "Portfolio",
@@ -149,7 +149,7 @@ export function Projects() {
                     <Dialog>
                       <DialogTrigger asChild>
                         <motion.div
-                          className="relative aspect-video rounded-lg overflow-hidden bg-muted cursor-pointer"
+                          className="relative rounded-lg overflow-hidden bg-muted cursor-pointer"
                           whileHover={{ scale: 1.02 }}
                           transition={{ duration: 0.2 }}
                         >
