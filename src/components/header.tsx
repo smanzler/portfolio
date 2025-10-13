@@ -52,10 +52,10 @@ export function Header() {
       <div className="container mx-auto px-4">
         <motion.div
           className={cn(
-            "mx-auto rounded-full transition-colors max-w-7xl",
+            "mx-auto rounded-xl transition-colors max-w-5xl",
             isScrolled
-              ? "bg-secondary/95 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-secondary/80"
-              : "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+              ? "bg-card shadow-lg backdrop-blur supports-[backdrop-filter]:bg-card/80"
+              : "bg-transparent"
           )}
           animate={{
             padding: isScrolled ? "0.5rem 1.5rem" : "0.5rem 0rem",
