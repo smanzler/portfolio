@@ -9,12 +9,14 @@ import {
 import { motion, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -34,11 +36,14 @@ export function Header() {
     });
   }, [scrollY]);
 
-  const handleScroll = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleClick = (id: string, e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.preventDefault();
+
+    navigate("/portfolio/", {
+      state: {
+        id: id,
+      },
+    });
   };
 
   return (
@@ -63,29 +68,28 @@ export function Header() {
           transition={{ duration: 0.3, ease: [0.1, 0.6, 0.3, 0.95] }}
         >
           <div className="h-12 flex justify-between items-center mx-auto">
-            <a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScroll("home");
-              }}
-              className="flex items-center space-x-2"
-            >
+            <Button variant="ghost" onClick={(e) => handleClick("home", e)}>
               <span className="font-bold">Simon Manzler</span>
-            </a>
+            </Button>
 
             <nav className="flex items-center">
               <div className="hidden md:flex">
                 <Button
                   variant="ghost"
-                  onClick={() => handleScroll("projects")}
+                  onClick={(e) => handleClick("projects", e)}
                 >
                   Projects
                 </Button>
-                <Button variant="ghost" onClick={() => handleScroll("about")}>
+                <Button
+                  variant="ghost"
+                  onClick={(e) => handleClick("about", e)}
+                >
                   About
                 </Button>
-                <Button variant="ghost" onClick={() => handleScroll("contact")}>
+                <Button
+                  variant="ghost"
+                  onClick={(e) => handleClick("contact", e)}
+                >
                   Contact
                 </Button>
               </div>
@@ -99,13 +103,13 @@ export function Header() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem onSelect={() => handleScroll("projects")}>
+                    <DropdownMenuItem onSelect={() => handleClick("projects")}>
                       Projects
                     </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => handleScroll("about")}>
+                    <DropdownMenuItem onSelect={() => handleClick("about")}>
                       About
                     </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => handleScroll("contact")}>
+                    <DropdownMenuItem onSelect={() => handleClick("contact")}>
                       Contact
                     </DropdownMenuItem>
                   </DropdownMenuContent>

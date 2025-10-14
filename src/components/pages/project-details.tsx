@@ -17,14 +17,51 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Project not found</h1>
-          <Button onClick={() => navigate("/portfolio/")} variant="outline">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Button>
+      <div className="min-h-screen py-20">
+        {/* Back Button */}
+        <Button
+          onClick={() => navigate("/portfolio/")}
+          variant="ghost"
+          className="mb-8"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Projects
+        </Button>
+
+        <div className="flex flex-col items-center justify-center py-20">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            Project Not Found
+          </h1>
+          <p className="text-base text-muted-foreground mb-8 text-center max-w-md">
+            Sorry, we couldn't find the project you're looking for. It might
+            have been moved or doesn't exist.
+          </p>
+          <div className="flex gap-4">
+            <Button asChild>
+              <a href="/portfolio/">
+                <ArrowLeft className="h-4 w-4" />
+                View All Projects
+              </a>
+            </Button>
+          </div>
         </div>
+
+        <section className="border-t pt-12">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-2xl font-bold mb-4 tracking-tight">
+              Looking for Something Else?
+            </h2>
+            <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+              Check out my featured projects or get in touch if you have any
+              questions.
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Button asChild variant="outline">
+                <a href="/portfolio/#contact">Contact Me</a>
+              </Button>
+            </div>
+          </div>
+        </section>
       </div>
     );
   }

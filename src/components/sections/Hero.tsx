@@ -15,7 +15,7 @@ const LAYOUT_OPTIONS = {
   animate: { opacity: 1, y: 0 },
 };
 
-export function Home() {
+export function Hero() {
   const [imageSelected, setImageSelected] = useState(false);
 
   const handleImageSelected = () => {
