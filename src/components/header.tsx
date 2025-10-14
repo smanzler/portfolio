@@ -54,7 +54,7 @@ export function Header() {
           className={cn(
             "mx-auto rounded-xl transition-colors max-w-5xl",
             isScrolled
-              ? "bg-card shadow-lg backdrop-blur supports-[backdrop-filter]:bg-card/80"
+              ? "bg-card shadow-lg backdrop-blur-lg supports-[backdrop-filter]:bg-card/50"
               : "bg-transparent"
           )}
           animate={{
