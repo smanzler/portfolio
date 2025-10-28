@@ -7,6 +7,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Button } from "../ui/button";
+import resume from "@/assets/resume.pdf";
+import { DownloadIcon } from "lucide-react";
 
 export function About() {
   const frontendSkills = [
@@ -72,69 +75,86 @@ export function About() {
           </Card>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Technical Skills</CardTitle>
-              <CardDescription>
-                A comprehensive set of skills across the full stack
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.6 }}
-              >
-                <h4 className="font-semibold mb-3 text-sm">
-                  Frontend Development
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {frontendSkills.map((skill, index) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.2, delay: 0.7 + index * 0.1 }}
-                    >
-                      <Badge variant="secondary">{skill}</Badge>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.8 }}
-              >
-                <h4 className="font-semibold mb-3 text-sm">
-                  Backend Development
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {backendSkills.map((skill, index) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.2, delay: 1 + index * 0.1 }}
-                    >
-                      <Badge variant="outline">{skill}</Badge>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <div className="flex flex-col gap-4">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>Technical Skills</CardTitle>
+                <CardDescription>
+                  A comprehensive set of skills across the full stack
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                >
+                  <h4 className="font-semibold mb-3 text-sm">
+                    Frontend Development
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {frontendSkills.map((skill, index) => (
+                      <motion.div
+                        key={skill}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.2, delay: 0.7 + index * 0.1 }}
+                      >
+                        <Badge variant="secondary">{skill}</Badge>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.8 }}
+                >
+                  <h4 className="font-semibold mb-3 text-sm">
+                    Backend Development
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {backendSkills.map((skill, index) => (
+                      <motion.div
+                        key={skill}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.2, delay: 1 + index * 0.1 }}
+                      >
+                        <Badge variant="outline">{skill}</Badge>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: 0.6 }}
+          >
+            <Button
+              onClick={() => window.open(resume, "_blank")}
+              className="w-full"
+            >
+              <DownloadIcon className="w-4 h-4 mr-2" />
+              Download Resume
+            </Button>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

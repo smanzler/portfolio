@@ -3,7 +3,6 @@ import { Header } from "@/components/header";
 import { Hero } from "./components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
-import { Contact } from "@/components/sections/Contact";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import ProjectDetails from "./components/pages/project-details";
 import { useEffect } from "react";
@@ -22,7 +21,6 @@ function Root() {
       <Hero />
       <Projects />
       <About />
-      <Contact />
     </>
   );
 }
