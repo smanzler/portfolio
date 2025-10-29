@@ -52,26 +52,28 @@ export function About() {
             <CardHeader>
               <CardTitle>Background</CardTitle>
               <CardDescription>
-                With over 5 years of experience in web development, I specialize
-                in building modern, responsive, and user-friendly applications.
-                My journey in tech started with a passion for creating intuitive
-                user experiences and has evolved into a deep expertise in
-                full-stack development.
+                Hi, I’m Simon — a full-stack software developer who enjoys
+                building practical, reliable apps that people actually use.
+                <br />
+                <br />
+                I’ve completed three internships and worked on projects ranging
+                from enterprise C# APIs in financial services to a React Native
+                workout app published on the App Store. My focus is on creating
+                smooth, user-friendly experiences backed by solid, maintainable
+                code.
+                <br />
+                <br />
+                I like working across the stack — designing databases, writing
+                clean APIs, and building responsive interfaces with React and
+                React Native. Lately, I’ve been using Supabase and PostgreSQL
+                for cloud-based apps, and WatermelonDB for offline-first mobile
+                development.
+                <br />
+                <br />
+                Outside of coding, I enjoy music, art, and exploring new tech
+                ideas — often blending them into creative side projects.
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.6 }}
-              >
-                <CardDescription className="mt-4">
-                  I'm constantly learning and staying up-to-date with the latest
-                  technologies and best practices in web development.
-                </CardDescription>
-              </motion.div>
-            </CardContent>
           </Card>
         </motion.div>
 

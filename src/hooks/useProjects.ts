@@ -154,36 +154,20 @@ export function useProjects() {
       },
       // Additional smaller projects
       {
-        title: "Weather Dashboard",
+        title: "Type Town",
         description:
-          "Real-time weather dashboard with location search and 5-day forecast.",
-        tags: ["React", "OpenWeather API", "ChartJS"],
-        link: "https://weather-dashboard.demo",
-        github: "https://github.com/smanzler/weather-dashboard",
+          "Typing game built with React, Vite and Typescript. It allows users to type different quotes from different authors. Shows the user's typing speed and accuracy.",
+        tags: ["React", "Vite", "Typescript"],
+        link: "https://smanzler.github.io/TypeTownV3/",
+        github: "https://github.com/smanzler/TypeTownV3",
       },
       {
-        title: "Task Manager CLI",
+        title: "Written",
         description:
-          "Command-line task manager with priority scheduling and due dates.",
-        tags: ["Python", "Click", "SQLite"],
-        link: "https://github.com/smanzler/task-cli",
-        github: "https://github.com/smanzler/task-cli",
-      },
-      {
-        title: "URL Shortener",
-        description:
-          "Simple URL shortener service with custom aliases and click tracking.",
-        tags: ["Node.js", "Express", "MongoDB"],
-        link: "https://short.url",
-        github: "https://github.com/smanzler/url-shortener",
-      },
-      {
-        title: "Markdown Note Taking",
-        description:
-          "Minimalist markdown note-taking app with tag organization.",
-        tags: ["React", "LocalStorage", "Marked"],
-        link: "https://notes.demo",
-        github: "https://github.com/smanzler/markdown-notes",
+          "Infinite Journal built with React, Vite and Typescript. It allows users to write and save their journal entries. It also allows users to see their journal entries and compare their scores with their friends.",
+        tags: ["React", "Vite", "Typescript"],
+        link: "https://smanzler.github.io/written/",
+        github: "https://github.com/smanzler/written",
       },
     ],
     []
