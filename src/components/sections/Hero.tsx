@@ -204,7 +204,12 @@ export function Hero() {
           </motion.div>
         ))}
       </motion.div>
-      <motion.div className="mt-12">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.8 + skills.length * 0.1 }}
+        className="mt-12"
+      >
         <Button
           variant="outline"
           className="w-[min(calc(100vw-2rem),200px)]"
