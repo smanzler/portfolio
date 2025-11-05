@@ -18,12 +18,7 @@ const ProjectDetails = () => {
   if (!project) {
     return (
       <div className="min-h-screen py-20">
-        {/* Back Button */}
-        <Button
-          onClick={() => navigate("/portfolio/")}
-          variant="ghost"
-          className="mb-8"
-        >
+        <Button onClick={() => navigate("/")} variant="ghost" className="mb-8">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Projects
         </Button>
@@ -38,7 +33,7 @@ const ProjectDetails = () => {
           </p>
           <div className="flex gap-4">
             <Button asChild>
-              <a href="/portfolio/">
+              <a href="/">
                 <ArrowLeft className="h-4 w-4" />
                 View All Projects
               </a>
@@ -57,7 +52,7 @@ const ProjectDetails = () => {
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Button asChild variant="outline">
-                <a href="/portfolio/#contact">Contact Me</a>
+                <a href="/#contact">Contact Me</a>
               </Button>
             </div>
           </div>
@@ -69,11 +64,7 @@ const ProjectDetails = () => {
   return (
     <div className="min-h-screen py-20">
       {/* Back Button */}
-      <Button
-        onClick={() => navigate("/portfolio/")}
-        variant="ghost"
-        className="mb-8"
-      >
+      <Button onClick={() => navigate("/")} variant="ghost" className="mb-8">
         <ArrowLeft className="mr-2 h-4 w-4" />
         Back to Projects
       </Button>
@@ -130,7 +121,6 @@ const ProjectDetails = () => {
         </div>
       </div>
 
-      {/* Project Image */}
       {project.image && (
         <div className="mb-20 rounded-lg overflow-hidden border">
           <img
@@ -141,7 +131,6 @@ const ProjectDetails = () => {
         </div>
       )}
 
-      {/* Overview */}
       <section className="mb-12 border-t pt-12">
         <h2 className="text-2xl font-bold mb-4 tracking-tight">Overview</h2>
         <p className="text-base text-muted-foreground leading-relaxed">
@@ -149,7 +138,6 @@ const ProjectDetails = () => {
         </p>
       </section>
 
-      {/* Key Features */}
       {project.keyFeatures && project.keyFeatures.length > 0 && (
         <section className="mb-12 border-t pt-12">
           <h2 className="text-2xl font-bold mb-4 tracking-tight">
@@ -169,7 +157,6 @@ const ProjectDetails = () => {
         </section>
       )}
 
-      {/* Technologies */}
       {project.technologies && project.technologies.length > 0 && (
         <section className="mb-12 border-t pt-12">
           <h2 className="text-2xl font-bold mb-4 tracking-tight">
@@ -198,7 +185,6 @@ const ProjectDetails = () => {
         </section>
       )}
 
-      {/* Challenges */}
       {project.challenges && project.challenges.length > 0 && (
         <section className="mb-12 border-t pt-12">
           <h2 className="text-2xl font-bold mb-4 tracking-tight">
@@ -218,7 +204,6 @@ const ProjectDetails = () => {
         </section>
       )}
 
-      {/* Additional Images */}
       {project.images && project.images.length > 1 && (
         <section className="mb-12 border-t pt-12">
           <h2 className="text-2xl font-bold mb-4 tracking-tight">Gallery</h2>
@@ -236,7 +221,6 @@ const ProjectDetails = () => {
         </section>
       )}
 
-      {/* CTA Section */}
       <section className="border-t pt-12 pb-12">
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-4 tracking-tight">

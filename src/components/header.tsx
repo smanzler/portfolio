@@ -9,7 +9,7 @@ import {
 import { motion, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,6 +17,7 @@ export function Header() {
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -39,11 +40,18 @@ export function Header() {
   const handleClick = (id: string, e?: React.MouseEvent<HTMLButtonElement>) => {
     e?.preventDefault();
 
-    navigate("/portfolio/", {
-      state: {
-        id: id,
-      },
-    });
+    if (location.pathname === "/") {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/", {
+        state: {
+          id: id,
+        },
+      });
+    }
   };
 
   return (

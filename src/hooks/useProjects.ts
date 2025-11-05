@@ -11,7 +11,7 @@ export interface Project {
   tags: string[];
   image?: string;
   images?: string[];
-  link: string;
+  link?: string;
   featured?: boolean;
   github?: string;
   role?: string;
@@ -37,7 +37,6 @@ export function useProjects() {
         images: [invtImage],
         link: "https://invt.rsvp",
         featured: true,
-        github: "https://github.com/smanzler/invt",
         role: "Full Stack Developer",
         timeline: "2024 - Present",
         keyFeatures: [

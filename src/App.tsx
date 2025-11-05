@@ -3,7 +3,7 @@ import { Header } from "@/components/header";
 import { Hero } from "./components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router";
+import { HashRouter, Route, Routes, useLocation } from "react-router";
 import ProjectDetails from "./components/pages/project-details";
 import { useEffect } from "react";
 
@@ -28,22 +28,19 @@ function Root() {
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <BrowserRouter>
+      <HashRouter>
         <div className="min-h-screen bg-background">
           <Header />
           <main className="container mx-auto px-4">
             <div className="mx-auto max-w-5xl">
               <Routes>
-                <Route path="/portfolio/" element={<Root />} />
-                <Route
-                  path="/portfolio/projects/:id"
-                  element={<ProjectDetails />}
-                />
+                <Route path="/" element={<Root />} />
+                <Route path="/projects/:id" element={<ProjectDetails />} />
               </Routes>
             </div>
           </main>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 }

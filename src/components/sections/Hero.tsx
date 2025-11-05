@@ -70,6 +70,7 @@ export function Hero() {
               <motion.div
                 className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
                 exit={{ opacity: 0 }}
+                onClick={() => setImageSelected(false)}
                 {...LAYOUT_OPTIONS}
               />
               <motion.div
