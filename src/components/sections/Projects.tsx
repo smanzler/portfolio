@@ -19,7 +19,7 @@ export function Projects() {
       {/* Featured Projects */}
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
       >
@@ -36,7 +36,7 @@ export function Projects() {
           <motion.div
             key={project.title}
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
             className="cursor-pointer hover:scale-101 hover:bg-accent dark:hover:bg-input/20 transition-all duration-200 py-6 rounded-xl"
@@ -103,7 +103,7 @@ export function Projects() {
       {/* Smaller Projects */}
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
       >
@@ -120,7 +120,7 @@ export function Projects() {
           <motion.div
             key={project.title}
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
             className="flex flex-col cursor-pointer hover:scale-102 hover:bg-accent dark:hover:bg-input/20 transition-all duration-200 p-6 gap-6 rounded-xl"
