@@ -118,7 +118,7 @@ export function useProjects() {
         tags: ["React", "TailwindCSS", "Shadcn UI", "Github Pages"],
         image: portfolioImage,
         images: [portfolioImage],
-        link: "https://github.com/smanzler/portfolio",
+        link: "https://simonmanzler.com",
         featured: true,
         github: "https://github.com/smanzler/portfolio",
         role: "Frontend Developer & Designer",
