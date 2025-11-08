@@ -37,63 +37,62 @@ export function Projects() {
             key={project.title}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="cursor-pointer hover:scale-101 hover:bg-accent dark:hover:bg-input/20 transition-all duration-200 py-6 rounded-xl"
+            className="grid md:grid-cols-2 gap-6 p-6 cursor-pointer hover:bg-accent dark:hover:bg-input/20 rounded-xl"
             onClick={() => navigate(`/projects/${project.title}`)}
           >
-            <div className="grid md:grid-cols-2 gap-6 px-6">
-              {project.image && (
-                <div className="relative rounded-lg overflow-hidden bg-muted">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              )}
+            {project.image && (
+              <div className="relative rounded-lg overflow-hidden bg-muted">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            )}
 
-              <div className="flex flex-col gap-4">
-                <div>
-                  <h1 className="text-2xl mb-2">{project.title}</h1>
-                  <p className="text-sm text-muted-foreground">
-                    {project.description}
-                  </p>
-                </div>
+            <div className="flex flex-col gap-4">
+              <div>
+                <h1 className="text-2xl mb-2">{project.title}</h1>
+                <p className="text-sm text-muted-foreground">
+                  {project.description}
+                </p>
+              </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="outline" className="rounded-full">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <Badge key={tag} variant="outline" className="rounded-full">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
 
-                <div className="flex md:justify-end mt-auto">
-                  {project.github ? (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.github, "_blank");
-                      }}
-                    >
-                      <Code />
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/projects/${project.title}`);
-                      }}
-                    >
-                      <MoveRight />
-                    </Button>
-                  )}
-                </div>
+              <div className="flex md:justify-end mt-auto">
+                {project.github ? (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(project.github, "_blank");
+                    }}
+                  >
+                    <Code />
+                  </Button>
+                ) : (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/projects/${project.title}`);
+                    }}
+                  >
+                    <MoveRight />
+                  </Button>
+                )}
               </div>
             </div>
           </motion.div>
@@ -121,9 +120,10 @@ export function Projects() {
             key={project.title}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex flex-col cursor-pointer hover:scale-102 hover:bg-accent dark:hover:bg-input/20 transition-all duration-200 p-6 gap-6 rounded-xl"
+            className="flex flex-col cursor-pointer hover:bg-accent dark:hover:bg-input/20 p-6 gap-6 rounded-xl"
             onClick={() => navigate(`/projects/${project.title}`)}
           >
             <h1 className="text-xl">{project.title}</h1>
