@@ -1,15 +1,19 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { motion, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+import { X } from "lucide-react";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,7 +60,7 @@ export function Header() {
 
   return (
     <motion.header
-      className="fixed w-full z-55"
+      className="fixed left-0 right-0 z-5"
       animate={{
         top: isScrolled ? (isVisible ? "20px" : "-80px") : "0",
       }}
@@ -65,66 +69,100 @@ export function Header() {
       <div className="container mx-auto px-4">
         <motion.div
           className={cn(
-            "mx-auto rounded-xl transition-colors max-w-5xl",
+            "mx-auto rounded-full transition-colors max-w-5xl flex justify-between items-center mx-auto",
             isScrolled
               ? "bg-card shadow-lg backdrop-blur-lg supports-[backdrop-filter]:bg-card/50"
               : "bg-transparent"
           )}
           animate={{
-            padding: isScrolled ? "0.5rem 1.5rem" : "0.5rem 0rem",
+            padding: isScrolled ? "4px 24px" : "4px 4px",
           }}
           transition={{ duration: 0.3, ease: [0.1, 0.6, 0.3, 0.95] }}
         >
-          <div className="h-12 flex justify-between items-center mx-auto">
-            <Button variant="ghost" onClick={(e) => handleClick("home", e)}>
-              <span className="font-bold">Simon Manzler</span>
-            </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => handleClick("home", e)}
+          >
+            <img
+              src="/src/assets/simon-icon.png"
+              alt="Simon Manzler"
+              className="h-6 w-6"
+            />
+          </Button>
 
-            <nav className="flex items-center">
-              <div className="hidden md:flex">
-                <Button
-                  variant="ghost"
-                  onClick={(e) => handleClick("projects", e)}
-                >
-                  Projects
-                </Button>
-                <Button
-                  variant="ghost"
-                  onClick={(e) => handleClick("about", e)}
-                >
-                  About
-                </Button>
-                <Button
-                  variant="ghost"
-                  onClick={(e) => handleClick("contact", e)}
-                >
-                  Contact
-                </Button>
-              </div>
+          <nav className="flex items-center">
+            <div className="hidden md:flex">
+              <Button
+                variant="ghost"
+                onClick={(e) => handleClick("projects", e)}
+              >
+                Projects
+              </Button>
+              <Button variant="ghost" onClick={(e) => handleClick("about", e)}>
+                About
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={(e) => handleClick("contact", e)}
+              >
+                Contact
+              </Button>
+            </div>
 
-              <div className="flex items-center">
-                <ModeToggle />
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild className="md:hidden">
-                    <Button variant="ghost" size="icon">
-                      <MenuIcon className="h-6 w-6" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onSelect={() => handleClick("projects")}>
+            <div className="flex items-center">
+              <ModeToggle />
+              <Sheet>
+                <SheetTrigger asChild className="md:hidden">
+                  <Button variant="ghost" size="icon">
+                    <MenuIcon className="h-6 w-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right">
+                  <SheetHeader>
+                    <SheetTitle>
+                      <img
+                        src="/src/assets/simon-icon.png"
+                        alt="Simon Manzler"
+                        className="h-6 w-6"
+                      />
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col">
+                    <Button
+                      variant="link"
+                      className="justify-start"
+                      onClick={(e) => handleClick("projects", e)}
+                    >
                       Projects
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => handleClick("about")}>
+                    </Button>
+                    <Button
+                      variant="link"
+                      className="justify-start"
+                      onClick={(e) => handleClick("about", e)}
+                    >
                       About
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onSelect={() => handleClick("contact")}>
+                    </Button>
+                    <Button
+                      variant="link"
+                      className="justify-start"
+                      onClick={(e) => handleClick("contact", e)}
+                    >
                       Contact
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </nav>
-          </div>
+                    </Button>
+                  </div>
+                  <SheetFooter>
+                    <SheetClose asChild>
+                      <Button variant="ghost">
+                        <X className="h-6 w-6" />
+                        Close
+                      </Button>
+                    </SheetClose>
+                  </SheetFooter>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </nav>
         </motion.div>
       </div>
     </motion.header>

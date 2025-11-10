@@ -59,7 +59,7 @@ export function Hero() {
           onClick={handleImageSelected}
           onMouseEnter={() => setImageSelected(true)}
         >
-          <Avatar className="absolute size-50 top-0 left-0 z-53 overflow-hidden rounded-full">
+          <Avatar className="absolute size-50 top-0 left-0 z-4 overflow-hidden rounded-full">
             <AvatarImage src={profileImage} alt="Simon Manzler" />
             <AvatarFallback>SM</AvatarFallback>
           </Avatar>
@@ -68,7 +68,7 @@ export function Hero() {
           {imageSelected && (
             <>
               <motion.div
-                className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
+                className="fixed inset-0 bg-background/80 backdrop-blur-sm z-2"
                 exit={{ opacity: 0 }}
                 onClick={() => setImageSelected(false)}
                 {...LAYOUT_OPTIONS}
@@ -78,7 +78,7 @@ export function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: 0.1 } }}
                 exit={{ opacity: 0 }}
-                className="w-[min(calc(100vw-2rem),400px)] absolute left-1/2 -translate-x-1/2 -top-4 z-51"
+                className="w-[min(calc(100vw-2rem),400px)] absolute left-1/2 -translate-x-1/2 -top-4 z-3"
                 onMouseLeave={() => setImageSelected(false)}
               >
                 <Card className="py-4 relative">

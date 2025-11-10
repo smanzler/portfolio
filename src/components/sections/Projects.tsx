@@ -37,7 +37,6 @@ export function Projects() {
             key={project.title}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
             className="grid md:grid-cols-2 gap-6 p-6 cursor-pointer hover:bg-accent dark:hover:bg-input/20 rounded-xl"
@@ -125,7 +124,6 @@ export function Projects() {
             key={project.title}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
             className="flex flex-col cursor-pointer hover:bg-accent dark:hover:bg-input/20 p-6 gap-6 rounded-xl"

@@ -7,6 +7,7 @@ import { HashRouter, Route, Routes, useLocation } from "react-router";
 import ProjectDetails from "./components/pages/project-details";
 import { useEffect } from "react";
 import Apps from "./components/pages/apps";
+import AppDetails from "./components/pages/app-details";
 
 function Root() {
   const { state } = useLocation();
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/" element={<Root />} />
                 <Route path="/projects/:id" element={<ProjectDetails />} />
                 <Route path="/apps" element={<Apps />} />
+                <Route path="/apps/:id" element={<AppDetails />} />
               </Routes>
             </div>
           </main>
