@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { X } from "lucide-react";
+import simonIcon from "@/assets/simon-icon.png";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -84,11 +85,7 @@ export function Header() {
             size="icon"
             onClick={(e) => handleClick("home", e)}
           >
-            <img
-              src="/src/assets/simon-icon.png"
-              alt="Simon Manzler"
-              className="h-6 w-6"
-            />
+            <img src={simonIcon} alt="Simon Manzler" className="h-6 w-6" />
           </Button>
 
           <nav className="flex items-center">

@@ -1,17 +1,19 @@
 import { useNavigate } from "react-router";
+import repImage from "@/assets/rep-icon.png";
+import dashImage from "@/assets/rep-icon.png";
 
 const apps = [
   {
     title: "Rep",
     description:
       "Workout tracker built to work offline and sync with your friends.",
-    image: "/src/assets/rep-icon.png",
+    image: repImage,
   },
   {
     title: "Dash",
     description:
       "Running tracker built to work offline and sync with your friends.",
-    image: "/src/assets/dash-icon.png",
+    image: dashImage,
   },
 ];
 
