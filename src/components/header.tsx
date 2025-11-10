@@ -119,7 +119,7 @@ export function Header() {
                   <SheetHeader>
                     <SheetTitle>
                       <img
-                        src="/src/assets/simon-icon.png"
+                        src={simonIcon}
                         alt="Simon Manzler"
                         className="h-6 w-6"
                       />
