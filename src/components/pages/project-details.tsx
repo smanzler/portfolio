@@ -62,10 +62,14 @@ const ProjectDetails = () => {
   }
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-20 px-6">
       {/* Back Button */}
-      <Button onClick={() => navigate("/")} variant="ghost" className="mb-8">
-        <ArrowLeft className="mr-2 h-4 w-4" />
+      <Button
+        onClick={() => navigate("/")}
+        variant="link"
+        className="mb-8 justify-start"
+      >
+        <ArrowLeft />
         Back to Projects
       </Button>
 

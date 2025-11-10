@@ -21,7 +21,7 @@ const Apps = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="py-20">
       <div className="flex flex-col px-6">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
           Apps

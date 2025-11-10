@@ -15,7 +15,7 @@ export function Projects() {
   const navigate = useNavigate();
 
   return (
-    <section id="projects" className="min-h-screen py-12">
+    <section id="projects" className="min-h-screen py-20">
       {/* Featured Projects */}
       <motion.div
         initial={{ opacity: 0 }}

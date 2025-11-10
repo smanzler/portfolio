@@ -4,16 +4,7 @@ import { motion, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
-import { X } from "lucide-react";
+import { FolderOpenDot, User } from "lucide-react";
 import simonIcon from "@/assets/simon-icon.png";
 
 export function Header() {
@@ -21,6 +12,7 @@ export function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
+  const lastVisibilityChangeY = useRef(0);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,13 +20,24 @@ export function Header() {
     return scrollY.on("change", (latest) => {
       const isScrolledNow = latest > 50;
       const isScrollingDown = latest > lastScrollY.current;
+      const scrollDelta = latest - lastVisibilityChangeY.current;
 
       // Always show header when near top
       if (!isScrolledNow) {
         setIsVisible(true);
+        lastVisibilityChangeY.current = latest;
       } else {
-        // When scrolled, show on scroll up, hide on scroll down
-        setIsVisible(!isScrollingDown);
+        // When scrolling up, show immediately
+        if (!isScrollingDown) {
+          setIsVisible(true);
+          lastVisibilityChangeY.current = latest;
+        } else {
+          // When scrolling down, only hide after 50px delay
+          if (scrollDelta >= 50) {
+            setIsVisible(false);
+            lastVisibilityChangeY.current = latest;
+          }
+        }
       }
 
       setIsScrolled(isScrolledNow);
@@ -72,7 +75,7 @@ export function Header() {
           className={cn(
             "mx-auto rounded-full transition-colors max-w-5xl flex justify-between items-center mx-auto",
             isScrolled
-              ? "bg-card shadow-lg backdrop-blur-lg supports-[backdrop-filter]:bg-card/50"
+              ? "bg-card shadow-lg backdrop-blur-lg supports-[backdrop-filter]:bg-input/50"
               : "bg-transparent"
           )}
           animate={{
@@ -89,100 +92,25 @@ export function Header() {
           </Button>
 
           <nav className="flex items-center">
-            <div className="hidden md:flex">
-              <Button
-                variant="ghost"
-                onClick={(e) => handleClick("projects", e)}
-              >
-                Projects
-              </Button>
-              <Button variant="ghost" onClick={(e) => handleClick("about", e)}>
-                About
-              </Button>
-              <Button
-                variant="ghost"
-                onClick={(e) => handleClick("contact", e)}
-              >
-                Contact
-              </Button>
-            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={(e) => handleClick("projects", e)}
+            >
+              <FolderOpenDot />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={(e) => handleClick("about", e)}
+            >
+              <User />
+            </Button>
 
-            <div className="flex items-center">
-              <ModeToggle />
-              <Sheet>
-                <SheetTrigger asChild className="md:hidden">
-                  <Button variant="ghost" size="icon">
-                    <MenuIcon className="h-6 w-6" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right">
-                  <SheetHeader>
-                    <SheetTitle>
-                      <img
-                        src={simonIcon}
-                        alt="Simon Manzler"
-                        className="h-6 w-6"
-                      />
-                    </SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col">
-                    <Button
-                      variant="link"
-                      className="justify-start"
-                      onClick={(e) => handleClick("projects", e)}
-                    >
-                      Projects
-                    </Button>
-                    <Button
-                      variant="link"
-                      className="justify-start"
-                      onClick={(e) => handleClick("about", e)}
-                    >
-                      About
-                    </Button>
-                    <Button
-                      variant="link"
-                      className="justify-start"
-                      onClick={(e) => handleClick("contact", e)}
-                    >
-                      Contact
-                    </Button>
-                  </div>
-                  <SheetFooter>
-                    <SheetClose asChild>
-                      <Button variant="ghost">
-                        <X className="h-6 w-6" />
-                        Close
-                      </Button>
-                    </SheetClose>
-                  </SheetFooter>
-                </SheetContent>
-              </Sheet>
-            </div>
+            <ModeToggle />
           </nav>
         </motion.div>
       </div>
     </motion.header>
-  );
-}
-
-function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
   );
 }

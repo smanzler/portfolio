@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-12 min-h-screen">
+    <section id="contact" className="py-20 min-h-screen">
       <div className="flex flex-col items-center gap-8 text-center mb-16">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
