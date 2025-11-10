@@ -1,9 +1,14 @@
 import { useNavigate } from "react-router";
 import { useApps } from "@/hooks/useApps";
+import { useEffect } from "react";
 
 const Apps = () => {
   const navigate = useNavigate();
   const { apps } = useApps();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen">
