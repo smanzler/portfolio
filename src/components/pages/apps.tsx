@@ -1,27 +1,12 @@
 import { useNavigate } from "react-router";
-import repImage from "@/assets/rep-icon.png";
-import dashImage from "@/assets/rep-icon.png";
-
-const apps = [
-  {
-    title: "Rep",
-    description:
-      "Workout tracker built to work offline and sync with your friends.",
-    image: repImage,
-  },
-  {
-    title: "Dash",
-    description:
-      "Running tracker built to work offline and sync with your friends.",
-    image: dashImage,
-  },
-];
+import { useApps } from "@/hooks/useApps";
 
 const Apps = () => {
   const navigate = useNavigate();
+  const { apps } = useApps();
 
   return (
-    <div className="py-20">
+    <div className="min-h-screen">
       <div className="flex flex-col px-6">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
           Apps
@@ -34,7 +19,7 @@ const Apps = () => {
         {apps.map((app) => (
           <div
             key={app.title}
-            className="flex flex-row cursor-pointer hover:bg-accent dark:hover:bg-input/20 p-6 gap-6 rounded-xl"
+            className="flex flex-row cursor-pointer hover:bg-accent dark:hover:bg-input/40 p-6 gap-6 rounded-xl"
             onClick={() => navigate(`/apps/${app.title}`)}
           >
             <div className="flex flex-col gap-1 items-center justify-center">

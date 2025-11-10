@@ -17,7 +17,7 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen py-20">
+      <div className="min-h-screen">
         <Button onClick={() => navigate("/")} variant="ghost" className="mb-8">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Projects

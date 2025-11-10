@@ -68,7 +68,7 @@ export function useProjects() {
         ],
       },
       {
-        title: "Rep Workout Tracker",
+        title: "Rep",
         description:
           "Workout tracker built with React Native and Supabase. It allows users to track their workouts and progress and share their progress with their friends. Supports offline mode and syncs once connected to the internet.",
         longDescription:

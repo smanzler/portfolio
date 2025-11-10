@@ -39,7 +39,7 @@ export function Projects() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-6 p-6 cursor-pointer hover:bg-accent dark:hover:bg-input/20 rounded-xl"
+            className="grid md:grid-cols-2 gap-6 p-6 cursor-pointer hover:bg-accent dark:hover:bg-input/40 rounded-xl"
             onClick={() => navigate(`/projects/${project.title}`)}
           >
             {project.image && (
@@ -126,7 +126,7 @@ export function Projects() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex flex-col cursor-pointer hover:bg-accent dark:hover:bg-input/20 p-6 gap-6 rounded-xl"
+            className="flex flex-col cursor-pointer hover:bg-accent dark:hover:bg-input/40 p-6 gap-6 rounded-xl"
             onClick={() => navigate(`/projects/${project.title}`)}
           >
             <h1 className="text-xl">{project.title}</h1>

@@ -8,6 +8,7 @@ import ProjectDetails from "./components/pages/project-details";
 import { useEffect } from "react";
 import Apps from "./components/pages/apps";
 import AppDetails from "./components/pages/app-details";
+import { Footer } from "./components/footer";
 
 function Root() {
   const { state } = useLocation();
@@ -27,23 +28,30 @@ function Root() {
   );
 }
 
+function RootLayout() {
+  return (
+    <div className="min-h-screen bg-background container mx-auto px-4">
+      <div className="mx-auto max-w-5xl">
+        <Header />
+        <main className="py-20">
+          <Routes>
+            <Route path="/" element={<Root />} />
+            <Route path="/projects/:id" element={<ProjectDetails />} />
+            <Route path="/apps" element={<Apps />} />
+            <Route path="/apps/:id" element={<AppDetails />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <BrowserRouter>
-        <div className="min-h-screen bg-background">
-          <Header />
-          <main className="container mx-auto px-4">
-            <div className="mx-auto max-w-5xl">
-              <Routes>
-                <Route path="/" element={<Root />} />
-                <Route path="/projects/:id" element={<ProjectDetails />} />
-                <Route path="/apps" element={<Apps />} />
-                <Route path="/apps/:id" element={<AppDetails />} />
-              </Routes>
-            </div>
-          </main>
-        </div>
+        <RootLayout />
       </BrowserRouter>
     </ThemeProvider>
   );
