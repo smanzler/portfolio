@@ -165,7 +165,7 @@ export function useProjects() {
         description:
           "Infinite Journal built with React, Vite and Typescript. It allows users to write and save their journal entries. It also allows users to see their journal entries and compare their scores with their friends.",
         tags: ["React", "Vite", "Typescript"],
-        link: "https://smanzler.github.io/written/",
+        link: "https://written.simonmanzler.com",
         github: "https://github.com/smanzler/written",
       },
     ],
