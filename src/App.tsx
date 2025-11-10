@@ -6,6 +6,7 @@ import { Projects } from "@/components/sections/Projects";
 import { HashRouter, Route, Routes, useLocation } from "react-router";
 import ProjectDetails from "./components/pages/project-details";
 import { useEffect } from "react";
+import Apps from "./components/pages/apps";
 
 function Root() {
   const { state } = useLocation();
@@ -36,6 +37,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Root />} />
                 <Route path="/projects/:id" element={<ProjectDetails />} />
+                <Route path="/apps" element={<Apps />} />
               </Routes>
             </div>
           </main>

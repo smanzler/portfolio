@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 import { motion } from "framer-motion";
-import { Code, MoveRight } from "lucide-react";
+import { ArrowRight, Code, MoveRight } from "lucide-react";
 import { useNavigate } from "react-router";
 import { useProjects } from "@/hooks/useProjects";
 
@@ -105,13 +105,18 @@ export function Projects() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
+        className="flex flex-row justify-between px-6 mb-12"
       >
-        <div className="flex flex-col gap-2 px-6 mb-12">
+        <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-bold">Other Projects</h2>
           <p className="text-muted-foreground text-lg">
             Additional projects I've worked on
           </p>
         </div>
+        <Button variant="link" onClick={() => navigate("/apps")}>
+          View All Apps
+          <ArrowRight />
+        </Button>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
