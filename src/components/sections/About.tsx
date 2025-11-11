@@ -31,14 +31,14 @@ export function About() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
-        className="px-6 mb-12"
+        className="mb-12"
       >
         <H1>About Me</H1>
         <Lead>Here is some information about me and my skills.</Lead>
       </motion.div>
 
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="flex flex-col gap-6 px-6">
+        <div className="flex flex-col gap-6">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -98,7 +98,7 @@ export function About() {
           </motion.div>
         </div>
 
-        <div className="flex flex-col gap-6 px-6">
+        <div className="flex flex-col gap-6">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

@@ -13,7 +13,7 @@ const Apps = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="flex flex-col px-6 mb-8">
+      <div className="flex flex-col mb-8">
         <H1>Apps</H1>
         <Lead>Here are some of the apps I've worked on.</Lead>
       </div>
@@ -21,11 +21,12 @@ const Apps = () => {
         {apps.map((app) => (
           <div
             key={app.title}
-            className="flex flex-row cursor-pointer hover:bg-accent dark:hover:bg-input/40 p-6 gap-6 rounded-xl"
+            className="relative flex flex-row cursor-pointer gap-6 group"
             onClick={() => navigate(`/apps/${app.title}`)}
           >
+            <div className="absolute -top-4 -right-4 -bottom-4 -left-4 bg-accent dark:bg-input/40 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-200 pointer-events-none z-0" />
             <div className="flex flex-col gap-1 items-center justify-center">
-              <div className="relative rounded-lg overflow-hidden bg-muted w-16 h-16">
+              <div className="relative z-1 rounded-lg overflow-hidden bg-muted w-16 h-16">
                 <img
                   src={app.image}
                   alt={app.title}

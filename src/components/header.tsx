@@ -80,7 +80,7 @@ export function Header() {
               : "bg-transparent"
           )}
           animate={{
-            padding: isScrolled ? "4px 24px" : "4px 4px",
+            padding: isScrolled ? "4px 24px" : "4px 0px",
           }}
           transition={{ duration: 0.3, ease: [0.1, 0.6, 0.3, 0.95] }}
         >

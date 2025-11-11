@@ -85,7 +85,7 @@ const Footer = ({
   ];
 
   return (
-    <section className="py-32 px-6">
+    <section className="py-32">
       <div className="container">
         <footer>
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">

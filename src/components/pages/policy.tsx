@@ -55,7 +55,7 @@ const Policy = ({ type }: { type: "privacy" | "terms" }) => {
 
   return (
     <div className="min-h-screen">
-      <div className="flex flex-col gap-6 px-6">
+      <div className="flex flex-col gap-6">
         <H1>{type === "privacy" ? "Privacy Policy" : "Terms of Service"}</H1>
         <div className="flex flex-row justify-between items-end">
           <div>

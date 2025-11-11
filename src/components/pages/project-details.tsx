@@ -64,7 +64,7 @@ const ProjectDetails = () => {
   }
 
   return (
-    <div className="min-h-screen px-6 flex flex-col gap-6">
+    <div className="min-h-screen flex flex-col gap-6">
       {/* Hero Section */}
       <div className="mb-16">
         <div className="flex flex-col gap-2">
