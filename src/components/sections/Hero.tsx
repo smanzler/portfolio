@@ -49,7 +49,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col text-center items-center justify-center"
+      className="min-h-screen flex flex-col text-center items-center justify-center -mt-20"
     >
       <div className="relative">
         <motion.div
