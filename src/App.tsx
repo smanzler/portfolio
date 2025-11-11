@@ -32,7 +32,7 @@ function Root() {
 function RootLayout() {
   return (
     <div className="min-h-screen bg-background container mx-auto px-4">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-4xl">
         <Header />
         <main className="py-20">
           <Routes>

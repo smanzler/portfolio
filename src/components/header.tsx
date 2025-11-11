@@ -74,7 +74,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <motion.div
           className={cn(
-            "mx-auto rounded-full transition-colors max-w-5xl flex justify-between items-center mx-auto",
+            "mx-auto rounded-full transition-colors max-w-4xl flex justify-between items-center mx-auto",
             isScrolled
               ? "bg-card shadow-lg backdrop-blur-lg supports-[backdrop-filter]:bg-input/50"
               : "bg-transparent"
