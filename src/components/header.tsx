@@ -76,7 +76,7 @@ export function Header() {
           className={cn(
             "mx-auto rounded-full transition-colors max-w-4xl flex justify-between items-center mx-auto",
             isScrolled
-              ? "bg-card shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-lg supports-[backdrop-filter]:bg-input/50"
+              ? "bg-card shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,1)] backdrop-blur-lg supports-[backdrop-filter]:bg-input/50"
               : "bg-transparent"
           )}
           animate={{

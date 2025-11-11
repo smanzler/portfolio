@@ -10,9 +10,6 @@ import { H1, H4, Lead, P } from "../ui/typography";
 export function Projects() {
   const { projects } = useProjects();
 
-  const featuredProjects = projects.filter((p) => p.featured);
-  const smallerProjects = projects.filter((p) => !p.featured);
-
   const navigate = useNavigate();
 
   return (
@@ -23,145 +20,100 @@ export function Projects() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
+        className="flex flex-row justify-between"
       >
-        <H1>Featured Projects</H1>
-        <Lead>Significant projects that showcase my expertise</Lead>
+        <div>
+          <H1>Projects</H1>
+          <Lead>Some of the projects I've worked on.</Lead>
+        </div>
+
+        <div>
+          <Button variant="link" onClick={() => navigate("/projects")}>
+            View All Projects
+            <ArrowRight />
+          </Button>
+          <Button variant="link" onClick={() => navigate("/apps")}>
+            View All Apps
+            <ArrowRight />
+          </Button>
+        </div>
       </motion.div>
 
-      <div className="grid gap-10 mb-24">
-        {featuredProjects.map((project) => (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
           <motion.div
             key={project.title}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="relative grid md:grid-cols-2 gap-6 cursor-pointer rounded-xl group"
             onClick={() => navigate(`/projects/${project.title}`)}
+            className="relative group cursor-pointer rounded-xl overflow-hidden"
           >
-            <div className="absolute -top-6 -right-6 -bottom-6 -left-6 bg-accent dark:bg-input/40 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-200 pointer-events-none z-0" />
-            {project.image && (
-              <div className="relative z-1 rounded-lg overflow-hidden bg-muted">
+            <div className="absolute inset-0 bg-muted">
+              {project.image && (
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="object-cover w-full h-full"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-107"
+                  style={{
+                    imageRendering: "auto",
+                    willChange: "transform",
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                  }}
                 />
-              </div>
-            )}
-
-            <div className="relative z-1 flex flex-col gap-4">
-              <div>
-                <H4>{project.title}</H4>
-                <P className="!text-muted-foreground">{project.description}</P>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Badge key={tag} variant="outline" className="rounded-full">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-
-              <div className="flex md:justify-end mt-auto">
-                {project.github ? (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(project.github, "_blank");
-                    }}
-                  >
-                    <Code />
-                  </Button>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate(`/projects/${project.title}`);
-                    }}
-                  >
-                    <MoveRight />
-                  </Button>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Smaller Projects */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="flex flex-row justify-between mb-12"
-      >
-        <div>
-          <H1>Other Projects</H1>
-          <Lead>Additional projects I've worked on</Lead>
-        </div>
-        <Button variant="link" onClick={() => navigate("/apps")}>
-          View All Apps
-          <ArrowRight />
-        </Button>
-      </motion.div>
-
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {smallerProjects.map((project) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative flex flex-col cursor-pointer gap-6 rounded-xl group"
-            onClick={() => navigate(`/projects/${project.title}`)}
-          >
-            <div className="absolute -top-6 -right-6 -bottom-6 -left-6 bg-accent dark:bg-input/40 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-200 pointer-events-none z-0" />
-            <div className="relative z-1">
-              <H4>{project.title}</H4>
-              <P className="line-clamp-3 !text-muted-foreground">
-                {project.description}
-              </P>
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {project.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-xs">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="flex gap-2 justify-end">
-              {project.github ? (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(project.github, "_blank");
-                  }}
-                >
-                  <Code />
-                </Button>
-              ) : (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(`/projects/${project.title}`);
-                  }}
-                >
-                  <MoveRight />
-                </Button>
               )}
+            </div>
+
+            <div className="relative z-1 h-full flex flex-col justify-between gap-3 p-6 text-white backdrop-blur-sm supports-[backdrop-filter]:bg-black/50  opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="flex flex-col gap-2">
+                <H4 className="!text-white">{project.title}</H4>
+                <P className="line-clamp-3 !text-white/90">
+                  {project.description}
+                </P>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      className="text-xs bg-white/20 text-white border-white/30"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+
+                <div className="flex gap-2 justify-end">
+                  {project.github ? (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-white hover:bg-white/20 hover:text-white"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.github, "_blank");
+                      }}
+                    >
+                      <Code />
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="text-white hover:bg-white/20 hover:text-white"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/projects/${project.title}`);
+                      }}
+                    >
+                      <MoveRight />
+                    </Button>
+                  )}
+                </div>
+              </div>
             </div>
           </motion.div>
         ))}
