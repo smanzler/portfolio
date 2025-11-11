@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { FolderOpenDot, User } from "lucide-react";
 import simonIcon from "@/assets/simon-icon.png";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,31 +84,51 @@ export function Header() {
           }}
           transition={{ duration: 0.3, ease: [0.1, 0.6, 0.3, 0.95] }}
         >
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={(e) => handleClick("home", e)}
-          >
-            <img src={simonIcon} alt="Simon Manzler" className="h-6 w-6" />
-          </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={(e) => handleClick("home", e)}
+              >
+                <img src={simonIcon} alt="Simon Manzler" className="h-6 w-6" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Simon Manzler</TooltipContent>
+          </Tooltip>
 
           <nav className="flex items-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={(e) => handleClick("projects", e)}
-            >
-              <FolderOpenDot />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={(e) => handleClick("about", e)}
-            >
-              <User />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={(e) => handleClick("projects", e)}
+                >
+                  <FolderOpenDot />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Projects</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={(e) => handleClick("about", e)}
+                >
+                  <User />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>About</TooltipContent>
+            </Tooltip>
 
-            <ModeToggle />
+            <Tooltip>
+              <TooltipTrigger>
+                <ModeToggle />
+              </TooltipTrigger>
+              <TooltipContent>Toggle Theme</TooltipContent>
+            </Tooltip>
           </nav>
         </motion.div>
       </div>
