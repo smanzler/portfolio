@@ -57,18 +57,23 @@ const Policy = ({ type }: { type: "privacy" | "terms" }) => {
     <div className="min-h-screen">
       <div className="flex flex-col gap-6">
         <H1>{type === "privacy" ? "Privacy Policy" : "Terms of Service"}</H1>
-        <div className="flex flex-row justify-between items-end">
+        <div className="flex flex-row justify-between gap-4 items-end">
           <div>
-            <H2>{item.title}</H2>
+            <Link to={`/apps/${item.title}`}>
+              <H2 className="hover:underline">{item.title}</H2>
+            </Link>
             <Muted>Last updated: {policy.lastUpdated}</Muted>
           </div>
-          <div className="rounded-lg overflow-hidden size-16">
+          <Link
+            to={`/apps/${item.title}`}
+            className="rounded-lg overflow-hidden size-16 shrink-0"
+          >
             <img
               src={item.image}
               alt={item.title}
               className="size-full object-cover"
             />
-          </div>
+          </Link>
         </div>
         <Separator />
         {policy.sections.map((section, index) => (

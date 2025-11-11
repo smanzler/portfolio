@@ -63,13 +63,13 @@ const AppDetails = () => {
 
   return (
     <div className="min-h-screen flex flex-col gap-8">
-      <div className="flex flex-row justify-between items-end">
+      <div className="flex flex-row justify-between gap-4 items-end">
         <div>
           <H1>{app.title}</H1>
           <Lead>{app.description}</Lead>
         </div>
 
-        <div className="rounded-lg overflow-hidden size-16">
+        <div className="rounded-lg overflow-hidden size-16 shrink-0">
           <img
             src={app.image}
             alt={app.title}
