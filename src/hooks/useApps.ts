@@ -102,7 +102,7 @@ export function useApps() {
             {
               title: "1. Introduction",
               content: [
-                "Welcome to Rep (“we”, “our”, “us”). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our app, Rep.",
+                'Welcome to Rep ("we", "our", "us"). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our app, Rep.',
               ],
             },
             {
@@ -294,7 +294,7 @@ export function useApps() {
             {
               title: "1. Introduction",
               content: [
-                "Welcome to Dash (“we”, “our”, “us”). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our app, Dash.",
+                'Welcome to Dash ("we", "our", "us"). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our app, Dash.',
               ],
             },
             {
