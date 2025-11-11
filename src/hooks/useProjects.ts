@@ -37,7 +37,7 @@ export function useProjects() {
         images: [invtImage],
         link: "https://invt.rsvp",
         featured: true,
-        role: "Full Stack Developer",
+        role: "Lead Full Stack Developer",
         timeline: "2024 - Present",
         keyFeatures: [
           "Real-time event discovery and search functionality",

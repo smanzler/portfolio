@@ -1,9 +1,11 @@
 import { useProjects } from "@/hooks/useProjects";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import { useEffect } from "react";
+import { H1, H2, H3, Muted, P, UL } from "../ui/typography";
+import { Separator } from "../ui/separator";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -18,43 +20,43 @@ const ProjectDetails = () => {
   if (!project) {
     return (
       <div className="min-h-screen">
-        <Button onClick={() => navigate("/")} variant="ghost" className="mb-8">
-          <ArrowLeft className="mr-2 h-4 w-4" />
+        <Button
+          onClick={() => navigate("/", { state: { id: "projects" } })}
+          variant="ghost"
+          className="mb-8 p-0"
+        >
+          <ArrowLeft />
           Back to Projects
         </Button>
 
-        <div className="flex flex-col items-center justify-center py-20">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            Project Not Found
-          </h1>
-          <p className="text-base text-muted-foreground mb-8 text-center max-w-md">
-            Sorry, we couldn't find the project you're looking for. It might
-            have been moved or doesn't exist.
-          </p>
-          <div className="flex gap-4">
-            <Button asChild>
-              <a href="/">
-                <ArrowLeft className="h-4 w-4" />
-                View All Projects
-              </a>
-            </Button>
+        <div className="flex flex-col items-center text-center justify-center py-20 gap-6">
+          <div>
+            <H1>Project Not Found</H1>
+            <P>
+              Sorry, we couldn't find the project you're looking for. It might
+              have been moved or doesn't exist.
+            </P>
           </div>
+          <Button asChild>
+            <Link to="/" state={{ id: "projects" }}>
+              <ArrowLeft className="h-4 w-4" />
+              View All Projects
+            </Link>
+          </Button>
         </div>
 
         <section className="border-t pt-12">
-          <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4 tracking-tight">
-              Looking for Something Else?
-            </h2>
-            <p className="text-base text-muted-foreground mb-6 leading-relaxed">
-              Check out my featured projects or get in touch if you have any
-              questions.
-            </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button asChild variant="outline">
-                <a href="/#contact">Contact Me</a>
-              </Button>
+          <div className="text-center max-w-2xl mx-auto flex flex-col gap-6">
+            <div>
+              <H2>Looking for Something Else?</H2>
+              <Muted>
+                Check out my featured projects or get in touch if you have any
+                questions.
+              </Muted>
             </div>
+            <Button asChild variant="outline" className="w-fit mx-auto">
+              <Link to="/#contact">Contact Me</Link>
+            </Button>
           </div>
         </section>
       </div>
@@ -62,31 +64,15 @@ const ProjectDetails = () => {
   }
 
   return (
-    <div className="min-h-screen py-20 px-6">
-      {/* Back Button */}
-      <Button
-        onClick={() => navigate("/")}
-        variant="link"
-        className="mb-8 justify-start"
-      >
-        <ArrowLeft />
-        Back to Projects
-      </Button>
-
+    <div className="min-h-screen px-6 flex flex-col gap-6">
       {/* Hero Section */}
       <div className="mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-          {project.title}
-        </h1>
-        {project.role && (
-          <p className="text-lg text-muted-foreground mb-2">{project.role}</p>
-        )}
-        {project.timeline && (
-          <p className="text-base text-muted-foreground mb-6">
-            {project.timeline}
-          </p>
-        )}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-col gap-2">
+          <H1>{project.title}</H1>
+          {project.role && <Muted>{project.role}</Muted>}
+          {project.timeline && <Muted>{project.timeline}</Muted>}
+        </div>
+        <div className="flex flex-wrap gap-2 my-6">
           {project.tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="text-xs">
               {tag}
@@ -96,10 +82,10 @@ const ProjectDetails = () => {
         <div className="flex gap-4 flex-wrap">
           {project.link && (
             <Button asChild>
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <Link to={project.link} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="h-4 w-4" />
                 View Project
-              </a>
+              </Link>
             </Button>
           )}
           {project.github && (
@@ -135,54 +121,26 @@ const ProjectDetails = () => {
         </div>
       )}
 
-      <section className="mb-12 border-t pt-12">
-        <h2 className="text-2xl font-bold mb-4 tracking-tight">Overview</h2>
-        <p className="text-base text-muted-foreground leading-relaxed">
-          {project.longDescription || project.description}
-        </p>
+      <section>
+        <H3>Overview</H3>
+        <P>{project.longDescription || project.description}</P>
       </section>
 
       {project.keyFeatures && project.keyFeatures.length > 0 && (
-        <section className="mb-12 border-t pt-12">
-          <h2 className="text-2xl font-bold mb-4 tracking-tight">
-            Key Features
-          </h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
-            {project.keyFeatures.map((feature, index) => (
-              <li
-                key={index}
-                className="flex items-start text-muted-foreground pl-5 relative"
-              >
-                <span className="absolute left-0 top-2.5 h-1 w-1 rounded-full bg-foreground" />
-                <span className="text-base leading-relaxed">{feature}</span>
-              </li>
-            ))}
-          </ul>
+        <section>
+          <H3>Key Features</H3>
+          <UL items={project.keyFeatures} />
         </section>
       )}
 
       {project.technologies && project.technologies.length > 0 && (
-        <section className="mb-12 border-t pt-12">
-          <h2 className="text-2xl font-bold mb-4 tracking-tight">
-            Technologies Used
-          </h2>
+        <section>
+          <H3>Technologies Used</H3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-6">
             {project.technologies.map((tech, index) => (
               <div key={index}>
-                <h3 className="font-semibold text-base mb-3 tracking-tight">
-                  {tech.category}
-                </h3>
-                <ul>
-                  {tech.items.map((item, itemIndex) => (
-                    <li
-                      key={itemIndex}
-                      className="text-muted-foreground text-sm pl-4 relative"
-                    >
-                      <span className="absolute left-0 top-2.5 h-1 w-1 rounded-full bg-muted-foreground" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <P>{tech.category}</P>
+                <UL items={tech.items} />
               </div>
             ))}
           </div>
@@ -190,27 +148,15 @@ const ProjectDetails = () => {
       )}
 
       {project.challenges && project.challenges.length > 0 && (
-        <section className="mb-12 border-t pt-12">
-          <h2 className="text-2xl font-bold mb-4 tracking-tight">
-            Challenges & Learnings
-          </h2>
-          <ul>
-            {project.challenges.map((challenge, index) => (
-              <li
-                key={index}
-                className="flex items-start text-muted-foreground pl-5 relative"
-              >
-                <span className="absolute left-0 top-2.5 h-1 w-1 rounded-full bg-foreground" />
-                <span className="text-base leading-relaxed">{challenge}</span>
-              </li>
-            ))}
-          </ul>
+        <section>
+          <H3>Challenges & Learnings</H3>
+          <UL items={project.challenges} />
         </section>
       )}
 
       {project.images && project.images.length > 1 && (
-        <section className="mb-12 border-t pt-12">
-          <h2 className="text-2xl font-bold mb-4 tracking-tight">Gallery</h2>
+        <section>
+          <H3>Gallery</H3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {project.images.slice(1).map((image, index) => (
               <div key={index} className="rounded-lg overflow-hidden border">
@@ -225,14 +171,15 @@ const ProjectDetails = () => {
         </section>
       )}
 
-      <section className="border-t pt-12 pb-12">
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4 tracking-tight">
-            Interested in this project?
-          </h2>
-          <p className="text-base text-muted-foreground mb-6 leading-relaxed">
-            Check out the live demo or view the source code on GitHub.
-          </p>
+      <section>
+        <Separator className="my-30" />
+        <div className="text-center max-w-2xl mx-auto flex flex-col gap-6">
+          <div>
+            <H2>Interested in this project?</H2>
+            <Muted>
+              Check out the live demo or view the source code on GitHub.
+            </Muted>
+          </div>
           <div className="flex gap-4 justify-center flex-wrap">
             {project.link && (
               <Button asChild>

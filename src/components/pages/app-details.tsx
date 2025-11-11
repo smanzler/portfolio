@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { Button } from "../ui/button";
 import { ArrowLeft, Star } from "lucide-react";
 import { useEffect } from "react";
@@ -49,10 +49,10 @@ const AppDetails = () => {
           </p>
           <div className="flex gap-4">
             <Button asChild>
-              <a href="/apps">
+              <Link to="/apps">
                 <ArrowLeft className="h-4 w-4" />
                 View All Apps
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

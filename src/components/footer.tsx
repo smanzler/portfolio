@@ -126,7 +126,7 @@ const Footer = ({
             <ul className="flex gap-4">
               {bottomLinks.map((link, linkIdx) => (
                 <li key={linkIdx} className="hover:text-primary underline">
-                  <a href={link.url}>{link.text}</a>
+                  <Link to={link.url}>{link.text}</Link>
                 </li>
               ))}
             </ul>

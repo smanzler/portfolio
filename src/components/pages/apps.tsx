@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { useApps } from "@/hooks/useApps";
 import { useEffect } from "react";
+import { H1, H4, Lead, Muted } from "../ui/typography";
 
 const Apps = () => {
   const navigate = useNavigate();
@@ -12,13 +13,9 @@ const Apps = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="flex flex-col px-6">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-          Apps
-        </h1>
-        <p className="text-base text-muted-foreground mb-8">
-          Here are some of the apps I've worked on.
-        </p>
+      <div className="flex flex-col px-6 mb-8">
+        <H1>Apps</H1>
+        <Lead>Here are some of the apps I've worked on.</Lead>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {apps.map((app) => (
@@ -35,13 +32,11 @@ const Apps = () => {
                   className="object-cover w-full h-full object-center"
                 />
               </div>
-              <p className="text-xs text-muted-foreground">{app.title}</p>
+              <Muted className="text-xs">{app.title}</Muted>
             </div>
             <div className="flex flex-col gap-2">
-              <h1 className="text-xl">{app.title}</h1>
-              <p className="line-clamp-3 text-sm text-muted-foreground">
-                {app.description}
-              </p>
+              <H4>{app.title}</H4>
+              <Muted className="line-clamp-3">{app.description}</Muted>
             </div>
           </div>
         ))}

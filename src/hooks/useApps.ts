@@ -173,7 +173,7 @@ export function useApps() {
             {
               title: "8. Contact Us",
               content: [
-                "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at <a href='mailto:dev.simanzler@gmail.com'>dev.simanzler@gmail.com</a>.",
+                "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at dev.simanzler@gmail.com.",
               ],
             },
             {
@@ -253,7 +253,7 @@ export function useApps() {
             {
               title: "11. Contact",
               content: [
-                "If you have questions about these Terms of Service, contact us at <a href='mailto:dev.simanzler@gmail.com'>dev.simanzler@gmail.com</a>.",
+                "If you have questions about these Terms of Service, contact us at dev.simanzler@gmail.com.",
               ],
             },
           ],
@@ -366,7 +366,7 @@ export function useApps() {
             {
               title: "8. Contact Us",
               content: [
-                "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at <a href='mailto:dev.simanzler@gmail.com'>dev.simanzler@gmail.com</a>.",
+                "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at dev.simanzler@gmail.com.",
               ],
             },
             {
@@ -446,7 +446,7 @@ export function useApps() {
             {
               title: "11. Contact",
               content: [
-                "If you have questions about these Terms of Service, contact us at <a href='mailto:dev.simanzler@gmail.com'>dev.simanzler@gmail.com</a>.",
+                "If you have questions about these Terms of Service, contact us at dev.simanzler@gmail.com.",
               ],
             },
           ],

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Code, MoveRight } from "lucide-react";
 import { useNavigate } from "react-router";
 import { useProjects } from "@/hooks/useProjects";
+import { H1, H4, Lead, P } from "../ui/typography";
 
 export function Projects() {
   const { projects } = useProjects();
@@ -15,7 +16,10 @@ export function Projects() {
   const navigate = useNavigate();
 
   return (
-    <section id="projects" className="min-h-screen py-20">
+    <section
+      id="projects"
+      className="min-h-screen py-20 px-6 flex flex-col gap-6"
+    >
       {/* Featured Projects */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -23,12 +27,8 @@ export function Projects() {
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: true }}
       >
-        <div className="flex flex-col gap-2 px-6 mb-12">
-          <h2 className="text-3xl font-bold">Featured Projects</h2>
-          <p className="text-muted-foreground text-lg">
-            Significant projects that showcase my expertise
-          </p>
-        </div>
+        <H1>Featured Projects</H1>
+        <Lead>Significant projects that showcase my expertise</Lead>
       </motion.div>
 
       <div className="grid gap-8 mb-24">
@@ -54,10 +54,8 @@ export function Projects() {
 
             <div className="flex flex-col gap-4">
               <div>
-                <h1 className="text-2xl mb-2">{project.title}</h1>
-                <p className="text-sm text-muted-foreground">
-                  {project.description}
-                </p>
+                <H4>{project.title}</H4>
+                <P className="!text-muted-foreground">{project.description}</P>
               </div>
 
               <div className="flex flex-wrap gap-2">
@@ -106,11 +104,9 @@ export function Projects() {
         viewport={{ once: true }}
         className="flex flex-row justify-between px-6 mb-12"
       >
-        <div className="flex flex-col gap-2">
-          <h2 className="text-3xl font-bold">Other Projects</h2>
-          <p className="text-muted-foreground text-lg">
-            Additional projects I've worked on
-          </p>
+        <div>
+          <H1>Other Projects</H1>
+          <Lead>Additional projects I've worked on</Lead>
         </div>
         <Button variant="link" onClick={() => navigate("/apps")}>
           View All Apps
@@ -129,10 +125,12 @@ export function Projects() {
             className="flex flex-col cursor-pointer hover:bg-accent dark:hover:bg-input/40 p-6 gap-6 rounded-xl"
             onClick={() => navigate(`/projects/${project.title}`)}
           >
-            <h1 className="text-xl">{project.title}</h1>
-            <p className="line-clamp-3 text-sm text-muted-foreground">
-              {project.description}
-            </p>
+            <div>
+              <H4>{project.title}</H4>
+              <P className="line-clamp-3 !text-muted-foreground">
+                {project.description}
+              </P>
+            </div>
             <div className="flex flex-wrap gap-1.5">
               {project.tags.map((tag) => (
                 <Badge key={tag} variant="secondary" className="text-xs">

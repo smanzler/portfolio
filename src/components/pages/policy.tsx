@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { Button } from "../ui/button";
 import { ArrowLeft } from "lucide-react";
 import { H1, H2, H4, Muted, P, UL } from "../ui/typography";
@@ -17,23 +17,36 @@ const Policy = ({ type }: { type: "privacy" | "terms" }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [id, type]);
 
   if (!policy || !item) {
     return (
       <div className="min-h-screen">
-        <div className="flex flex-col items-center justify-center py-20">
-          <H1>
-            {type === "privacy" ? "Privacy Policy" : "Terms of Service"} Not
-            Found
-          </H1>
-          <Button
-            onClick={() => navigate("/apps")}
-            variant="ghost"
-            className="mb-8"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Apps
+        <Button
+          onClick={() => navigate("/apps")}
+          variant="ghost"
+          className="mb-8"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Apps
+        </Button>
+
+        <div className="flex flex-col items-center text-center justify-center py-20 gap-6">
+          <div>
+            <H1>
+              {type === "privacy" ? "Privacy Policy" : "Terms of Service"} Not
+              Found
+            </H1>
+            <P>
+              Sorry, we couldn't find the app you're looking for. It might have
+              been moved or doesn't exist.
+            </P>
+          </div>
+          <Button asChild>
+            <Link to="/apps">
+              <ArrowLeft className="h-4 w-4" />
+              View All Apps
+            </Link>
           </Button>
         </div>
       </div>
