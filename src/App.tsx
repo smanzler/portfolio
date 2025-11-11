@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import Apps from "./components/pages/apps";
 import AppDetails from "./components/pages/app-details";
 import { Footer } from "./components/footer";
+import Policy from "./components/pages/policy";
 
 function Root() {
   const { state } = useLocation();
@@ -38,7 +39,11 @@ function RootLayout() {
             <Route path="/" element={<Root />} />
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/apps" element={<Apps />} />
-            <Route path="/apps/:id" element={<AppDetails />} />
+            <Route path="/apps/:id">
+              <Route index element={<AppDetails />} />
+              <Route path="privacy" element={<Policy type="privacy" />} />
+              <Route path="terms" element={<Policy type="terms" />} />
+            </Route>
           </Routes>
         </main>
         <Footer />

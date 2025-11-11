@@ -1,7 +1,7 @@
 import logoImage from "@/assets/simon-icon.png";
 import { useApps } from "@/hooks/useApps";
 import { useProjects } from "@/hooks/useProjects";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { Button } from "./ui/button";
 
 interface MenuItem {
@@ -9,6 +9,7 @@ interface MenuItem {
   links: {
     text: string;
     url: string;
+    state?: string;
   }[];
 }
 
@@ -24,9 +25,9 @@ const Footer = ({
     {
       title: "Portfolio",
       links: [
-        { text: "Overview", url: "/" },
-        { text: "Projects", url: "/" },
-        { text: "About", url: "/about" },
+        { text: "Overview", url: "/", state: "home" },
+        { text: "Projects", url: "/", state: "projects" },
+        { text: "About", url: "/", state: "about" },
       ],
     },
     {
@@ -65,7 +66,7 @@ const Footer = ({
 
   const bottomLinks = getBottomLinks();
 
-  const footerMenuItems = [
+  const footerMenuItems: MenuItem[] = [
     ...menuItems,
     {
       title: "Projects",
@@ -110,7 +111,9 @@ const Footer = ({
                         variant="link"
                         asChild
                       >
-                        <a href={link.url}>{link.text}</a>
+                        <Link to={link.url} state={{ id: link.state }}>
+                          {link.text}
+                        </Link>
                       </Button>
                     </li>
                   ))}

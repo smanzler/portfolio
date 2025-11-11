@@ -25,7 +25,7 @@ const AppDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
 
   if (!app) {
     return (
