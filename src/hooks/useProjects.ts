@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import invtImage from "@/assets/invt.png";
 import repImage from "@/assets/rep.png";
 import portfolioImage from "@/assets/portfolio.png";
+import typeTownImage from "@/assets/portfolio.png";
 
 export interface Project {
   title: string;
@@ -25,7 +26,7 @@ export interface Project {
 }
 export function useProjects() {
   const projects: Project[] = useMemo(
-    () => [
+    (): Project[] => [
       {
         title: "INVT",
         description:
@@ -151,7 +152,6 @@ export function useProjects() {
           },
         ],
       },
-      // Additional smaller projects
       {
         title: "Type Town",
         description:
@@ -159,6 +159,30 @@ export function useProjects() {
         tags: ["React", "Vite", "Typescript"],
         link: "https://smanzler.github.io/TypeTownV3/",
         github: "https://github.com/smanzler/TypeTownV3",
+        image: typeTownImage,
+        images: [typeTownImage, typeTownImage, typeTownImage],
+        role: "Frontend Developer",
+        timeline: "2024",
+        keyFeatures: [
+          "Typing game with different quotes from different authors",
+          "Shows the user's typing speed and accuracy",
+          "Responsive design for mobile and desktop",
+        ],
+        challenges: [
+          "Implementing a scoring system",
+          "Implementing a leaderboard",
+          "Implementing a settings menu",
+        ],
+        technologies: [
+          {
+            category: "Frontend",
+            items: ["React", "Vite", "Typescript"],
+          },
+          {
+            category: "Tools",
+            items: ["Vite", "ESLint", "Git"],
+          },
+        ],
       },
       {
         title: "Written",

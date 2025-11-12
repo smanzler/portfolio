@@ -124,7 +124,7 @@ export function Header() {
             </Tooltip>
 
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                 <ModeToggle />
               </TooltipTrigger>
               <TooltipContent>Toggle Theme</TooltipContent>

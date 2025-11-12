@@ -10,6 +10,7 @@ import Apps from "./components/pages/apps";
 import AppDetails from "./components/pages/app-details";
 import { Footer } from "./components/footer";
 import Policy from "./components/pages/policy";
+import ProjectsPage from "./components/pages/projects-page";
 
 function Root() {
   const { state } = useLocation();
@@ -37,6 +38,7 @@ function RootLayout() {
         <main className="py-20">
           <Routes>
             <Route path="/" element={<Root />} />
+            <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="/apps" element={<Apps />} />
             <Route path="/apps/:id">
