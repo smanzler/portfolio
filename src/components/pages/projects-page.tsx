@@ -1,9 +1,14 @@
 import { useProjects } from "@/hooks/useProjects";
 import { H1, Lead } from "../ui/typography";
 import ProjectCard from "../ui/project-card";
+import { useEffect } from "react";
 
 const ProjectsPage = () => {
   const { projects } = useProjects();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col gap-8">

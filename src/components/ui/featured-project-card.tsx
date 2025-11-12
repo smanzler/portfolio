@@ -32,12 +32,12 @@ const FeaturedProjectCard = ({
       )}
       <div
         className={cn(
-          "absolute inset-0 bg-gradient-to-t from-black to-transparent",
+          "absolute inset-0 bg-gradient-to-t from-white/20 dark:from-black to-transparent",
           side === "left" ? "bg-gradient-to-tr" : "bg-gradient-to-tl"
         )}
       ></div>
 
-      <div
+      <ThresholdMotionDiv
         className={cn(
           "absolute bottom-6 z-1 w-[min(calc(100%-2rem),400px)] flex flex-col justify-between gap-3 p-6 backdrop-blur-sm supports-[backdrop-filter]:bg-white/40 dark:supports-[backdrop-filter]:bg-input/90 rounded-xl",
           side === "left" ? "left-6" : "right-6"
@@ -83,7 +83,7 @@ const FeaturedProjectCard = ({
             )}
           </div>
         </div>
-      </div>
+      </ThresholdMotionDiv>
     </ThresholdMotionDiv>
   );
 };

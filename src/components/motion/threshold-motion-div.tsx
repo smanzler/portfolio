@@ -41,7 +41,7 @@ interface ThresholdMotionDivProps
  */
 const ThresholdMotionDiv = ({
   children,
-  threshold = 0.3,
+  threshold = 0.25,
   onThresholdChange,
   animate = { opacity: 1, y: 0 },
   initial = { opacity: 0, y: 30 },

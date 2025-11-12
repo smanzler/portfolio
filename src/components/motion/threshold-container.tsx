@@ -34,7 +34,7 @@ interface ThresholdContainerProps {
  */
 export const ThresholdContainer = ({
   children,
-  threshold = 0.3,
+  threshold = 0.25,
   className,
 }: ThresholdContainerProps) => {
   const ref = useRef<HTMLDivElement>(null);

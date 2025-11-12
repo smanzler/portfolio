@@ -5,7 +5,7 @@ import profileImage from "@/assets/simon.jpeg";
 import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Button } from "../ui/button";
-import { XIcon } from "lucide-react";
+import { ArrowDown, XIcon } from "lucide-react";
 
 const DELAY = 0.07;
 const DURATION = 0.3;
@@ -157,11 +157,12 @@ export function Hero() {
                       {...LAYOUT_OPTIONS}
                     >
                       <Button
-                        variant="outline"
+                        variant="link"
                         className="w-full"
                         onClick={() => handleScroll("about")}
                       >
                         More About Me
+                        <ArrowDown />
                       </Button>
                     </motion.div>
                   </CardFooter>
@@ -211,7 +212,7 @@ export function Hero() {
         className="mt-12"
       >
         <Button
-          variant="outline"
+          variant="default"
           className="w-[min(calc(100vw-2rem),200px)]"
           onClick={() => handleScroll("projects")}
         >
