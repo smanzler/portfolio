@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { About } from "../sections/about1";
-import { Hero } from "../sections/hero1";
-import { Projects } from "../sections/projects1";
+import { About } from "../sections/about";
+import { Hero } from "../sections/hero";
+import { Projects } from "../sections/projects";
 import { useLocation } from "react-router";
 
 const Root = () => {
