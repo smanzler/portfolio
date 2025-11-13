@@ -27,7 +27,9 @@ const Footer = ({
       links: [
         { text: "Overview", url: "/", state: "home" },
         { text: "Projects", url: "/", state: "projects" },
+        { text: "Skills", url: "/", state: "skills" },
         { text: "About", url: "/", state: "about" },
+        { text: "Contact", url: "/", state: "contact" },
       ],
     },
     {

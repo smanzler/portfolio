@@ -4,7 +4,7 @@ import { motion, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import { FolderOpenDot, User } from "lucide-react";
+import { Brain, FolderOpenDot, Mail, User } from "lucide-react";
 import simonIcon from "@/assets/simon-icon.png";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
@@ -115,12 +115,36 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  onClick={(e) => handleClick("skills", e)}
+                >
+                  <Brain />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Skills</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={(e) => handleClick("about", e)}
                 >
                   <User />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>About</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={(e) => handleClick("contact", e)}
+                >
+                  <Mail />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Contact</TooltipContent>
             </Tooltip>
 
             <Tooltip>
