@@ -26,9 +26,9 @@ const Skills = () => {
 
   return (
     <section id="skills" className="min-h-screen py-40 flex flex-col gap-6">
-      <ThresholdMotionDiv className="mb-12">
+      <ThresholdMotionDiv>
         <H1>Skills</H1>
-        <Lead>Here are some of the skills I've learned.</Lead>
+        <Lead>Tools and tech I use most.</Lead>
       </ThresholdMotionDiv>
 
       <ThresholdContainer className="flex flex-wrap justify-center gap-4">

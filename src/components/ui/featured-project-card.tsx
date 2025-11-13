@@ -27,7 +27,7 @@ const FeaturedProjectCard = ({
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full min-h-[450px] md:min-h-[500px] object-cover"
         />
       )}
       <div
@@ -39,8 +39,10 @@ const FeaturedProjectCard = ({
 
       <ThresholdMotionDiv
         className={cn(
-          "absolute bottom-6 z-1 w-[min(calc(100%-2rem),400px)] flex flex-col justify-between gap-3 p-6 backdrop-blur-sm supports-[backdrop-filter]:bg-white/40 dark:supports-[backdrop-filter]:bg-input/90 rounded-xl",
-          side === "left" ? "left-6" : "right-6"
+          "absolute bottom-6 z-1 right-6 left-6 md:w-[400px] flex flex-col justify-between gap-3 p-6 backdrop-blur-sm supports-[backdrop-filter]:bg-white/40 dark:supports-[backdrop-filter]:bg-input/90 rounded-xl",
+          side === "left"
+            ? "md:left-6 md:right-auto"
+            : "md:right-6 md:left-auto"
         )}
       >
         <div className="flex flex-col gap-2">
