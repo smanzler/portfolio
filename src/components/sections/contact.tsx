@@ -1,166 +1,151 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { motion } from "framer-motion";
+import { H1, H2, Lead, P, Muted } from "../ui/typography";
+import ThresholdMotionDiv from "../motion/threshold-motion-div";
+import { ThresholdContainer } from "../motion/threshold-container";
+import { AnimateOnThreshold } from "../motion/animate-on-threshold";
+import { Mail, MapPin } from "lucide-react";
+import { Icon } from "@iconify/react";
+import { Link } from "react-router";
 
-export function Contact() {
+export default function Contact() {
   return (
-    <section id="contact" className="py-20 min-h-screen">
-      <div className="flex flex-col items-center gap-8 text-center mb-16">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
-        >
-          Get in Touch
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400"
-        >
+    <section id="contact" className="py-40 min-h-screen">
+      <ThresholdMotionDiv className="mb-12">
+        <H1>Get in Touch</H1>
+        <Lead>
           I'm always open to new opportunities and collaborations. Feel free to
           reach out!
-        </motion.p>
-      </div>
+        </Lead>
+      </ThresholdMotionDiv>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
-              <CardDescription>Here's how you can reach me</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.6 }}
-              >
-                <h4 className="font-semibold mb-2">Email</h4>
-                <a
-                  href="mailto:simanzler@gmail.com"
-                  className="text-gray-500 dark:text-gray-400 hover:text-primary"
-                >
-                  simanzler@gmail.com
-                </a>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.7 }}
-              >
-                <h4 className="font-semibold mb-2">Location</h4>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Cincinnati, OH
-                </p>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: 0.8 }}
-              >
-                <h4 className="font-semibold mb-2">Social</h4>
-                <div className="flex gap-4">
-                  <motion.a
-                    href="https://github.com/smanzler"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 dark:text-gray-400 hover:text-primary"
-                  >
-                    GitHub
-                  </motion.a>
-                  <motion.a
-                    href="https://linkedin.com/in/simonmanzler"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 dark:text-gray-400 hover:text-primary"
-                  >
-                    LinkedIn
-                  </motion.a>
-                </div>
-              </motion.div>
-            </CardContent>
-          </Card>
-        </motion.div>
+      <ThresholdContainer className="grid gap-12 md:grid-cols-2">
+        {(isPast) => (
+          <>
+            <div className="flex flex-col gap-6">
+              <AnimateOnThreshold shouldAnimate={isPast} delay={0.05}>
+                <H2>Let's Connect</H2>
+                <P>
+                  Whether you have a project in mind or just want to chat, I'd
+                  love to hear from you.
+                </P>
+              </AnimateOnThreshold>
 
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Send a Message</CardTitle>
-              <CardDescription>
-                Fill out the form below and I'll get back to you as soon as
-                possible.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form className="space-y-4">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.6 }}
-                  className="space-y-2"
-                >
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="Your name" />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.7 }}
-                  className="space-y-2"
-                >
-                  <Label htmlFor="email">Email</Label>
-                  <Input type="email" id="email" placeholder="Your email" />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.8 }}
-                  className="space-y-2"
-                >
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Your message" rows={4} />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.9 }}
-                >
-                  <Button className="w-full">Send Message</Button>
-                </motion.div>
+              <div className="space-y-4">
+                <AnimateOnThreshold shouldAnimate={isPast} delay={0.1}>
+                  <Link
+                    to="mailto:simanzler@gmail.com"
+                    className="flex items-center gap-3 p-4 rounded-lg bg-card border hover:border-primary transition-colors group"
+                  >
+                    <Mail className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <div>
+                      <p className="text-sm font-medium">Email</p>
+                      <p className="text-sm text-muted-foreground">
+                        simanzler@gmail.com
+                      </p>
+                    </div>
+                  </Link>
+                </AnimateOnThreshold>
+
+                <AnimateOnThreshold shouldAnimate={isPast} delay={0.15}>
+                  <div className="flex items-center gap-3 p-4 rounded-lg bg-card border">
+                    <MapPin className="h-5 w-5 text-muted-foreground" />
+                    <div>
+                      <p className="text-sm font-medium">Location</p>
+                      <p className="text-sm text-muted-foreground">
+                        Cincinnati, OH
+                      </p>
+                    </div>
+                  </div>
+                </AnimateOnThreshold>
+
+                <AnimateOnThreshold shouldAnimate={isPast} delay={0.2}>
+                  <div className="flex gap-3">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="flex-1"
+                      asChild
+                    >
+                      <Link
+                        to="https://github.com/smanzler"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon
+                          icon="line-md:github"
+                          style={{ width: "16px", height: "16px" }}
+                        />
+                        GitHub
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="flex-1"
+                      asChild
+                    >
+                      <Link
+                        to="https://linkedin.com/in/simonmanzler"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon icon="line-md:linkedin" />
+                        LinkedIn
+                      </Link>
+                    </Button>
+                  </div>
+                </AnimateOnThreshold>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <AnimateOnThreshold shouldAnimate={isPast} delay={0.25}>
+                <H2>Send a Message</H2>
+                <Muted>
+                  Fill out the form below and I'll get back to you as soon as
+                  possible.
+                </Muted>
+              </AnimateOnThreshold>
+
+              <form className="space-y-6">
+                <AnimateOnThreshold shouldAnimate={isPast} delay={0.3}>
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name</Label>
+                    <Input id="name" placeholder="Your name" />
+                  </div>
+                </AnimateOnThreshold>
+
+                <AnimateOnThreshold shouldAnimate={isPast} delay={0.35}>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input type="email" id="email" placeholder="Your email" />
+                  </div>
+                </AnimateOnThreshold>
+
+                <AnimateOnThreshold shouldAnimate={isPast} delay={0.4}>
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea
+                      id="message"
+                      placeholder="Your message"
+                      rows={4}
+                    />
+                  </div>
+                </AnimateOnThreshold>
+
+                <AnimateOnThreshold shouldAnimate={isPast} delay={0.45}>
+                  <Button type="submit" className="w-full">
+                    Send Message
+                  </Button>
+                </AnimateOnThreshold>
               </form>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </div>
+            </div>
+          </>
+        )}
+      </ThresholdContainer>
     </section>
   );
 }

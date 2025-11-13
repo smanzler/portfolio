@@ -6,7 +6,7 @@ import { H1, Lead } from "../ui/typography";
 import FeaturedProjectCard from "../ui/featured-project-card";
 import ThresholdMotionDiv from "../motion/threshold-motion-div";
 
-export function Projects() {
+export default function Projects() {
   const { projects } = useProjects();
 
   const featuredProjects = projects.filter((project) => project.featured);
@@ -14,7 +14,7 @@ export function Projects() {
   const navigate = useNavigate();
 
   return (
-    <section id="projects" className="min-h-screen py-20 flex flex-col gap-6">
+    <section id="projects" className="min-h-screen py-40 flex flex-col gap-6">
       {/* Featured Projects */}
       <ThresholdMotionDiv className="flex flex-row justify-between">
         <div>

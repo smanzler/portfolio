@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { About } from "../sections/about";
-import { Hero } from "../sections/hero";
-import { Projects } from "../sections/projects";
+import About from "../sections/about";
+import Hero from "../sections/hero";
+import Projects from "../sections/projects";
+import Skills from "../sections/skills";
+import Contact from "../sections/contact";
 import { useLocation } from "react-router";
 
 const Root = () => {
@@ -17,7 +19,9 @@ const Root = () => {
     <>
       <Hero />
       <Projects />
+      <Skills />
       <About />
+      <Contact />
     </>
   );
 };
