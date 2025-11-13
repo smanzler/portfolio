@@ -11,12 +11,14 @@ import Root from "./components/pages/root";
 import { useEffect, useState } from "react";
 import { ShimmeringText } from "./components/ui/shimmering-text";
 import { motion } from "motion/react";
+import { usePreloadAssets } from "./hooks/usePreloadAssets";
 
 function RootLayout() {
   const [loading, setLoading] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
   const location = useLocation();
   const isRootPath = location.pathname === "/";
+  const { isLoading: assetsLoading } = usePreloadAssets();
 
   useEffect(() => {
     if (!isRootPath) {
@@ -24,23 +26,27 @@ function RootLayout() {
       return;
     }
 
-    const enterDuration = 800;
-    const showDuration = 1500;
-    const exitDuration = 600;
+    const minLoadingDuration = 1500;
+    const startTime = Date.now();
 
-    const exitTimer = setTimeout(() => {
-      setIsExiting(true);
-    }, enterDuration + showDuration);
+    const checkLoadingComplete = () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minLoadingDuration - elapsedTime);
 
-    const finishTimer = setTimeout(() => {
-      setLoading(false);
-    }, enterDuration + showDuration + exitDuration);
-
-    return () => {
-      clearTimeout(exitTimer);
-      clearTimeout(finishTimer);
+      if (!assetsLoading) {
+        setTimeout(() => {
+          setIsExiting(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 600);
+        }, remainingTime);
+      }
     };
-  }, []);
+
+    if (!assetsLoading) {
+      checkLoadingComplete();
+    }
+  }, [isRootPath, assetsLoading]);
 
   if (loading) {
     return (
