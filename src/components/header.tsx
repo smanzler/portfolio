@@ -76,7 +76,7 @@ export function Header() {
           className={cn(
             "mx-auto rounded-full transition-colors max-w-4xl flex justify-between items-center mx-auto",
             isScrolled
-              ? "bg-card shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,1)] backdrop-blur-lg supports-[backdrop-filter]:bg-input/50"
+              ? "bg-card shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,1)] backdrop-blur-lg supports-[backdrop-filter]:bg-neutral-400/40 dark:supports-[backdrop-filter]:bg-neutral-700/40"
               : "bg-transparent"
           )}
           animate={{
@@ -103,6 +103,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="hover:text-[#ff7300]"
                   onClick={(e) => handleClick("projects", e)}
                 >
                   <FolderOpenDot />
@@ -115,6 +116,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="hover:text-[#ff7300]"
                   onClick={(e) => handleClick("skills", e)}
                 >
                   <Brain />
@@ -127,6 +129,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="hover:text-[#ff7300]"
                   onClick={(e) => handleClick("about", e)}
                 >
                   <User />
@@ -139,6 +142,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
+                  className="hover:text-[#ff7300]"
                   onClick={(e) => handleClick("contact", e)}
                 >
                   <Mail />
@@ -149,7 +153,7 @@ export function Header() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <ModeToggle />
+                <ModeToggle className="hover:text-[#ff7300]" />
               </TooltipTrigger>
               <TooltipContent>Toggle Theme</TooltipContent>
             </Tooltip>

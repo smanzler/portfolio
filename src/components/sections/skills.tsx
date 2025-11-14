@@ -1,9 +1,9 @@
+import AccentShadowContainer from "../motion/accent-shadow-container";
 import { AnimateOnThreshold } from "../motion/animate-on-threshold";
 import { ThresholdContainer } from "../motion/threshold-container";
 import ThresholdMotionDiv from "../motion/threshold-motion-div";
 import { H1, Lead } from "../ui/typography";
 import { Icon } from "@iconify/react";
-import { motion } from "framer-motion";
 
 const Skills = () => {
   const skills = [
@@ -40,21 +40,10 @@ const Skills = () => {
               delay={0.03 * index}
               className="w-[calc((100%-1rem)/2)] sm:w-[calc((100%-2*1rem)/3)] lg:w-[calc((100%-4*1rem)/5)]"
             >
-              <motion.div
-                className="flex flex-col items-center justify-center gap-2 bg-card rounded-lg p-4"
-                whileHover={{
-                  x: 8,
-                  y: -8,
-                  boxShadow: "-8px 8px 0 0 #ff7300",
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: "easeOut",
-                }}
-              >
+              <AccentShadowContainer className="flex flex-col items-center justify-center gap-2 bg-card rounded-lg p-4">
                 <Icon icon={skill.icon} className="w-10 h-10" />
                 <p>{skill.name}</p>
-              </motion.div>
+              </AccentShadowContainer>
             </AnimateOnThreshold>
           ))
         }

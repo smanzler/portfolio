@@ -9,7 +9,7 @@ export default function About() {
     <section id="about" className="py-40 min-h-screen">
       <ThresholdMotionDiv className="mb-12">
         <H1>About Me</H1>
-        <Lead>Here is some information about me and my skills.</Lead>
+        <Lead>Here is some information about me and me with Ramen!</Lead>
       </ThresholdMotionDiv>
 
       <ThresholdContainer className="grid gap-8 md:grid-cols-2">
@@ -39,16 +39,16 @@ export default function About() {
                 <P className="!text-muted-foreground">
                   I've completed three internships and worked on projects
                   ranging from enterprise C# APIs in financial services to a
-                  React Native workout app published on the App Store. My focus
-                  is on creating smooth, user-friendly experiences backed by
-                  solid, maintainable code.
+                  React Native workout app published on the App Store and lot's
+                  more in between. My focus is on creating smooth, user-friendly
+                  experiences backed by solid, maintainable code.
                 </P>
               </AnimateOnThreshold>
 
               <AnimateOnThreshold shouldAnimate={isPast} delay={0.3}>
                 <H3>Technical Focus</H3>
                 <P className="!text-muted-foreground">
-                  I like working across the stack — designing databases, writing
+                  I like working across the stack. Designing databases, writing
                   clean APIs, and building responsive interfaces with React and
                   React Native. Lately, I've been using Supabase and PostgreSQL
                   for cloud-based apps, and WatermelonDB for offline-first
@@ -60,7 +60,8 @@ export default function About() {
                 <H3>Beyond Code</H3>
                 <P className="!text-muted-foreground">
                   Outside of coding, I enjoy music, art, and exploring new tech
-                  ideas - often blending them into creative side projects.
+                  ideas - sometimes blending them into creative new side
+                  projects.
                 </P>
               </AnimateOnThreshold>
             </div>
