@@ -3,13 +3,32 @@ import ThresholdMotionDiv from "../motion/threshold-motion-div";
 import { ThresholdContainer } from "../motion/threshold-container";
 import { AnimateOnThreshold } from "../motion/animate-on-threshold";
 import profileImage from "@/assets/simon-ramen.png";
+import { Button } from "../ui/button";
+import { ArrowRight, Download } from "lucide-react";
+import { Link } from "react-router";
 
 export default function About() {
+  const handleScroll = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="about" className="py-40 min-h-screen">
-      <ThresholdMotionDiv className="mb-12">
-        <H1>About Me</H1>
-        <Lead>Here is some information about me and me with Ramen!</Lead>
+      <ThresholdMotionDiv className="flex flex-row justify-between mb-12">
+        <div>
+          <H1>About Me</H1>
+          <Lead>Here is some information about me and me with Ramen!</Lead>
+        </div>
+
+        <Button variant="link" asChild>
+          <Link to="/assets/resume.pdf" target="_blank">
+            Download Resume
+            <Download />
+          </Link>
+        </Button>
       </ThresholdMotionDiv>
 
       <ThresholdContainer className="grid gap-8 md:grid-cols-2">
@@ -35,7 +54,17 @@ export default function About() {
               </AnimateOnThreshold>
 
               <AnimateOnThreshold shouldAnimate={isPast} delay={0.2}>
-                <H3>Experience</H3>
+                <div className="flex flex-row justify-between">
+                  <H3>Experience</H3>
+
+                  <Button
+                    variant="link"
+                    onClick={() => handleScroll("experience")}
+                  >
+                    Learn More
+                    <ArrowRight />
+                  </Button>
+                </div>
                 <P className="!text-muted-foreground">
                   I've completed three internships and worked on projects
                   ranging from enterprise C# APIs in financial services to a

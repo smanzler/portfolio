@@ -6,11 +6,13 @@ const AccentShadowContainer = ({
   className,
   asChild,
   hoverOffset = 8,
+  onClick,
   ...props
 }: MotionProps & {
   className?: string;
   asChild?: boolean;
   hoverOffset?: number;
+  onClick?: () => void;
 }) => {
   const MotionSlot = motion.create(Slot);
   const Comp = asChild ? MotionSlot : motion.div;
@@ -27,6 +29,7 @@ const AccentShadowContainer = ({
         ease: "easeOut",
       }}
       className={className}
+      onClick={onClick}
       {...props}
     >
       {children}

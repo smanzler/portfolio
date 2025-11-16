@@ -1,8 +1,10 @@
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { motion } from "framer-motion";
 import profileImage from "@/assets/simon.jpeg";
 import AccentShadowContainer from "../motion/accent-shadow-container";
+import { skills } from "./skills";
+import { Icon } from "@iconify/react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export default function Hero() {
   const handleScroll = (id: string) => {
@@ -12,14 +14,21 @@ export default function Hero() {
     }
   };
 
-  const skills = [
-    { name: "React", type: "Frontend" },
-    { name: "TypeScript", type: "Language" },
-    { name: "Node.js", type: "Backend" },
-    { name: "TailwindCSS", type: "Styling" },
-    { name: "Next.js", type: "Framework" },
-    { name: "PostgreSQL", type: "Database" },
-  ];
+  const SkillItem = ({ skill }: { skill: (typeof skills)[0] }) => {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <AccentShadowContainer
+            className="p-2 mr-4 rounded-lg"
+            onClick={() => handleScroll("skills")}
+          >
+            <Icon icon={skill.icon} className="w-10 h-10" />
+          </AccentShadowContainer>
+        </TooltipTrigger>
+        <TooltipContent>{skill.name}</TooltipContent>
+      </Tooltip>
+    );
+  };
 
   return (
     <section
@@ -67,35 +76,15 @@ export default function Hero() {
         <div className="flex">
           <div className="flex animate-infinite-scroll">
             {skills.map((skill, index) => (
-              <Badge
-                key={`${skill.name}-${index}`}
-                variant="secondary"
-                className="whitespace-nowrap shrink-0 mr-3"
-              >
-                {skill.name}
-              </Badge>
+              <SkillItem key={`${skill.name}-${index}`} skill={skill} />
             ))}
           </div>
           <div className="flex animate-infinite-scroll" aria-hidden="true">
             {skills.map((skill, index) => (
-              <Badge
+              <SkillItem
                 key={`${skill.name}-duplicate-${index}`}
-                variant="secondary"
-                className="whitespace-nowrap shrink-0 mr-3"
-              >
-                {skill.name}
-              </Badge>
-            ))}
-          </div>
-          <div className="flex animate-infinite-scroll" aria-hidden="true">
-            {skills.map((skill, index) => (
-              <Badge
-                key={`${skill.name}-duplicate-2-${index}`}
-                variant="secondary"
-                className="whitespace-nowrap shrink-0 mr-3"
-              >
-                {skill.name}
-              </Badge>
+                skill={skill}
+              />
             ))}
           </div>
         </div>

@@ -5,6 +5,7 @@ import Projects from "../sections/projects";
 import Skills from "../sections/skills";
 import Contact from "../sections/contact";
 import { useLocation } from "react-router";
+import Experience from "../sections/experience";
 
 const Root = () => {
   const { state } = useLocation();
@@ -21,6 +22,7 @@ const Root = () => {
       <Projects />
       <Skills />
       <About />
+      <Experience />
       <Contact />
     </>
   );
