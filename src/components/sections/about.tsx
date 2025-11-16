@@ -6,6 +6,7 @@ import profileImage from "@/assets/simon-ramen.png";
 import { Button } from "../ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import { Link } from "react-router";
+import resume from "@/assets/resume.pdf";
 
 export default function About() {
   const handleScroll = (id: string) => {
@@ -24,7 +25,7 @@ export default function About() {
         </div>
 
         <Button variant="link" asChild>
-          <Link to="/assets/resume.pdf" target="_blank">
+          <Link to={resume} target="_blank">
             Download Resume
             <Download />
           </Link>
