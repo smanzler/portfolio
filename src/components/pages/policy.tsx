@@ -5,6 +5,8 @@ import { ArrowLeft } from "lucide-react";
 import { H1, H2, H4, Muted, P, UL } from "../ui/typography";
 import { Separator } from "../ui/separator";
 import { useApps } from "@/hooks/useApps";
+import { AnimateOnThreshold } from "../motion/animate-on-threshold";
+import ThresholdMotionDiv from "../motion/threshold-motion-div";
 
 const Policy = ({ type }: { type: "privacy" | "terms" }) => {
   const { id } = useParams();
@@ -22,17 +24,19 @@ const Policy = ({ type }: { type: "privacy" | "terms" }) => {
   if (!policy || !item) {
     return (
       <div className="min-h-screen">
-        <Button
-          onClick={() => navigate("/apps")}
-          variant="ghost"
-          className="mb-8"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Apps
-        </Button>
+        <AnimateOnThreshold shouldAnimate delay={0}>
+          <Button
+            onClick={() => navigate("/apps")}
+            variant="ghost"
+            className="mb-8"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Apps
+          </Button>
+        </AnimateOnThreshold>
 
         <div className="flex flex-col items-center text-center justify-center py-20 gap-6">
-          <div>
+          <AnimateOnThreshold shouldAnimate delay={0.1}>
             <H1>
               {type === "privacy" ? "Privacy Policy" : "Terms of Service"} Not
               Found
@@ -41,13 +45,15 @@ const Policy = ({ type }: { type: "privacy" | "terms" }) => {
               Sorry, we couldn't find the app you're looking for. It might have
               been moved or doesn't exist.
             </P>
-          </div>
-          <Button asChild>
-            <Link to="/apps">
-              <ArrowLeft className="h-4 w-4" />
-              View All Apps
-            </Link>
-          </Button>
+          </AnimateOnThreshold>
+          <AnimateOnThreshold shouldAnimate delay={0.2}>
+            <Button asChild>
+              <Link to="/apps">
+                <ArrowLeft className="h-4 w-4" />
+                View All Apps
+              </Link>
+            </Button>
+          </AnimateOnThreshold>
         </div>
       </div>
     );
@@ -56,28 +62,35 @@ const Policy = ({ type }: { type: "privacy" | "terms" }) => {
   return (
     <div className="min-h-screen">
       <div className="flex flex-col gap-6">
-        <H1>{type === "privacy" ? "Privacy Policy" : "Terms of Service"}</H1>
+        <AnimateOnThreshold shouldAnimate delay={0}>
+          <H1>{type === "privacy" ? "Privacy Policy" : "Terms of Service"}</H1>
+        </AnimateOnThreshold>
         <div className="flex flex-row justify-between gap-4 items-end">
-          <div>
+          <AnimateOnThreshold shouldAnimate delay={0.1}>
             <Link to={`/apps/${item.title}`}>
               <H2 className="hover:underline">{item.title}</H2>
             </Link>
             <Muted>Last updated: {policy.lastUpdated}</Muted>
-          </div>
-          <Link
-            to={`/apps/${item.title}`}
-            className="rounded-lg overflow-hidden size-16 shrink-0"
+          </AnimateOnThreshold>
+          <AnimateOnThreshold
+            shouldAnimate
+            delay={0.2}
+            className="size-16 shrink-0 rounded-lg overflow-hidden"
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="size-full object-cover"
-            />
-          </Link>
+            <Link to={`/apps/${item.title}`}>
+              <img
+                src={item.image}
+                alt={item.title}
+                className="size-full object-cover"
+              />
+            </Link>
+          </AnimateOnThreshold>
         </div>
-        <Separator />
+        <AnimateOnThreshold shouldAnimate delay={0.3}>
+          <Separator />
+        </AnimateOnThreshold>
         {policy.sections.map((section, index) => (
-          <div key={index}>
+          <ThresholdMotionDiv key={index}>
             <H4>{section.title}</H4>
             {section.content.map((content, index) =>
               typeof content === "string" ? (
@@ -86,7 +99,7 @@ const Policy = ({ type }: { type: "privacy" | "terms" }) => {
                 <UL key={index} items={content} />
               )
             )}
-          </div>
+          </ThresholdMotionDiv>
         ))}
       </div>
     </div>

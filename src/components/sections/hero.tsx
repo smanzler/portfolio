@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col text-center items-center justify-center -mt-20"
+      className="min-h-screen flex flex-col text-center items-center justify-center max-w-xl mx-auto -mt-20"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -36,13 +36,14 @@ export default function Hero() {
           <AvatarFallback>SM</AvatarFallback>
         </Avatar>
       </motion.div>
+
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl mb-1"
       >
-        Software Developer
+        Simon Manzler
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -50,24 +51,69 @@ export default function Hero() {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="text-muted-foreground md:text-xl lg:text-2xl mb-8"
       >
-        Building modern, responsive, and user-friendly web applications
+        Building modern, responsive, and user-friendly web and mobile
+        applications
       </motion.p>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className="flex flex-wrap gap-2 justify-center"
+        className="relative w-full overflow-hidden"
       >
-        {skills.map((skill, index) => (
-          <motion.div
-            key={skill.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.7 + index * 0.1 }}
-          >
-            <Badge variant="secondary">{skill.name}</Badge>
-          </motion.div>
-        ))}
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+
+        <div className="flex">
+          <div className="flex animate-infinite-scroll">
+            {skills.map((skill, index) => (
+              <Badge
+                key={`${skill.name}-${index}`}
+                variant="secondary"
+                className="whitespace-nowrap shrink-0 mr-3"
+              >
+                {skill.name}
+              </Badge>
+            ))}
+          </div>
+          <div className="flex animate-infinite-scroll" aria-hidden="true">
+            {skills.map((skill, index) => (
+              <Badge
+                key={`${skill.name}-duplicate-${index}`}
+                variant="secondary"
+                className="whitespace-nowrap shrink-0 mr-3"
+              >
+                {skill.name}
+              </Badge>
+            ))}
+          </div>
+          <div className="flex animate-infinite-scroll" aria-hidden="true">
+            {skills.map((skill, index) => (
+              <Badge
+                key={`${skill.name}-duplicate-2-${index}`}
+                variant="secondary"
+                className="whitespace-nowrap shrink-0 mr-3"
+              >
+                {skill.name}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes infinite-scroll {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-100%);
+            }
+          }
+          
+          .animate-infinite-scroll {
+            animation: infinite-scroll 20s linear infinite;
+          }
+        `}</style>
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
