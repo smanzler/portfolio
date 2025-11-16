@@ -12,7 +12,7 @@ const AccentShadowContainer = ({
   asChild?: boolean;
   hoverOffset?: number;
 }) => {
-  const MotionSlot = motion(Slot);
+  const MotionSlot = motion.create(Slot);
   const Comp = asChild ? MotionSlot : motion.div;
 
   return (
