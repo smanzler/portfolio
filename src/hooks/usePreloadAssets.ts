@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { loadIcon } from "@iconify/react";
 
 // Import all assets that need to be preloaded
 import invtImage from "@/assets/invt.png";
@@ -7,6 +8,7 @@ import portfolioImage from "@/assets/portfolio.png";
 import simonImage from "@/assets/simon.jpeg";
 import simonRamenImage from "@/assets/simon-ramen.png";
 import simonIconImage from "@/assets/simon-icon.png";
+import { skills } from "@/components/sections/skills";
 
 const ASSETS_TO_PRELOAD = [
   invtImage,
@@ -16,6 +18,9 @@ const ASSETS_TO_PRELOAD = [
   simonRamenImage,
   simonIconImage,
 ];
+
+// Extract icon names from skills array
+const ICONS_TO_PRELOAD = skills.map((skill) => skill.icon);
 
 export function usePreloadAssets() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,15 +36,33 @@ export function usePreloadAssets() {
       });
     };
 
+    const preloadIcon = async (icon: string): Promise<void> => {
+      try {
+        await loadIcon(icon);
+      } catch (error) {
+        console.warn(`Error preloading icon ${icon}:`, error);
+      }
+    };
+
     const preloadAssets = async () => {
-      const promises = ASSETS_TO_PRELOAD.map((asset, index) =>
-        preloadImage(asset).then(() => {
-          setProgress(((index + 1) / ASSETS_TO_PRELOAD.length) * 100);
-        })
+      const totalAssets = ASSETS_TO_PRELOAD.length + ICONS_TO_PRELOAD.length;
+      let loadedCount = 0;
+
+      const updateProgress = () => {
+        loadedCount++;
+        setProgress((loadedCount / totalAssets) * 100);
+      };
+
+      const imagePromises = ASSETS_TO_PRELOAD.map((asset) =>
+        preloadImage(asset).then(updateProgress)
+      );
+
+      const iconPromises = ICONS_TO_PRELOAD.map((icon) =>
+        preloadIcon(icon).then(updateProgress)
       );
 
       try {
-        await Promise.all(promises);
+        await Promise.all([...imagePromises, ...iconPromises]);
       } catch (error) {
         console.error("Error preloading assets:", error);
       } finally {
