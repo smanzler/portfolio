@@ -103,7 +103,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:text-[#ff7300]"
+                  className="hover:text-brand"
                   onClick={(e) => handleClick("projects", e)}
                 >
                   <FolderOpenDot />
@@ -116,7 +116,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:text-[#ff7300]"
+                  className="hover:text-brand"
                   onClick={(e) => handleClick("skills", e)}
                 >
                   <Brain />
@@ -129,7 +129,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:text-[#ff7300]"
+                  className="hover:text-brand"
                   onClick={(e) => handleClick("about", e)}
                 >
                   <User />
@@ -142,7 +142,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:text-[#ff7300]"
+                  className="hover:text-brand"
                   onClick={(e) => handleClick("experience", e)}
                 >
                   <Briefcase />
@@ -155,7 +155,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hover:text-[#ff7300]"
+                  className="hover:text-brand"
                   onClick={(e) => handleClick("contact", e)}
                 >
                   <Mail />
@@ -166,7 +166,7 @@ export function Header() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <ModeToggle className="hover:text-[#ff7300]" />
+                <ModeToggle className="hover:text-brand" />
               </TooltipTrigger>
               <TooltipContent>Toggle Theme</TooltipContent>
             </Tooltip>

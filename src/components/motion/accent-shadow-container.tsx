@@ -22,7 +22,7 @@ const AccentShadowContainer = ({
       whileHover={{
         x: hoverOffset,
         y: -hoverOffset,
-        boxShadow: `-${hoverOffset}px ${hoverOffset}px 0 0 #ff7300`,
+        boxShadow: `-${hoverOffset}px ${hoverOffset}px 0 0 var(--brand)`,
       }}
       transition={{
         duration: 0.2,

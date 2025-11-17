@@ -98,9 +98,9 @@ function ExperienceCard({ experience, side }: ExperienceCardProps) {
           {/* Timeline dot */}
           <AnimateOnThreshold
             shouldAnimate={isPast}
-            className="absolute -left-2.5 md:left-1/2 transform md:-translate-x-1/2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-[#ff7300] z-10"
+            className="absolute -left-2.5 md:left-1/2 transform md:-translate-x-1/2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-brand z-10"
           >
-            <div className="absolute inset-[3px] rounded-full bg-[#ff7300]" />
+            <div className="absolute inset-[3px] rounded-full bg-brand" />
           </AnimateOnThreshold>
 
           {/* Card container - alternates left/right on desktop */}
