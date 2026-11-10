@@ -3,6 +3,8 @@
 import nodemailer from "nodemailer";
 
 export interface ContactFormData {
+  title: string;
+  label: string;
   name: string;
   email: string;
   message: string;
@@ -13,12 +15,21 @@ export interface SendEmailResult {
   error?: string;
 }
 
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export async function sendContactEmail(
   data: ContactFormData
 ): Promise<SendEmailResult> {
   try {
     // Validate input
-    if (!data.name || !data.email || !data.message) {
+    if (!data.title || !data.name || !data.email || !data.message) {
       return {
         success: false,
         error: "All fields are required",
@@ -59,23 +70,30 @@ export async function sendContactEmail(
       },
     });
 
+    const title = escapeHtml(data.title);
+    const label = escapeHtml(data.label);
+    const name = escapeHtml(data.name);
+    const email = escapeHtml(data.email);
+    const message = escapeHtml(data.message).replace(/\n/g, "<br>");
+
     // Send email
     await transporter.sendMail({
-      from: `"${data.name}" <${smtpUser}>`,
+      from: `"${data.name.replace(/"/g, "")}" <${smtpUser}>`,
       replyTo: data.email,
       to: recipientEmail,
-      subject: `Portfolio Message from ${data.name}`,
-      text: `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`,
+      subject: `[${data.label}] ${data.title}`,
+      text: `Title: ${data.title}\nLabel: ${data.label}\nName: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">New Contact Form Message</h2>
+          <h2 style="color: #333;">${title}</h2>
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${data.name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+            <p><strong>Label:</strong> ${label}</p>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
           </div>
           <div style="margin: 20px 0;">
             <h3 style="color: #333;">Message:</h3>
-            <p style="white-space: pre-wrap; line-height: 1.6;">${data.message.replace(/\n/g, '<br>')}</p>
+            <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
           </div>
         </div>
       `,

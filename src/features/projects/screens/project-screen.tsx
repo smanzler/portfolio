@@ -36,7 +36,7 @@ import {
 import React from "react";
 import Image from "next/image";
 import { AssetThumbnail } from "@/components/asset-thumbnail";
-import { ResponsiveButton } from "@/components/responsive-button";
+import { ResponsiveButton } from "@/features/projects/components/responsive-button";
 
 export default function ProjectDetails() {
   const { slug } = useParams();
