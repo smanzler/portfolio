@@ -10,7 +10,7 @@ const H1: React.FC<Props> = ({ className, children }) => {
   return (
     <h1
       className={cn(
-        "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
+        "scroll-m-20 font-display text-4xl font-semibold tracking-[-0.03em] lg:text-5xl",
         className
       )}
     >
@@ -23,7 +23,7 @@ const H2: React.FC<Props> = ({ className, children }) => {
   return (
     <h2
       className={cn(
-        "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0",
+        "scroll-m-20 font-display text-3xl font-semibold tracking-tight first:mt-0",
         className
       )}
     >
@@ -36,7 +36,7 @@ const H3: React.FC<Props> = ({ className, children }) => {
   return (
     <h3
       className={cn(
-        "scroll-m-20 text-2xl font-semibold tracking-tight",
+        "scroll-m-20 font-display text-2xl font-semibold tracking-tight",
         className
       )}
     >
@@ -49,7 +49,7 @@ const H4: React.FC<Props> = ({ className, children }) => {
   return (
     <h4
       className={cn(
-        "scroll-m-20 text-xl font-semibold tracking-tight",
+        "scroll-m-20 font-display text-xl font-semibold tracking-tight",
         className
       )}
     >
@@ -62,7 +62,7 @@ const P: React.FC<Props> = ({ className, children }) => {
   return (
     <p
       className={cn(
-        "leading-7 [&:not(:first-child)]:mt-2 text-[15px] text-neutral-800 dark:text-neutral-300",
+        "leading-7 [&:not(:first-child)]:mt-2 text-[15px] text-foreground-soft",
         className
       )}
     >
@@ -78,7 +78,7 @@ const UL: React.FC<{ className?: string; items: string[] }> = ({
   return (
     <ul
       className={cn(
-        "ml-6 [&:not(:first-child)]:mt-2 list-disc text-[15px] text-neutral-800 dark:text-neutral-300",
+        "ml-6 [&:not(:first-child)]:mt-2 list-disc text-[15px] text-foreground-soft",
         className
       )}
     >
