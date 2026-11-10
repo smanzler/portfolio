@@ -4,6 +4,7 @@ export interface Asset {
   type: string;
   path: string;
   fallback?: string;
+  fallbackPath?: string;
   alt?: string;
   width: number;
   height: number;
