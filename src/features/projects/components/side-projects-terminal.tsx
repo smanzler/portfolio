@@ -6,36 +6,36 @@ import { GlassWindow } from "@/components/glass-window";
 export function SideProjectsTerminal({ projects }: { projects: Project[] }) {
   return (
     <GlassWindow title="~/side-projects — zsh" className="rounded-[18px] font-mono">
-      <div className="px-2 sm:px-6 pt-6 pb-7 text-sm sm:text-[15px] leading-[1.6] text-glass-foreground flex flex-col gap-3">
-        <div className="px-4">
+      <div className="py-5 text-sm sm:text-[15px] leading-6 text-glass-foreground flex flex-col">
+        <div className="px-6">
           <span className="text-code-keyword">~/side-projects</span>{" "}
           <span className="text-glass-faint">$</span> ls
         </div>
-        <ul className="list-none m-0 p-0 flex flex-col gap-0.5">
+        <ul className="list-none m-0 p-0 flex flex-col">
           {projects.map((project) => (
             <li key={project.slug}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="grid grid-cols-[minmax(0,1fr)_auto] md:grid-cols-[220px_minmax(0,1fr)_140px_24px] gap-x-6 gap-y-1 items-center px-4 py-3 rounded-lg text-glass-foreground hover:bg-white/6 transition-colors"
+                className="group flex flex-wrap md:flex-nowrap items-center px-6 text-glass-foreground hover:bg-white/10 hover:shadow-[inset_3px_0_0_var(--color-code-keyword)] transition-colors"
               >
-                <span className="text-code-keyword font-medium">
+                <span className="w-[12ch] shrink-0 text-code-keyword font-bold underline-offset-3 group-hover:underline">
                   {project.slug}/
                 </span>
-                <span className="text-code-string md:order-3">
+                <span className="w-[14ch] shrink-0 text-code-string">
                   {project.tags[0]}
                 </span>
-                <span className="col-span-2 md:col-span-1 md:order-2 text-glass-faint truncate">
+                <span className="basis-full md:basis-auto flex-1 min-w-0 truncate text-glass-faint group-hover:text-glass-foreground">
                   # {project.description}
                 </span>
                 <ArrowUpRight
-                  className="hidden md:block md:order-4 size-3.5 text-glass-faint"
+                  className="hidden md:block ml-3 size-3.5 shrink-0 text-code-keyword opacity-0 group-hover:opacity-100"
                   aria-hidden="true"
                 />
               </Link>
             </li>
           ))}
         </ul>
-        <div className="px-4">
+        <div className="px-6">
           <span className="text-code-keyword">~/side-projects</span>{" "}
           <span className="text-glass-faint">$</span>{" "}
           <span
