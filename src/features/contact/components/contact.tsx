@@ -1,99 +1,56 @@
-import { H1, H2, Lead, P, Muted } from "@/components/ui/typography";
-import ThresholdMotionDiv from "@/components/threshold-motion-div";
-import { Mail } from "lucide-react";
-import { Icon } from "@iconify/react";
-import Link from "next/link";
-import AccentShadowContainer from "@/components/accent-shadow-container";
+import { ArrowUpRight } from "lucide-react";
 import ContactForm from "@/features/contact/components/contact-form";
-import { ResponsiveButton } from "@/components/responsive-button";
+
+const links = [
+  { label: "simanzler@gmail.com", href: "mailto:simanzler@gmail.com" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/simonmanzler" },
+  { label: "GitHub", href: "https://github.com/smanzler" },
+];
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-40 min-h-screen">
-      <ThresholdMotionDiv className="mb-12">
-        <H1>Get in Touch</H1>
-        <Lead>
-          I'm always open to new opportunities and collaborations. Feel free to
-          reach out!
-        </Lead>
-      </ThresholdMotionDiv>
-
-      <div className="grid gap-12 lg:grid-cols-2">
-        <ThresholdMotionDiv className="flex flex-col gap-6">
-          <div>
-            <H2>Let's Connect</H2>
-            <Muted>
-              Whether you have a project in mind or just want to chat, I'd love
-              to hear from you!
-            </Muted>
-          </div>
-
-          <div>
-            <div className="flex gap-3">
-              <ResponsiveButton
-                size="sm"
-                asChild
-                icon={<Mail className="h-4 w-4" />}
-                as={AccentShadowContainer}
-                className="flex-1 flex items-center justify-center rounded-md"
-              >
-                <Link
-                  href="mailto:simanzler@gmail.com"
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium shrink-0 h-9 px-6 has-[>svg]:px-4"
-                >
-                  Email me
-                </Link>
-              </ResponsiveButton>
-
-              <ResponsiveButton
-                size="sm"
-                asChild
-                icon={<Icon icon="line-md:github" />}
-                as={AccentShadowContainer}
-                className="flex-1 flex items-center justify-center rounded-md"
-              >
-                <Link
-                  href="https://github.com/smanzler"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium shrink-0 h-9 px-6 has-[>svg]:px-4"
-                >
-                  GitHub
-                </Link>
-              </ResponsiveButton>
-
-              <ResponsiveButton
-                size="sm"
-                asChild
-                icon={<Icon icon="line-md:linkedin" />}
-                as={AccentShadowContainer}
-                className="flex-1 flex items-center justify-center rounded-md"
-              >
-                <Link
-                  href="https://linkedin.com/in/simonmanzler"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium shrink-0 h-9 px-6 has-[>svg]:px-4"
-                >
-                  LinkedIn
-                </Link>
-              </ResponsiveButton>
-            </div>
-          </div>
-        </ThresholdMotionDiv>
-
-        <ThresholdMotionDiv className="flex flex-col gap-6">
-          <div>
-            <H2>Send a Message</H2>
-            <Muted>
-              Fill out the form below and I'll get back to you as soon as
-              possible.
-            </Muted>
-          </div>
-
-          <ContactForm />
-        </ThresholdMotionDiv>
+    <section
+      id="contact"
+      className="max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 pt-24 lg:pt-[120px] flex flex-col gap-12"
+    >
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <div className="flex flex-col gap-3.5">
+          <span className="font-mono text-[13px] tracking-[0.06em] text-muted-foreground">
+            04 / CONTACT
+          </span>
+          <h2 className="m-0 font-display font-semibold text-[40px] lg:text-[52px] leading-[1.05] tracking-[-0.03em]">
+            Let&apos;s talk.
+          </h2>
+        </div>
+        <div className="flex flex-wrap gap-x-7">
+          {links.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              {...(href.startsWith("http") && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
+              className="inline-flex items-center gap-1.5 font-medium py-3"
+            >
+              <span className="border-b-[1.5px] border-foreground">
+                {label}
+              </span>
+              <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            </a>
+          ))}
+        </div>
       </div>
+
+      <ContactForm />
+
+      <footer className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 pt-7 border-t border-border font-mono text-[13px] text-muted-foreground">
+        <span>© {new Date().getFullYear()} Simon Manzler</span>
+        <span>Built with Next.js</span>
+        <a href="#home" className="py-2.5 text-muted-foreground">
+          Back to top ↑
+        </a>
+      </footer>
     </section>
   );
 }

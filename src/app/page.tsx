@@ -1,6 +1,6 @@
 import About from "@/features/about/components/about";
-import Experience from "@/features/experience/components/experience";
 import Contact from "@/features/contact/components/contact";
+import Experience from "@/features/experience/components/experience";
 import Hero from "@/features/hero/components/hero";
 import Projects from "@/features/projects/components/projects";
 
@@ -11,9 +11,7 @@ export default function Home() {
       <Projects />
       <About />
       <Experience />
-      <div className="max-w-3xl mx-auto px-6">
-        <Contact />
-      </div>
+      <Contact />
     </>
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Caveat, Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/features/layout/components/header";
-import { Footer } from "@/features/layout/components/footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -56,12 +55,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased`}
       >
-        <main className="py-20">
+        <main className="pt-20 pb-10">
           <Header />
           {children}
-          <div className="max-w-3xl mx-auto px-6">
-            <Footer />
-          </div>
         </main>
       </body>
     </html>
