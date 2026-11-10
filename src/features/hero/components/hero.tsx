@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AnimateOnThreshold } from "@/components/animate-on-threshold";
+import { Button } from "@/components/ui/button";
+import { UnderlineLink } from "@/components/underline-link";
 import { EngineerCard } from "@/features/hero/components/engineer-card";
 
 export default function Hero() {
@@ -33,21 +35,18 @@ export default function Hero() {
           Quality Logistics.
         </p>
         <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-7 pt-1 lg:pt-2">
-          <Link
-            href="#projects"
-            className="flex lg:inline-flex items-center justify-center gap-2.5 h-[52px] lg:h-auto lg:px-7 lg:py-4 rounded-full bg-primary text-primary-foreground font-medium"
-          >
-            See my work
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-          <a
+          <Button asChild size="pill">
+            <Link href="#projects">
+              See my work
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </Button>
+          <UnderlineLink
             href="mailto:simanzler@gmail.com"
-            className="flex items-center justify-center h-12 lg:h-auto lg:py-3 font-medium"
+            className="justify-center"
           >
-            <span className="border-b-[1.5px] border-foreground pb-0.5">
-              Get in touch
-            </span>
-          </a>
+            Get in touch
+          </UnderlineLink>
         </div>
       </AnimateOnThreshold>
 

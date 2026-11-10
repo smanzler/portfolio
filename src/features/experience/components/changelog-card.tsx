@@ -1,8 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { FileText } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { MarkdownFileCard } from "@/components/markdown-file-card";
 import {
   changeLabels,
   changeOrder,
@@ -10,13 +6,6 @@ import {
   releases,
   type Release,
 } from "@/features/experience/lib/releases";
-
-type View = "preview" | "code";
-
-const views: { id: View; label: string }[] = [
-  { id: "preview", label: "Preview" },
-  { id: "code", label: "Code" },
-];
 
 function ReleaseEntry({ release, isLatest }: { release: Release; isLatest: boolean }) {
   return (
@@ -84,62 +73,24 @@ function ReleaseEntry({ release, isLatest }: { release: Release; isLatest: boole
 }
 
 export function ChangelogCard() {
-  const [view, setView] = useState<View>("preview");
-
   return (
-    <article className="rounded-2xl bg-card border border-border shadow-[0_12px_32px_rgb(20_21_26/0.06)] overflow-hidden">
-      <div className="flex items-center justify-between gap-4 px-5 h-[52px] border-b border-rule font-mono text-[13px] text-muted-foreground">
-        <span className="flex items-center gap-2.5 min-w-0">
-          <FileText className="size-4 shrink-0" aria-hidden="true" />
-          <span className="truncate">
-            <span className="hidden sm:inline">smanzler / </span>
-            <span className="text-foreground">CHANGELOG.md</span>
-          </span>
-        </span>
-        <div
-          role="group"
-          aria-label="CHANGELOG view"
-          className="flex gap-1 p-[3px] rounded-lg bg-muted"
-        >
-          {views.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              aria-pressed={view === id}
-              onClick={() => setView(id)}
-              className={cn(
-                "px-3 py-[5px] rounded-md cursor-pointer",
-                view === id &&
-                  "bg-white text-foreground shadow-[0_1px_2px_rgb(0_0_0/0.06)]"
-              )}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+    <MarkdownFileCard fileName="CHANGELOG.md" source={changelogMarkdown()}>
+      <div className="px-6 pt-8 pb-5 lg:px-12 lg:pt-9">
+        <h3 className="m-0 mb-4 pb-3 border-b border-rule font-display font-semibold text-[28px] tracking-[-0.02em]">
+          Changelog
+        </h3>
+        <p className="m-0 mb-2 text-[15px] text-muted-foreground">
+          All notable changes to my career. Format based on Keep a Changelog;
+          this career adheres to Semantic Versioning.
+        </p>
+        {releases.map((release, index) => (
+          <ReleaseEntry
+            key={release.version}
+            release={release}
+            isLatest={index === 0}
+          />
+        ))}
       </div>
-      {view === "preview" ? (
-        <div className="px-6 pt-8 pb-5 lg:px-12 lg:pt-9">
-          <h3 className="m-0 mb-4 pb-3 border-b border-rule font-display font-semibold text-[28px] tracking-[-0.02em]">
-            Changelog
-          </h3>
-          <p className="m-0 mb-2 text-[15px] text-muted-foreground">
-            All notable changes to my career. Format based on Keep a
-            Changelog; this career adheres to Semantic Versioning.
-          </p>
-          {releases.map((release, index) => (
-            <ReleaseEntry
-              key={release.version}
-              release={release}
-              isLatest={index === 0}
-            />
-          ))}
-        </div>
-      ) : (
-        <pre className="m-0 px-6 py-8 lg:px-12 lg:py-9 font-mono text-sm leading-[1.8] text-foreground-soft whitespace-pre-wrap">
-          {changelogMarkdown()}
-        </pre>
-      )}
-    </article>
+    </MarkdownFileCard>
   );
 }

@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, CircleDot, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { FileCard } from "@/components/file-card";
+import { Button } from "@/components/ui/button";
 import {
   sendContactEmail,
   type ContactFormData,
@@ -69,22 +71,15 @@ export default function ContactForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="m-0 rounded-2xl bg-card border border-border shadow-[0_12px_32px_rgb(20_21_26/0.06)] overflow-hidden"
+    <FileCard
+      icon={<CircleDot aria-hidden="true" />}
+      path={["smanzler", "inbox", "issues / new"]}
+      aside={<span className="hidden md:inline">Usually replies in ~1–2 days</span>}
     >
-      <div className="flex items-center justify-between gap-4 px-5 h-[52px] border-b border-rule font-mono text-[13px] text-muted-foreground">
-        <span className="flex items-center gap-2.5 min-w-0">
-          <CircleDot className="size-4 shrink-0" aria-hidden="true" />
-          <span className="truncate">
-            <span className="hidden sm:inline">smanzler / inbox / </span>
-            <span className="text-foreground">issues / new</span>
-          </span>
-        </span>
-        <span className="hidden md:inline">Usually replies in ~1–2 days</span>
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-10 px-5 py-7 lg:px-9 lg:pt-8 lg:pb-9">
+      <form
+        onSubmit={handleSubmit}
+        className="m-0 flex flex-col lg:flex-row gap-10 px-5 py-7 lg:px-9 lg:pt-8 lg:pb-9"
+      >
         <div className="flex-1 flex flex-col gap-[18px]">
           <div className="flex flex-col gap-2">
             <label htmlFor="contact-title" className={fieldLabel}>
@@ -170,23 +165,19 @@ export default function ContactForm() {
                 <span className="text-destructive">{status.message}</span>
               )}
             </p>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="inline-flex items-center justify-center gap-2.5 px-[26px] py-[15px] rounded-full bg-primary text-primary-foreground font-medium cursor-pointer disabled:opacity-70"
-            >
+            <Button type="submit" size="pill" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   Submitting
-                  <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                  <Loader2 className="animate-spin" aria-hidden="true" />
                 </>
               ) : (
                 <>
                   Submit new issue
-                  <ArrowRight className="size-4" aria-hidden="true" />
+                  <ArrowRight aria-hidden="true" />
                 </>
               )}
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -250,7 +241,7 @@ export default function ContactForm() {
             no issue too small :)
           </span>
         </aside>
-      </div>
-    </form>
+      </form>
+    </FileCard>
   );
 }

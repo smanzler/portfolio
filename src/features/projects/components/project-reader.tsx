@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/projects";
+import { GlassMeta } from "@/components/glass-meta";
+import { UnderlineLink } from "@/components/underline-link";
+import { Button } from "@/components/ui/button";
 import { ProjectMedia } from "@/features/projects/components/project-media";
 
 function Fact({ label, children }: { label: string; children: string }) {
@@ -19,7 +21,9 @@ function Fact({ label, children }: { label: string; children: string }) {
 }
 
 function ProjectArticle({ project }: { project: Project }) {
-  const meta = [project.timeline, project.role].filter(Boolean);
+  const meta = [project.timeline, project.role].filter(
+    (item): item is string => Boolean(item)
+  );
   const highlight = project.technicalHighlights[0];
 
   return (
@@ -29,17 +33,10 @@ function ProjectArticle({ project }: { project: Project }) {
     >
       <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] rounded-[22px] overflow-hidden bg-well">
         <ProjectMedia asset={project.heroAsset} />
-        <div className="glass absolute left-4 bottom-4 sm:left-6 sm:bottom-6 max-w-[calc(100%-2rem)] px-[18px] py-3 rounded-xl font-mono text-xs text-glass-foreground flex flex-wrap gap-x-4 gap-y-1">
-          {meta.map((item) => (
-            <span key={item} className="flex gap-4">
-              <span>{item}</span>
-              <span className="text-glass-faint">·</span>
-            </span>
-          ))}
-          <span className="text-code-string">
-            {project.tags.slice(0, 3).join(" · ")}
-          </span>
-        </div>
+        <GlassMeta
+          items={[...meta, project.tags.slice(0, 3).join(" · ")]}
+          className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 max-w-[calc(100%-2rem)] px-[18px] py-3 gap-x-4"
+        />
       </div>
       <p className="m-0 font-display font-medium text-2xl lg:text-[30px] leading-[1.3] tracking-[-0.02em] text-foreground-soft">
         {project.description}
@@ -49,37 +46,20 @@ function ProjectArticle({ project }: { project: Project }) {
         <Fact label="WHAT I BUILT">{project.problemAndSolution.solution}</Fact>
         {highlight && <Fact label="HIGHLIGHT">{highlight}</Fact>}
       </div>
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-medium text-[15px]">
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
         {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-primary text-primary-foreground"
-          >
-            Visit project
-            <ArrowUpRight className="size-[15px]" aria-hidden="true" />
-          </a>
+          <Button asChild size="pill">
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              Visit project
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+          </Button>
         )}
-        <Link
-          href={`/projects/${project.slug}`}
-          className="inline-flex py-3.5"
-        >
-          <span className="border-b-[1.5px] border-foreground">
-            Read the case study
-          </span>
-        </Link>
+        <UnderlineLink href={`/projects/${project.slug}`}>
+          Read the case study
+        </UnderlineLink>
         {project.github && (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex py-3.5"
-          >
-            <span className="border-b-[1.5px] border-foreground">
-              Source code
-            </span>
-          </a>
+          <UnderlineLink href={project.github}>Source code</UnderlineLink>
         )}
       </div>
     </article>
