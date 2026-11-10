@@ -27,6 +27,7 @@ const buttonVariants = cva(
         icon: "size-9",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
+        pill: "h-13 px-7 rounded-full text-base gap-2.5 cursor-pointer",
       },
     },
     defaultVariants: {

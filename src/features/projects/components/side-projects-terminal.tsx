@@ -1,22 +1,11 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
+import { GlassWindow } from "@/components/glass-window";
 
 export function SideProjectsTerminal({ projects }: { projects: Project[] }) {
   return (
-    <div className="glass rounded-[18px] overflow-hidden font-mono">
-      <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/8">
-        {[0, 1, 2].map((dot) => (
-          <span
-            key={dot}
-            aria-hidden="true"
-            className="size-[11px] rounded-full bg-white/18"
-          />
-        ))}
-        <span className="ml-3 text-xs text-glass-muted">
-          ~/side-projects — zsh
-        </span>
-      </div>
+    <GlassWindow title="~/side-projects — zsh" className="rounded-[18px] font-mono">
       <div className="px-2 sm:px-6 pt-6 pb-7 text-sm sm:text-[15px] leading-[1.6] text-glass-foreground flex flex-col gap-3">
         <div className="px-4">
           <span className="text-code-keyword">~/side-projects</span>{" "}
@@ -55,6 +44,6 @@ export function SideProjectsTerminal({ projects }: { projects: Project[] }) {
           />
         </div>
       </div>
-    </div>
+    </GlassWindow>
   );
 }

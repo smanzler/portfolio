@@ -1,4 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
+import { Section } from "@/components/section";
+import { UnderlineLink } from "@/components/underline-link";
 import ContactForm from "@/features/contact/components/contact-form";
 
 const links = [
@@ -9,39 +10,21 @@ const links = [
 
 export default function Contact() {
   return (
-    <section
+    <Section
       id="contact"
-      className="max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 pt-24 lg:pt-[120px] flex flex-col gap-12"
-    >
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <div className="flex flex-col gap-3.5">
-          <span className="font-mono text-[13px] tracking-[0.06em] text-muted-foreground">
-            04 / CONTACT
-          </span>
-          <h2 className="m-0 font-display font-semibold text-[40px] lg:text-[52px] leading-[1.05] tracking-[-0.03em]">
-            Let&apos;s talk.
-          </h2>
-        </div>
+      eyebrow="04 / CONTACT"
+      title="Let's talk."
+      action={
         <div className="flex flex-wrap gap-x-7">
           {links.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              {...(href.startsWith("http") && {
-                target: "_blank",
-                rel: "noopener noreferrer",
-              })}
-              className="inline-flex items-center gap-1.5 font-medium py-3"
-            >
-              <span className="border-b-[1.5px] border-foreground">
-                {label}
-              </span>
-              <ArrowUpRight className="size-3.5" aria-hidden="true" />
-            </a>
+            <UnderlineLink key={label} href={href} arrow>
+              {label}
+            </UnderlineLink>
           ))}
         </div>
-      </div>
-
+      }
+      className="pb-0 lg:pb-0"
+    >
       <ContactForm />
 
       <footer className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 pt-7 border-t border-border font-mono text-[13px] text-muted-foreground">
@@ -51,6 +34,6 @@ export default function Contact() {
           Back to top ↑
         </a>
       </footer>
-    </section>
+    </Section>
   );
 }
