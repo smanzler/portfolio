@@ -6,7 +6,7 @@ import { ThresholdContainer } from "@/components/threshold-container";
 import ThresholdMotionDiv from "@/components/threshold-motion-div";
 import { H1, Lead, Muted } from "@/components/ui/typography";
 import { Icon } from "@iconify/react";
-import { skills } from "@/lib/skills";
+import { skills } from "@/features/skills/lib/skills";
 
 const Skills = () => {
   return (

@@ -56,10 +56,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased`}
       >
-        <main className="py-20 px-6 max-w-3xl mx-auto">
+        <main className="py-20">
           <Header />
           {children}
-          <Footer />
+          <div className="max-w-3xl mx-auto px-6">
+            <Footer />
+          </div>
         </main>
       </body>
     </html>
