@@ -23,7 +23,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 py-24 lg:py-[120px] flex flex-col gap-12",
+        "max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 py-24 lg:py-[120px] min-h-svh flex flex-col justify-center gap-12",
         className
       )}
     >

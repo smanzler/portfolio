@@ -25,13 +25,18 @@ function ProjectArticle({ project }: { project: Project }) {
     (item): item is string => Boolean(item)
   );
   const highlight = project.technicalHighlights[0];
+  const { width, height } = project.heroAsset;
+  const aspectRatio = width >= height ? `${width} / ${height}` : "3 / 2";
 
   return (
     <article
       id={`project-${project.slug}`}
       className="flex-1 min-w-0 flex flex-col gap-7"
     >
-      <div className="relative h-[280px] sm:h-[400px] lg:h-[480px] rounded-[22px] overflow-hidden bg-well">
+      <div
+        className="relative rounded-[22px] overflow-hidden bg-well"
+        style={{ aspectRatio }}
+      >
         <ProjectMedia asset={project.heroAsset} />
         <GlassMeta
           items={[...meta, project.tags.slice(0, 3).join(" · ")]}

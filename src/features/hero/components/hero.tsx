@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { AnimateOnThreshold } from "@/components/animate-on-threshold";
 import { Button } from "@/components/ui/button";
 import { UnderlineLink } from "@/components/underline-link";
 import { EngineerCard } from "@/features/hero/components/engineer-card";
@@ -10,13 +9,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 pt-9 pb-12 lg:py-0 lg:min-h-[760px] flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20"
+      className="max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 pt-9 pb-12 lg:py-0 min-h-[calc(100svh-5rem)] flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-20"
     >
-      <AnimateOnThreshold
-        shouldAnimate
-        delay={0.1}
-        className="flex-1 flex flex-col gap-[22px] lg:gap-7"
-      >
+      <div className="flex-1 flex flex-col gap-[22px] lg:gap-7">
         <div className="flex flex-col gap-0.5 lg:gap-1">
           <span className="font-hand font-medium text-[28px] lg:text-[34px] text-brand -rotate-3 origin-left inline-block">
             hey there, I&apos;m
@@ -48,13 +43,9 @@ export default function Hero() {
             Get in touch
           </UnderlineLink>
         </div>
-      </AnimateOnThreshold>
+      </div>
 
-      <AnimateOnThreshold
-        shouldAnimate
-        delay={0.3}
-        className="relative w-full max-w-[600px] h-[480px] lg:h-[640px] lg:flex-[0_0_600px] mt-5 lg:mt-0"
-      >
+      <div className="relative w-full max-w-[600px] h-[480px] lg:h-[640px] lg:flex-[0_0_600px] mt-5 lg:mt-0">
         <div className="absolute top-0 right-0 w-[270px] h-[340px] lg:w-[400px] lg:h-[500px] rounded-3xl lg:rounded-[28px] overflow-hidden bg-well">
           <Image
             src="/simon.jpeg"
@@ -66,7 +57,7 @@ export default function Hero() {
           />
         </div>
         <EngineerCard className="absolute left-0 bottom-0 w-[300px] lg:w-[440px]" />
-      </AnimateOnThreshold>
+      </div>
     </section>
   );
 }
