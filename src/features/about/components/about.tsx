@@ -34,7 +34,7 @@ export default function About() {
             <div className="flex flex-col gap-6">
               <AnimateOnThreshold shouldAnimate={isPast}>
                 <Image
-                  className="w-full h-full object-cover shadow-[-8px_8px_0_0_#ff7300]"
+                  className="w-full h-full object-cover shadow-[-8px_8px_0_0_var(--brand)]"
                   src={simonRamen}
                   alt="Simon"
                 />

@@ -1,6 +1,5 @@
 "use client";
 
-import { ModeToggle } from "@/features/layout/components/mode-toggle";
 import { cn, scrollToSection } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -237,7 +236,6 @@ export function Header() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <ModeToggle className="hover:text-brand" />
       </motion.div>
     </motion.header>
   );
