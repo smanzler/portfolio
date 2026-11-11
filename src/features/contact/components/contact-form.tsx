@@ -29,7 +29,7 @@ type Status =
 const fieldLabel =
   "font-mono text-xs tracking-[0.06em] text-muted-foreground";
 const inputClass =
-  "w-full px-4 py-3.5 rounded-[10px] border border-border bg-white text-base text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:opacity-60";
+  "block w-full p-4 rounded-[10px] border border-border bg-white font-mono text-sm text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:opacity-60";
 
 export default function ContactForm() {
   const [form, setForm] = useState(emptyForm);
@@ -94,7 +94,7 @@ export default function ContactForm() {
               onChange={handleChange}
               required
               disabled={isSubmitting}
-              className={cn(inputClass, "text-xl px-[18px] py-4")}
+              className={inputClass}
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
@@ -137,22 +137,17 @@ export default function ContactForm() {
             <label htmlFor="contact-message" className={fieldLabel}>
               ADD A DESCRIPTION
             </label>
-            <div className="rounded-[10px] border border-border bg-white overflow-hidden focus-within:ring-2 focus-within:ring-ring/50">
-              <div className="px-3 py-2 border-b border-rule bg-card font-mono text-xs text-muted-foreground">
-                Markdown supported
-              </div>
-              <textarea
-                id="contact-message"
-                name="message"
-                rows={7}
-                placeholder="Leave a comment…"
-                value={form.message}
-                onChange={handleChange}
-                required
-                disabled={isSubmitting}
-                className="block w-full p-4 border-none bg-white font-mono text-sm text-foreground resize-y outline-none disabled:opacity-60"
-              />
-            </div>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={7}
+              placeholder="Leave a comment…"
+              value={form.message}
+              onChange={handleChange}
+              required
+              disabled={isSubmitting}
+              className={cn(inputClass, "resize-y")}
+            />
           </div>
           <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-4">
             <p role="status" className="m-0 text-sm sm:mr-auto">
