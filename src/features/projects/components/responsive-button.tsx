@@ -125,17 +125,18 @@ export function ResponsiveButton<T extends React.ElementType = typeof Button>({
   if (asChild) {
     if (!React.isValidElement(children)) return null;
 
-    const childElement = children as React.ReactElement;
-    const childProps = childElement.props as Record<string, unknown>;
+    const childElement = children as React.ReactElement<
+      Record<string, unknown>
+    >;
     const clonedChild = React.cloneElement(childElement, {
-      ...childProps,
+      ...childElement.props,
       children: finalContent,
-    } as any);
+    });
 
     if (Parent === Button) {
       return (
         <Slot
-          {...(parentProps as any)}
+          {...(parentProps as React.ComponentProps<typeof Slot>)}
           className={cn(
             buttonVariants({ variant: resolvedVariant, size: resolvedSize }),
             className
@@ -146,9 +147,9 @@ export function ResponsiveButton<T extends React.ElementType = typeof Button>({
       );
     }
 
-    const ParentComponent = Parent as React.ComponentType<any>;
+    const ParentComponent = Parent as React.ComponentType<Record<string, unknown>>;
     return (
-      <ParentComponent {...(parentProps as any)}>{clonedChild}</ParentComponent>
+      <ParentComponent {...(parentProps as Record<string, unknown>)}>{clonedChild}</ParentComponent>
     );
   }
 
@@ -167,8 +168,8 @@ export function ResponsiveButton<T extends React.ElementType = typeof Button>({
     );
   }
 
-  const ParentComponent = Parent as React.ComponentType<any>;
+  const ParentComponent = Parent as React.ComponentType<Record<string, unknown>>;
   return (
-    <ParentComponent {...(parentProps as any)}>{finalContent}</ParentComponent>
+    <ParentComponent {...(parentProps as Record<string, unknown>)}>{finalContent}</ParentComponent>
   );
 }
