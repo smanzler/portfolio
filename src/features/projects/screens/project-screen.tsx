@@ -1,369 +1,114 @@
 "use client";
 
-import { getProjectBySlug } from "@/lib/projects";
-import { useParams } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  ArrowLeft,
-  ExternalLink,
-  FileQuestion,
-  GalleryVertical,
-  LayoutGrid,
-  LayoutList,
-  CirclePlay,
-} from "lucide-react";
-import { H1, H2, H3, Muted, P, UL } from "@/components/ui/typography";
-import { Separator } from "@/components/ui/separator";
-import { AnimateOnThreshold } from "@/components/animate-on-threshold";
-import { Icon } from "@iconify/react";
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import type { Project } from "@/lib/projects";
 import { AssetLightboxDialog } from "@/components/asset-lightbox-dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import React from "react";
-import Image from "next/image";
-import { AssetThumbnail } from "@/components/asset-thumbnail";
-import { ResponsiveButton } from "@/features/projects/components/responsive-button";
+import { PageHeader } from "@/components/page-header";
+import { PageShell } from "@/components/page-shell";
+import { UnderlineLink } from "@/components/underline-link";
+import { Button } from "@/components/ui/button";
+import { CaseStudyCard } from "@/features/projects/components/case-study-card";
+import { CaseStudyContents } from "@/features/projects/components/case-study-contents";
+import { MediaGallery } from "@/components/media-gallery";
+import { ProjectCover } from "@/features/projects/components/project-cover";
+import { ProjectFact } from "@/features/projects/components/project-fact";
 
-export default function ProjectDetails() {
-  const { slug } = useParams();
-  const project = getProjectBySlug(slug as string);
-  const [lightboxIndex, setLightboxIndex] = React.useState(0);
-  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+export default function ProjectScreen({
+  project,
+  next,
+}: {
+  project: Project;
+  next: Project;
+}) {
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const assets = project.assets ?? [];
 
-  const handleLightboxOpen = (index: number) => {
+  const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
 
-  if (!project) {
-    return (
-      <div className="min-h-screen">
-        <AnimateOnThreshold shouldAnimate delay={0}>
-          <Button variant="ghost" className="mb-8 p-0" asChild>
-            <Link href="/projects">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Projects
-            </Link>
-          </Button>
-        </AnimateOnThreshold>
-
-        <Empty>
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <FileQuestion />
-            </EmptyMedia>
-            <EmptyTitle>Project Not Found</EmptyTitle>
-            <EmptyDescription>
-              Sorry, we couldn&apos;t find the project you&apos;re looking for. It might
-              have been moved or doesn&apos;t exist.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button asChild>
-              <Link href="/projects">
-                <ArrowLeft className="h-4 w-4" />
-                View All Projects
-              </Link>
-            </Button>
-          </EmptyContent>
-        </Empty>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen flex flex-col gap-6 py-40">
-      {/* Hero Section */}
-      <AnimateOnThreshold shouldAnimate className="flex flex-col">
-        <div className="flex flex-row justify-between items-start">
-          <H1>{project.title}</H1>
+    <PageShell>
+      <PageHeader
+        back={{ href: "/projects", label: "work/" }}
+        eyebrow={`CASE STUDY / ${project.slug.toUpperCase()}`}
+        title={project.title}
+        lead={project.description}
+      >
+        {(project.link || project.github) && (
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {project.link && (
+              <Button asChild size="pill">
+                <a href={project.link} target="_blank" rel="noopener noreferrer">
+                  Visit project
+                  <ArrowUpRight aria-hidden="true" />
+                </a>
+              </Button>
+            )}
+            {project.github && (
+              <UnderlineLink href={project.github} arrow>
+                Source code
+              </UnderlineLink>
+            )}
+          </div>
+        )}
+      </PageHeader>
 
-          {(project.link || project.github) && (
-            <div className="flex gap-2 flex-wrap">
-              {project.link && (
-                <ResponsiveButton
-                  size="sm"
-                  asChild
-                  icon={<ExternalLink className="h-4 w-4" />}
-                >
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Live Demo
-                  </Link>
-                </ResponsiveButton>
-              )}
-              {project.github && (
-                <ResponsiveButton
-                  size="sm"
-                  asChild
-                  variant="outline"
-                  icon={<Icon icon="line-md:github" />}
-                >
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Code
-                  </a>
-                </ResponsiveButton>
-              )}
+      <ProjectCover project={project} onOpen={() => openLightbox(0)} />
+
+      <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+        <ProjectFact label="PROBLEM">{project.problemAndSolution.problem}</ProjectFact>
+        <ProjectFact label="WHAT I BUILT">{project.problemAndSolution.solution}</ProjectFact>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 lg:items-start">
+        <CaseStudyContents
+          project={project}
+          className="lg:flex-[0_0_280px] lg:sticky lg:top-[100px]"
+        />
+        <div className="flex-1 min-w-0 flex flex-col gap-10">
+          <CaseStudyCard project={project} />
+          {assets.length > 0 && (
+            <div id="media" className="scroll-mt-28">
+              <MediaGallery
+                slug={project.slug}
+                assets={assets}
+                portrait={project.isApp}
+                onOpen={(index) => openLightbox(index + 1)}
+              />
             </div>
           )}
         </div>
-        <div className="flex flex-row justify-between gap-2">
-          <Muted>{project.description}</Muted>
-        </div>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {project.tags.map((tag, index) => (
-            <AnimateOnThreshold
-              key={tag}
-              shouldAnimate
-              delay={0.1 + index * 0.05}
-            >
-              <Badge variant="secondary" className="text-xs">
-                {tag}
-              </Badge>
-            </AnimateOnThreshold>
-          ))}
-        </div>
-      </AnimateOnThreshold>
+      </div>
 
-      <AnimateOnThreshold shouldAnimate delay={0.4}>
-        {project.heroAsset && (
-          <AssetThumbnail
-            asset={project.heroAsset}
-            className={project.isApp ? "h-150" : undefined}
-            onClick={() => handleLightboxOpen(0)}
-          />
-        )}
-      </AnimateOnThreshold>
-
-      <AnimateOnThreshold shouldAnimate delay={0.5}>
-        <H3>Overview</H3>
-        <P>{project.longDescription || project.description}</P>
-      </AnimateOnThreshold>
-
-      {project.assets && project.assets.length > 0 && (
-        <AnimateOnThreshold shouldAnimate delay={0.6}>
-          <div className="flex flex-col gap-2">
-            <Tabs defaultValue="large">
-              <div className="flex flex-row justify-between items-center">
-                <H3>Media Gallery</H3>
-                <TabsList>
-                  <Tooltip>
-                    <TabsTrigger value="large" asChild>
-                      <TooltipTrigger>
-                        <GalleryVertical />
-                      </TooltipTrigger>
-                    </TabsTrigger>
-                    <TooltipContent>Vertical Gallery</TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TabsTrigger value="grid" asChild>
-                      <TooltipTrigger>
-                        <LayoutGrid />
-                      </TooltipTrigger>
-                    </TabsTrigger>
-                    <TooltipContent>Grid View</TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TabsTrigger value="details" asChild>
-                      <TooltipTrigger>
-                        <LayoutList />
-                      </TooltipTrigger>
-                    </TabsTrigger>
-                    <TooltipContent>Details</TooltipContent>
-                  </Tooltip>
-                </TabsList>
-              </div>
-              <TabsContent value="large">
-                <div
-                  className={
-                    project.isApp
-                      ? "grid grid-cols-2 gap-4"
-                      : "flex flex-col gap-2"
-                  }
-                >
-                  {project.assets.map((asset, index) => (
-                    <AssetThumbnail
-                      key={index}
-                      asset={asset}
-                      onClick={() => handleLightboxOpen(index + 1)}
-                    />
-                  ))}
-                </div>
-              </TabsContent>
-              <TabsContent value="details">
-                <div className="flex flex-col gap-2">
-                  <Separator />
-                  {project.assets.map((asset, index) => (
-                    <React.Fragment key={index}>
-                      <div
-                        className="group cursor-pointer flex flex-row gap-2 items-center justify-between"
-                        onClick={() => handleLightboxOpen(index + 1)}
-                      >
-                        <div className="flex flex-row gap-2 items-center">
-                          <P className="group-hover:text-primary/80 transition-colors">
-                            {asset.alt || asset.path}
-                          </P>
-                          {asset.type === "video" && (
-                            <CirclePlay className="h-4 w-4" />
-                          )}
-                        </div>
-                        <div className="relative size-8">
-                          {asset.type === "image" ? (
-                            <Image
-                              src={asset.path}
-                              alt={asset.alt || asset.path}
-                              fill
-                              className="object-contain"
-                            />
-                          ) : asset.fallback ? (
-                            <Image
-                              src={asset.fallback}
-                              alt={asset.alt || asset.fallback}
-                              fill
-                              className="object-contain"
-                            />
-                          ) : null}
-                        </div>
-                      </div>
-                      <Separator />
-                    </React.Fragment>
-                  ))}
-                </div>
-              </TabsContent>
-              <TabsContent value="grid">
-                <div className="grid grid-cols-3 gap-4 mt-4">
-                  {project.assets.map((asset, index) => (
-                    <AssetThumbnail
-                      key={index}
-                      asset={asset}
-                      onClick={() => handleLightboxOpen(index + 1)}
-                    />
-                  ))}
-                </div>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </AnimateOnThreshold>
-      )}
-
-      <AnimateOnThreshold shouldAnimate delay={0.7}>
-        <H3>Problem & Solution</H3>
-        <P>{project.problemAndSolution.problem}</P>
-        <P>{project.problemAndSolution.solution}</P>
-      </AnimateOnThreshold>
-
-      {project.keyFeatures && project.keyFeatures.length > 0 && (
-        <AnimateOnThreshold shouldAnimate delay={0.8}>
-          <H3>Key Features</H3>
-          <UL items={project.keyFeatures} />
-        </AnimateOnThreshold>
-      )}
-
-      {project.technicalHighlights &&
-        project.technicalHighlights.length > 0 && (
-          <AnimateOnThreshold shouldAnimate delay={0.9}>
-            <H3>Technical Highlights</H3>
-            <UL items={project.technicalHighlights} />
-          </AnimateOnThreshold>
-        )}
-
-      {project.challenges && project.challenges.length > 0 && (
-        <AnimateOnThreshold shouldAnimate delay={1}>
-          <H3>Challenges & Learnings</H3>
-          {project.challenges.map((challenge, index) => (
-            <P key={challenge.problem + index} className="mt-2">
-              <span className="font-bold">{challenge.problem}</span>
-              {" - "}
-              {challenge.solution}
-            </P>
-          ))}
-        </AnimateOnThreshold>
-      )}
-
-      {project.productDecisions && project.productDecisions.length > 0 && (
-        <AnimateOnThreshold shouldAnimate delay={1.1}>
-          <H3>Product Decisions</H3>
-          <UL items={project.productDecisions} />
-        </AnimateOnThreshold>
-      )}
-      {project.nextSteps && project.nextSteps.length > 0 && (
-        <AnimateOnThreshold shouldAnimate delay={1.2}>
-          <H3>Next Steps</H3>
-          <UL items={project.nextSteps} />
-        </AnimateOnThreshold>
-      )}
-      {(project.link || project.github) && (
-        <AnimateOnThreshold shouldAnimate delay={1.4}>
-          <Separator className="my-30" />
-          <div className="text-center max-w-2xl mx-auto flex flex-col gap-6">
-            <div>
-              <H2>Interested in this project?</H2>
-              <Muted>
-                Check out {project.link && "the live demo"}
-                {project.link && project.github && " or view "}
-                {project.github && "the source code on GitHub"}
-              </Muted>
-            </div>
-            <div className="flex gap-4 justify-center flex-wrap">
-              {project.link && (
-                <Button asChild>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    View Live Demo
-                  </a>
-                </Button>
-              )}
-              {project.github && (
-                <Button asChild variant="outline">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Icon icon="line-md:github" className="mr-2 h-4 w-4" />
-                    View Code
-                  </a>
-                </Button>
-              )}
-            </div>
-          </div>
-        </AnimateOnThreshold>
-      )}
-
-      {/* Lightbox modal */}
-      {project.assets && project.assets.length > 0 && (
-        <AssetLightboxDialog
-          assets={[project.heroAsset, ...project.assets]}
-          open={lightboxOpen}
-          setOpen={setLightboxOpen}
-          initialIndex={lightboxIndex}
+      <Link
+        href={`/projects/${next.slug}`}
+        className="group flex items-end justify-between gap-6 py-8 border-y border-border"
+      >
+        <span className="flex flex-col gap-2 min-w-0">
+          <span className="font-mono text-xs tracking-[0.06em] text-muted-foreground">
+            NEXT PROJECT
+          </span>
+          <span className="font-display font-semibold text-[32px] lg:text-[44px] leading-none tracking-[-0.03em] truncate">
+            {next.title}
+          </span>
+        </span>
+        <ArrowRight
+          className="size-7 shrink-0 text-brand transition-transform group-hover:translate-x-1"
+          aria-hidden="true"
         />
-      )}
-    </div>
+      </Link>
+
+      <AssetLightboxDialog
+        assets={[project.heroAsset, ...assets]}
+        open={lightboxOpen}
+        setOpen={setLightboxOpen}
+        initialIndex={lightboxIndex}
+      />
+    </PageShell>
   );
 }

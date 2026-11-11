@@ -4,52 +4,27 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/projects";
-import { GlassMeta } from "@/components/glass-meta";
 import { UnderlineLink } from "@/components/underline-link";
 import { Button } from "@/components/ui/button";
-import { ProjectMedia } from "@/features/projects/components/project-media";
-
-function Fact({ label, children }: { label: string; children: string }) {
-  return (
-    <div className="flex flex-col gap-2">
-      <span className="font-mono text-xs tracking-[0.06em] text-muted-foreground">
-        {label}
-      </span>
-      <span className="text-[15px] leading-[1.7] text-foreground-soft">{children}</span>
-    </div>
-  );
-}
+import { ProjectCover } from "@/features/projects/components/project-cover";
+import { ProjectFact } from "@/features/projects/components/project-fact";
 
 function ProjectArticle({ project }: { project: Project }) {
-  const meta = [project.timeline, project.role].filter(
-    (item): item is string => Boolean(item)
-  );
   const highlight = project.technicalHighlights[0];
-  const { width, height } = project.heroAsset;
-  const aspectRatio = width >= height ? `${width} / ${height}` : "3 / 2";
 
   return (
     <article
       id={`project-${project.slug}`}
       className="flex-1 min-w-0 flex flex-col gap-7"
     >
-      <div
-        className="relative rounded-[22px] overflow-hidden bg-well"
-        style={{ aspectRatio }}
-      >
-        <ProjectMedia asset={project.heroAsset} />
-        <GlassMeta
-          items={[...meta, project.tags.slice(0, 3).join(" · ")]}
-          className="absolute left-4 bottom-4 sm:left-6 sm:bottom-6 max-w-[calc(100%-2rem)] px-[18px] py-3 gap-x-4"
-        />
-      </div>
+      <ProjectCover project={project} />
       <p className="m-0 font-display font-medium text-2xl lg:text-[30px] leading-[1.3] tracking-[-0.02em] text-foreground-soft">
         {project.description}
       </p>
       <div className="grid gap-8 md:grid-cols-3">
-        <Fact label="PROBLEM">{project.problemAndSolution.problem}</Fact>
-        <Fact label="WHAT I BUILT">{project.problemAndSolution.solution}</Fact>
-        {highlight && <Fact label="HIGHLIGHT">{highlight}</Fact>}
+        <ProjectFact label="PROBLEM">{project.problemAndSolution.problem}</ProjectFact>
+        <ProjectFact label="WHAT I BUILT">{project.problemAndSolution.solution}</ProjectFact>
+        {highlight && <ProjectFact label="HIGHLIGHT">{highlight}</ProjectFact>}
       </div>
       <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
         {project.link && (

@@ -1,4 +1,5 @@
 import { Section } from "@/components/section";
+import { SiteFooter } from "@/components/site-footer";
 import { UnderlineLink } from "@/components/underline-link";
 import ContactForm from "@/features/contact/components/contact-form";
 
@@ -27,13 +28,7 @@ export default function Contact() {
     >
       <ContactForm />
 
-      <footer className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 pt-7 border-t border-border font-mono text-[13px] text-muted-foreground">
-        <span>© {new Date().getFullYear()} Simon Manzler</span>
-        <span>Built with Next.js</span>
-        <a href="#home" className="py-2.5 text-muted-foreground">
-          Back to top ↑
-        </a>
-      </footer>
+      <SiteFooter />
     </Section>
   );
 }

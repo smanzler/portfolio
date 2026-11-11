@@ -1,216 +1,149 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, FileQuestion, Star } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { H1, H3, Lead, P, UL } from "@/components/ui/typography";
-import Link from "next/link";
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/components/ui/empty";
-import Image from "next/image";
-import { AssetLightboxDialog } from "@/components/asset-lightbox-dialog";
 import { useState } from "react";
-import { AssetThumbnail } from "@/components/asset-thumbnail";
-import { getProjectBySlug } from "@/lib/projects";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import type { Project } from "@/lib/projects";
+import { AssetLightboxDialog } from "@/components/asset-lightbox-dialog";
+import { MarkdownFileCard } from "@/components/markdown-file-card";
+import { MediaGallery } from "@/components/media-gallery";
+import { PageHeader } from "@/components/page-header";
+import { PageShell } from "@/components/page-shell";
+import { UnderlineLink } from "@/components/underline-link";
+import { Button } from "@/components/ui/button";
+import { FaqList } from "@/features/apps/components/faq-list";
+import { LegalLinks } from "@/features/apps/components/legal-links";
+import { ReviewList } from "@/features/apps/components/review-list";
+import { appMarkdown, appParagraphs } from "@/features/apps/lib/app-readme";
 
-const AppDetails = () => {
-  const { slug } = useParams();
+function Block({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2.5">
+        <span className="font-mono text-xs tracking-[0.06em] text-muted-foreground">
+          {eyebrow}
+        </span>
+        <h2 className="m-0 font-display font-semibold text-[28px] lg:text-[34px] tracking-[-0.025em]">
+          {title}
+        </h2>
+      </div>
+      {children}
+    </section>
+  );
+}
 
-  const app = getProjectBySlug(slug as string);
-
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+export default function AppScreen({ app }: { app: Project }) {
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const assets = app.assets ?? [];
 
-  const handleLightboxOpen = (index: number) => {
+  const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
 
-  if (!app) {
-    return (
-      <div className="min-h-screen">
-        <Button variant="ghost" className="mb-8" asChild>
-          <Link href="/apps">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Apps
-          </Link>
-        </Button>
-
-        <Empty>
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <FileQuestion />
-            </EmptyMedia>
-            <EmptyTitle>App Not Found</EmptyTitle>
-            <EmptyDescription>
-              Sorry, we couldn&apos;t find the app you&apos;re looking for. It might have
-              been moved or doesn&apos;t exist.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button asChild>
-              <Link href="/apps">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Apps
-              </Link>
-            </Button>
-          </EmptyContent>
-        </Empty>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen flex flex-col gap-8">
-      <div className="flex flex-row justify-between gap-4 items-end">
-        <div>
-          <H1>{app.title}</H1>
-          <Lead>{app.description}</Lead>
+    <PageShell>
+      <PageHeader
+        back={{ href: "/apps", label: "apps/" }}
+        eyebrow={`APP / ${app.slug.toUpperCase()}`}
+        title={app.title}
+        lead={app.description}
+        aside={
+          <span className="relative size-16 lg:size-24 shrink-0 rounded-[18px] lg:rounded-[24px] overflow-hidden bg-well shadow-[0_12px_32px_rgb(20_21_26/0.10)]">
+            <Image
+              src={app.icon}
+              alt=""
+              fill
+              sizes="96px"
+              className="object-cover"
+            />
+          </span>
+        }
+      >
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          {app.link && (
+            <Button asChild size="pill">
+              <a href={app.link} target="_blank" rel="noopener noreferrer">
+                Get the app
+                <ArrowUpRight aria-hidden="true" />
+              </a>
+            </Button>
+          )}
+          <UnderlineLink href={`/projects/${app.slug}`}>
+            Read the case study
+          </UnderlineLink>
+          {app.github && (
+            <UnderlineLink href={app.github} arrow>
+              Source code
+            </UnderlineLink>
+          )}
         </div>
+      </PageHeader>
 
-        {app.icon && (
-          <div className="rounded-lg overflow-hidden bg-muted shrink-0">
-            <Image src={app.icon} alt={app.title} width={64} height={64} />
-          </div>
-        )}
-      </div>
+      {assets.length > 0 && (
+        <MediaGallery
+          slug={app.slug}
+          assets={assets}
+          portrait
+          onOpen={openLightbox}
+        />
+      )}
 
-      {/* Screenshots */}
-      <div className="flex flex-col gap-2">
-        <div className="flex flex-row gap-4 overflow-x-auto">
-          {app.assets &&
-            app.assets.map((asset, index) => (
-              <AssetThumbnail
-                key={index}
-                asset={{
-                  type: asset.type,
-                  path: asset.path,
-                  width: asset.width,
-                  height: asset.height,
-                  alt: asset.alt || "",
-                }}
-                onClick={() => handleLightboxOpen(index)}
-                className="rounded-xl overflow-hidden border flex-[0_0_auto] max-w-72"
-              />
+      <MarkdownFileCard fileName="APP.md" source={appMarkdown(app)}>
+        <div className="px-6 py-8 lg:px-12 lg:py-9 flex flex-col gap-6 font-mono">
+          <h2 className="m-0 pb-3 border-b border-rule font-semibold text-[26px]">
+            {app.title}
+          </h2>
+          {appParagraphs(app).map((paragraph) => (
+            <p
+              key={paragraph}
+              className="m-0 text-sm leading-[1.7] text-muted-foreground"
+            >
+              {paragraph}
+            </p>
+          ))}
+          <h3 className="m-0 pb-2 border-b border-rule font-semibold text-xl">
+            Features
+          </h3>
+          <ul className="m-0 pl-0 list-outside list-disc flex flex-col gap-2 text-sm leading-[1.7] text-foreground-soft marker:text-muted-foreground">
+            {app.keyFeatures.map((feature) => (
+              <li key={feature}>{feature}</li>
             ))}
+          </ul>
         </div>
-      </div>
-      {/* Description */}
-      <div className="flex flex-col gap-2">
-        <H3>Description</H3>
-        <P className="text-base text-muted-foreground leading-relaxed">
-          {app.longDescription || app.description}
-        </P>
-      </div>
-      {/* Features */}
-      <div>
-        <H3>Features</H3>
-        {app.keyFeatures && <UL items={app.keyFeatures} />}
-      </div>
-      {/* Links */}
-      {app.link ||
-        (app.github && (
-          <div className="flex flex-col gap-2">
-            <H3>Links</H3>
-            <ul className="list-disc list-inside">
-              {app.link && (
-                <li>
-                  <a href={app.link} target="_blank" rel="noopener noreferrer">
-                    {app.link}
-                  </a>
-                </li>
-              )}
-              {app.github && (
-                <li>
-                  <a
-                    href={app.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-        ))}
-      {/* Reviews */}
-      {app.reviews && (
-        <div className="flex flex-col gap-2">
-          <H3>Reviews</H3>
-          <div className="flex flex-row gap-4 overflow-x-auto">
-            {app.reviews.map((review, index) => (
-              <Card key={index} className="w-1/3 min-w-64">
-                <CardHeader>
-                  <CardTitle>{review.name}</CardTitle>
-                  <CardDescription>{review.review}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-row gap-2">
-                    {Array.from({ length: review.rating }).map((_, index) => (
-                      <Star
-                        key={index}
-                        className="h-4 w-4 text-yellow-500"
-                        fill="currentColor"
-                      />
-                    ))}
-                    {Array.from({ length: 5 - review.rating }).map(
-                      (_, index) => (
-                        <Star key={index} className="h-4 w-4 text-gray-400" />
-                      )
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+      </MarkdownFileCard>
+
+      {app.reviews && app.reviews.length > 0 && (
+        <Block eyebrow="REVIEWS" title="What people say">
+          <ReviewList reviews={app.reviews} />
+        </Block>
       )}
-      {/* FAQ */}
-      {app.faq && (
-        <div>
-          <H3>FAQ</H3>
-          <div className="flex flex-col gap-2">
-            <Accordion type="single" collapsible>
-              {app.faq.map((faq, index) => (
-                <AccordionItem key={index} value={faq.question}>
-                  <AccordionTrigger>{faq.question}</AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
+
+      {app.faq && app.faq.length > 0 && (
+        <Block eyebrow="FAQ" title="Questions">
+          <FaqList faq={app.faq} />
+        </Block>
       )}
-      {app.assets && app.assets.length > 0 && (
+
+      <LegalLinks app={app} />
+
+      {assets.length > 0 && (
         <AssetLightboxDialog
-          assets={app.assets}
+          assets={assets}
           open={lightboxOpen}
           setOpen={setLightboxOpen}
           initialIndex={lightboxIndex}
         />
       )}
-    </div>
+    </PageShell>
   );
-};
-
-export default AppDetails;
+}

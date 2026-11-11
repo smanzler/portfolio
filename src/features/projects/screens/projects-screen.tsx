@@ -1,28 +1,31 @@
-import ProjectCard from "@/components/project-card";
-import { H1, Lead } from "@/components/ui/typography";
 import { getProjects } from "@/lib/projects";
+import { DirectoryCard } from "@/components/directory-card";
+import { PageHeader } from "@/components/page-header";
+import { PageShell } from "@/components/page-shell";
 
-export default function ProjectsPage() {
+export default function ProjectsScreen() {
   const projects = getProjects();
 
   return (
-    <div className="min-h-screen flex flex-col gap-8">
-      <div>
-        <H1>Projects</H1>
-        <Lead>Here are some of the projects I&apos;ve worked on.</Lead>
-      </div>
-
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.slug}
-            title={project.title}
-            description={project.description}
-            image={project.icon}
-            href={`/projects/${project.slug}`}
-          />
-        ))}
-      </div>
-    </div>
+    <PageShell>
+      <PageHeader
+        back={{ href: "/", label: "portfolio/" }}
+        eyebrow="ALL PROJECTS"
+        title="Everything I've built"
+        lead="Shipped apps, client work, and side projects. Pick one to read the case study."
+      />
+      <DirectoryCard
+        path={["smanzler", "portfolio", "work/"]}
+        entries={projects.map((project) => ({
+          href: `/projects/${project.slug}`,
+          name: `${project.slug}/`,
+          title: project.title,
+          description: project.description,
+          icon: project.icon,
+          tags: project.tags,
+          note: project.featured ? "featured" : undefined,
+        }))}
+      />
+    </PageShell>
   );
 }
