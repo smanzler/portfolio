@@ -1,21 +1,17 @@
 import { GlassWindow } from "@/components/glass-window";
 import { cn } from "@/lib/utils";
 
-type Value = string | string[] | boolean;
+type Value = string | string[];
 
 const fields: { key: string; value: Value; desktopOnly?: boolean }[] = [
   { key: "name", value: "Simon Manzler" },
-  { key: "role", value: "Software Developer" },
+  { key: "role", value: "Software Engineer" },
   { key: "location", value: "Cincinnati, OH", desktopOnly: true },
   { key: "stack", value: ["TypeScript", "React", "C#"] },
   { key: "focus", value: "web & mobile apps", desktopOnly: true },
-  { key: "available", value: true },
 ];
 
 function Literal({ value }: { value: Value }) {
-  if (typeof value === "boolean") {
-    return <span className="text-code-keyword">{String(value)}</span>;
-  }
   if (Array.isArray(value)) {
     return (
       <>
