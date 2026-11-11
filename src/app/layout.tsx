@@ -1,27 +1,7 @@
 import type { Metadata } from "next";
-import { Caveat, Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { fontVariables } from "./fonts";
 import { Header } from "@/features/layout/components/header";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Simon Manzler | Portfolio",
@@ -53,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="relative">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable} antialiased`}
+        className={`${fontVariables} antialiased`}
       >
         <main className="pt-20 pb-10">
           <Header />

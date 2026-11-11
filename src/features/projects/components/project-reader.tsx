@@ -69,7 +69,7 @@ export function ProjectReader({ projects }: { projects: Project[] }) {
                     "w-full flex items-baseline gap-4 py-4 border-b border-border text-left cursor-pointer transition-colors",
                     isSelected
                       ? "text-foreground"
-                      : "text-[#7a7d87] hover:text-foreground"
+                      : "text-faint hover:text-foreground"
                   )}
                 >
                   <span
