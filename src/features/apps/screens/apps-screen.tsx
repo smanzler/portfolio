@@ -1,5 +1,5 @@
 import { getProjects } from "@/lib/projects";
-import { DirectoryCard } from "@/components/directory-card";
+import { DirectoryCard } from "@/features/apps/components/directory-card";
 import { PageHeader } from "@/components/page-header";
 import { PageShell } from "@/components/page-shell";
 
