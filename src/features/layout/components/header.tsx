@@ -41,7 +41,7 @@ const sectionFiles: Record<string, string> = {
   contact: "issues/new",
 };
 
-const sectionIds = Object.keys(sectionFiles);
+const sectionIds = ["home", ...Object.keys(sectionFiles)];
 
 function isActive(item: NavItem, pathname: string, activeSection?: string) {
   if (pathname === "/") return item.section === activeSection;
@@ -55,6 +55,16 @@ export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [activeSection, selectSection] = useActiveSection(sectionIds, isHome);
+
+  const activeHref = navItems.find((item) =>
+    isActive(item, pathname, activeSection)
+  )?.href;
+  const [underlinedHref, setUnderlinedHref] = useState(
+    activeHref ?? navItems[0].href
+  );
+  if (activeHref && activeHref !== underlinedHref) {
+    setUnderlinedHref(activeHref);
+  }
 
   useEffect(() => {
     return scrollY.on("change", (latest) => setIsScrolled(latest > 50));
@@ -75,8 +85,9 @@ export function Header() {
     navigate(e.currentTarget.getAttribute("href") || "/");
   };
 
+  const activeFile = activeSection && sectionFiles[activeSection];
   const path = isHome
-    ? ["portfolio", ...(activeSection ? [sectionFiles[activeSection]] : [])]
+    ? ["portfolio", ...(activeFile ? [activeFile] : [])]
     : ["portfolio", ...pathname.split("/").filter(Boolean)];
   const prefix = path.slice(0, -1);
   const name = path[path.length - 1];
@@ -153,11 +164,13 @@ export function Header() {
               )}
             >
               {item.label}
-              {isActive(item, pathname, activeSection) && (
+              {item.href === underlinedHref && (
                 <motion.span
                   layoutId="header-nav-underline"
                   aria-hidden="true"
                   className="absolute inset-x-0 bottom-0 h-0.5 bg-brand"
+                  initial={false}
+                  animate={{ scaleX: activeHref ? 1 : 0 }}
                   transition={{ type: "spring", stiffness: 500, damping: 40 }}
                 />
               )}
