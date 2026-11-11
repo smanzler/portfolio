@@ -1,242 +1,200 @@
 "use client";
 
 import { cn, scrollToSection } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
-import {
-  AppWindow,
-  Brain,
-  Briefcase,
-  FolderOpenDot,
-  Mail,
-  User,
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu } from "lucide-react";
 import { motion, useScroll } from "motion/react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import { useIsMobile } from "@/hooks/useIsMobile";
-import React from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useActiveSection } from "@/features/layout/hooks/useActiveSection";
 
-function MenuItem({
-  href,
-  icon,
-  iconClassName = "size-4 text-primary group-hover/link:text-brand",
-  text,
-  onClick,
-  className,
-}: {
+type NavItem = {
+  label: string;
   href: string;
-  icon: React.ReactNode;
-  iconClassName?: string;
-  text: string;
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-  className?: string;
-}) {
-  // Clone the icon element and add the className prop
-  const iconWithClassName =
-    icon && typeof icon === "object" && "type" in icon
-      ? React.cloneElement(icon as React.ReactElement<any>, {
-          className: cn(
-            (icon as React.ReactElement<any>).props.className,
-            iconClassName
-          ),
-        })
-      : icon;
+  section?: string;
+  route?: string;
+};
 
-  return (
-    <li className={className}>
-      <NavigationMenuLink className="group/link h-full" asChild>
-        <Link
-          href={href}
-          onClick={onClick}
-          className="flex flex-row items-center gap-2"
-        >
-          {iconWithClassName}
-          {text}
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
+const navItems: NavItem[] = [
+  { label: "work/", href: "/#projects", section: "projects", route: "/projects" },
+  { label: "README.md", href: "/#about", section: "about" },
+  { label: "CHANGELOG.md", href: "/#experience", section: "experience" },
+];
+
+const contactItem: NavItem = {
+  label: "New issue",
+  href: "/#contact",
+  section: "contact",
+};
+
+const sectionFiles: Record<string, string> = {
+  projects: "work/",
+  about: "README.md",
+  experience: "CHANGELOG.md",
+  contact: "issues/new",
+};
+
+const sectionIds = Object.keys(sectionFiles);
+
+function isActive(item: NavItem, pathname: string, activeSection?: string) {
+  if (pathname === "/") return item.section === activeSection;
+  return !!item.route && pathname.startsWith(item.route);
 }
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
-  const lastScrollY = useRef(0);
-  const lastVisibilityChangeY = useRef(0);
   const router = useRouter();
   const pathname = usePathname();
-  const isMobile = useIsMobile();
+  const isHome = pathname === "/";
+  const [activeSection, selectSection] = useActiveSection(sectionIds, isHome);
 
   useEffect(() => {
-    return scrollY.on("change", (latest) => {
-      const isScrolledNow = latest > 50;
-      const isScrollingDown = latest > lastScrollY.current;
-      const scrollDelta = latest - lastVisibilityChangeY.current;
-
-      // Always show header when near top
-      if (!isScrolledNow) {
-        setIsVisible(true);
-        lastVisibilityChangeY.current = latest;
-      } else {
-        // When scrolling up, show immediately
-        if (!isScrollingDown) {
-          setIsVisible(true);
-          lastVisibilityChangeY.current = latest;
-        } else {
-          // When scrolling down, only hide after 50px delay
-          if (scrollDelta >= 50) {
-            setIsVisible(false);
-            lastVisibilityChangeY.current = latest;
-          }
-        }
-      }
-
-      setIsScrolled(isScrolledNow);
-      lastScrollY.current = latest;
-    });
+    return scrollY.on("change", (latest) => setIsScrolled(latest > 50));
   }, [scrollY]);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const href = e.currentTarget.getAttribute("href") || "";
-    const id = href.replace(/^\/#?/, "");
-
-    if (pathname === "/") {
+  const navigate = (href: string) => {
+    if (isHome && href.startsWith("/#")) {
+      const id = href.slice(2);
+      if (sectionIds.includes(id)) selectSection(id);
       scrollToSection(id);
     } else {
       router.push(href);
     }
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    navigate(e.currentTarget.getAttribute("href") || "/");
+  };
+
+  const path = isHome
+    ? ["portfolio", ...(activeSection ? [sectionFiles[activeSection]] : [])]
+    : ["portfolio", ...pathname.split("/").filter(Boolean)];
+  const prefix = path.slice(0, -1);
+  const name = path[path.length - 1];
+
   return (
     <motion.header
-      className="fixed top-0 left-1/2 -translate-x-1/2 z-5 w-full max-w-3xl px-6"
+      className={cn(
+        "fixed inset-x-0 z-40 transition-[padding] duration-300",
+        isScrolled && "px-4"
+      )}
       initial={{ top: "-80px" }}
       animate={{
-        top: isScrolled ? (isVisible ? "20px" : "-80px") : "0",
+        top: isScrolled ? "20px" : "0",
       }}
       transition={{ duration: 0.4, ease: [0.1, 0.6, 0.3, 0.95] }}
     >
-      <motion.div
+      <div
         className={cn(
-          "rounded-full transition-colors flex justify-between items-center w-full",
+          "mx-auto flex items-center justify-between gap-4 border-b border-border font-mono text-muted-foreground transition-all duration-300",
           isScrolled
-            ? "bg-card shadow-xl dark:shadow-[0_10px_40px_rgba(0,0,0,1)] backdrop-blur-lg supports-[backdrop-filter]:bg-neutral-400/40 dark:supports-[backdrop-filter]:bg-neutral-700/40"
-            : "bg-background"
+            ? "max-w-[960px] h-[52px] pl-[18px] pr-2 rounded-2xl border bg-card shadow-[0_12px_32px_rgb(20_21_26/0.10)] text-[13px]"
+            : "max-w-[1440px] h-[73px] px-5 md:px-12 xl:px-24 text-sm"
         )}
-        animate={{
-          padding: isScrolled ? "4px 24px" : "4px 0px",
-        }}
-        transition={{ duration: 0.3, ease: [0.1, 0.6, 0.3, 0.95] }}
       >
-        <NavigationMenu viewport={isMobile}>
-          <NavigationMenuList className="flex-wrap">
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                <Link href="/" className="flex flex-row items-center gap-2">
-                  <Image
-                    src="/simon-icon.png"
-                    alt="Simon Manzler"
-                    width={24}
-                    height={24}
-                    loading="eager"
-                  />
-                  {!isMobile && "Portfolio"}
-                </Link>
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid grid-cols-2 gap-1 w-[200px]">
-                  <li className="col-span-2">
-                    <NavigationMenuItem asChild>
-                      <Link
-                        className="bg-transparent focus:bg-muted hover:from-muted/50 hover:to-muted h-30 flex flex-col justify-end rounded-md hover:bg-linear-to-b p-4 no-underline outline-hidden transition-all duration-200 select-none focus:shadow-md md:p-6"
-                        href="/#home"
-                      >
-                        <div>Home</div>
-                        <p className="text-muted-foreground text-sm leading-tight">
-                          My personal portfolio website.
-                        </p>
-                      </Link>
-                    </NavigationMenuItem>
-                  </li>
+        <Link
+          href="/#home"
+          onClick={handleClick}
+          className="flex items-center gap-2.5 min-w-0"
+        >
+          <Image
+            src="/simon-icon.png"
+            alt="Simon Manzler"
+            width={26}
+            height={26}
+            loading="eager"
+            className={cn(
+              "rounded-full bg-well shrink-0 transition-all duration-300",
+              isScrolled ? "size-[22px]" : "size-[26px]"
+            )}
+          />
+          {isScrolled ? (
+            <span className="truncate">
+              {prefix.length > 0 && (
+                <span className="hidden sm:inline">
+                  {prefix.join(" / ")} /{" "}
+                </span>
+              )}
+              <span className="text-foreground">{name}</span>
+            </span>
+          ) : (
+            <span className="truncate">
+              smanzler <span className="text-muted-foreground/70">/</span>{" "}
+              <span className="text-foreground font-bold">portfolio</span>
+            </span>
+          )}
+        </Link>
 
-                  <MenuItem
-                    href="/#projects"
-                    className="col-span-2"
-                    icon={<FolderOpenDot />}
-                    text="Featured Projects"
-                    onClick={handleClick}
-                  />
+        <nav
+          aria-label="Main"
+          className="hidden md:flex items-center gap-0.5 self-stretch"
+        >
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={handleClick}
+              aria-current={
+                isActive(item, pathname, activeSection) ? "page" : undefined
+              }
+              className={cn(
+                "relative flex items-center px-3 hover:text-foreground transition-colors",
+                isScrolled ? "self-stretch" : "h-11",
+                isActive(item, pathname, activeSection) && "text-foreground"
+              )}
+            >
+              {item.label}
+              {isActive(item, pathname, activeSection) && (
+                <motion.span
+                  layoutId="header-nav-underline"
+                  aria-hidden="true"
+                  className="absolute inset-x-0 bottom-0 h-0.5 bg-brand"
+                  transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                />
+              )}
+            </Link>
+          ))}
+          <Link
+            href={contactItem.href}
+            onClick={handleClick}
+            className="ml-2 flex items-center h-9 px-3.5 rounded-full bg-primary text-primary-foreground font-sans text-[13px] font-medium"
+          >
+            {contactItem.label}
+          </Link>
+        </nav>
 
-                  <MenuItem
-                    href="/#skills"
-                    icon={<Brain />}
-                    text="Skills"
-                    onClick={handleClick}
-                  />
-
-                  <MenuItem
-                    href="/#about"
-                    icon={<User />}
-                    text="About"
-                    onClick={handleClick}
-                  />
-
-                  <MenuItem
-                    href="/#experience"
-                    icon={<Briefcase />}
-                    text="Work"
-                    onClick={handleClick}
-                  />
-
-                  <MenuItem
-                    href="/#contact"
-                    icon={<Mail />}
-                    text="Contact"
-                    onClick={handleClick}
-                  />
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="/projects"
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            aria-label="Open menu"
+            className="md:hidden flex items-center justify-center size-11 shrink-0 rounded-full text-foreground cursor-pointer"
+          >
+            <Menu className="size-[18px]" aria-hidden="true" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="font-mono min-w-44">
+            {[...navItems, contactItem].map((item) => (
+              <DropdownMenuItem
+                key={item.href}
+                onSelect={() => navigate(item.href)}
                 className={cn(
-                  navigationMenuTriggerStyle(),
-                  "flex flex-row items-center gap-2"
+                  "text-[13px] text-muted-foreground",
+                  isActive(item, pathname, activeSection) && "text-foreground"
                 )}
               >
-                <FolderOpenDot className="size-4 text-primary group-hover/trigger:text-brand" />
-                {!isMobile && "Projects"}
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="/apps"
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  "flex flex-row items-center gap-2"
-                )}
-              >
-                <AppWindow className="size-4 text-primary group-hover/trigger:text-brand" />
-                {!isMobile && "Apps"}
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
-      </motion.div>
+                {item.label}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </motion.header>
   );
 }
