@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 pt-9 pb-12 lg:py-0 min-h-[calc(100svh-5rem)] flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-20"
+      className="max-w-[1440px] mx-auto px-5 md:px-12 xl:px-24 pt-9 pb-12 lg:py-16 lg:-mt-20 min-h-[calc(100svh-5rem)] lg:min-h-svh flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-20"
     >
       <div className="flex-1 flex flex-col gap-[22px] lg:gap-7">
         <div className="flex flex-col gap-0.5 lg:gap-1">
@@ -42,8 +42,8 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative w-full max-w-[600px] h-[480px] lg:h-[640px] lg:flex-[0_0_600px] mt-5 lg:mt-0">
-        <div className="absolute top-0 right-0 w-[270px] h-[340px] lg:w-[400px] lg:h-[500px] rounded-3xl lg:rounded-[28px] overflow-hidden bg-well">
+      <div className="w-full max-w-[420px] lg:max-w-[600px] mx-auto lg:mx-0 lg:flex-[0_0_600px] flex flex-col">
+        <div className="relative self-end w-[270px] h-[340px] lg:w-[400px] lg:h-[500px] rounded-3xl lg:rounded-[28px] overflow-hidden bg-well">
           <Image
             src="/simon.jpeg"
             alt="Portrait of Simon Manzler"
@@ -53,7 +53,7 @@ export default function Hero() {
             priority
           />
         </div>
-        <EngineerCard className="absolute left-0 bottom-0 w-[300px] lg:w-[440px]" />
+        <EngineerCard className="relative self-start -mt-8 lg:-mt-12 w-[300px] lg:w-[440px]" />
       </div>
     </section>
   );
