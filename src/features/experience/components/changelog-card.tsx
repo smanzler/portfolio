@@ -3,9 +3,10 @@ import {
   changeLabels,
   changeOrder,
   changelogMarkdown,
-  releases,
-  type Release,
+  releases
+  
 } from "@/features/experience/lib/releases";
+import type {Release} from "@/features/experience/lib/releases";
 
 function ReleaseEntry({ release, isLatest }: { release: Release; isLatest: boolean }) {
   return (

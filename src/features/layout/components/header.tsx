@@ -1,12 +1,8 @@
-"use client";
-
 import { cn, scrollToSection } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { motion, useScroll } from "motion/react";
-import { useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -51,8 +47,8 @@ function isActive(item: NavItem, pathname: string, activeSection?: string) {
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
-  const router = useRouter();
-  const pathname = usePathname();
+  const routerNavigate = useNavigate();
+  const pathname = useLocation({ select: (location) => location.pathname });
   const isHome = pathname === "/";
   const [activeSection, selectSection] = useActiveSection(sectionIds, isHome);
 
@@ -71,12 +67,12 @@ export function Header() {
   }, [scrollY]);
 
   const navigate = (href: string) => {
-    if (isHome && href.startsWith("/#")) {
-      const id = href.slice(2);
+    const id = href.slice(2);
+    if (isHome) {
       if (sectionIds.includes(id)) selectSection(id);
       scrollToSection(id);
     } else {
-      router.push(href);
+      void routerNavigate({ to: "/", hash: id });
     }
   };
 
@@ -112,17 +108,16 @@ export function Header() {
             : "max-w-[1440px] h-[73px] px-5 md:px-12 xl:px-24 text-sm"
         )}
       >
-        <Link
+        <a
           href="/#home"
           onClick={handleClick}
           className="flex items-center gap-2.5 min-w-0"
         >
-          <Image
-            src="/simon-icon.png"
+          <img
+            src="/simon-icon.webp"
             alt="Simon Manzler"
             width={26}
             height={26}
-            loading="eager"
             className={cn(
               "rounded-full bg-well shrink-0 transition-all duration-300",
               isScrolled ? "size-[22px]" : "size-[26px]"
@@ -143,14 +138,14 @@ export function Header() {
               <span className="text-foreground font-bold">portfolio</span>
             </span>
           )}
-        </Link>
+        </a>
 
         <nav
           aria-label="Main"
           className="hidden md:flex items-center gap-0.5 self-stretch"
         >
           {navItems.map((item) => (
-            <Link
+            <a
               key={item.href}
               href={item.href}
               onClick={handleClick}
@@ -174,15 +169,15 @@ export function Header() {
                   transition={{ type: "spring", stiffness: 500, damping: 40 }}
                 />
               )}
-            </Link>
+            </a>
           ))}
-          <Link
+          <a
             href={contactItem.href}
             onClick={handleClick}
             className="ml-2 flex items-center h-9 px-3.5 rounded-full bg-primary text-primary-foreground font-sans text-[13px] font-medium"
           >
             {contactItem.label}
-          </Link>
+          </a>
         </nav>
 
         <DropdownMenu>
