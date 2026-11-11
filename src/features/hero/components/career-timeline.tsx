@@ -2,13 +2,13 @@ import { cn } from "@/lib/utils";
 
 const entries = [
   {
-    company: "Western & Southern Financial Group",
-    caption: "now · C# / .NET APIs",
+    company: "P0 Security",
+    caption: "now · Software Engineer",
     current: true,
   },
   {
-    company: "Copeland",
-    caption: "prev · Computer Science Intern",
+    company: "Western & Southern Financial Group",
+    caption: "prev · Software Developer Intern",
     current: false,
   },
 ];

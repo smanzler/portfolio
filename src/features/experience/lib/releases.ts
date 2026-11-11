@@ -23,13 +23,24 @@ export const changeOrder: ChangeKind[] = ["added", "changed", "improved", "fixed
 
 export const releases: Release[] = [
   {
+    version: "4.0.0",
+    company: "P0 Security",
+    monogram: "P0",
+    location: "Remote",
+    role: "Software Engineer",
+    start: "Jun 2026",
+    end: "Present",
+    technologies: ["TypeScript", "AWS", "GCP", "Azure", "Kubernetes", "Docker"],
+    changes: {},
+  },
+  {
     version: "3.0.0",
     company: "Western & Southern Financial Group",
     monogram: "WS",
     location: "Cincinnati, OH",
     role: "Software Developer Intern",
     start: "May 2025",
-    end: "Present",
+    end: "May 2026",
     technologies: ["C#", "ASP.NET", "SQL Server", "Azure", "Docker"],
     changes: {
       added: [
