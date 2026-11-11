@@ -10,17 +10,17 @@ export function ReadmeCard({ className }: { className?: string }) {
       source={readmeMarkdown()}
       className={className}
     >
-      <div className="flex-1 px-6 py-8 lg:px-12 lg:py-9 flex flex-col gap-6">
-        <h3 className="m-0 pb-3 border-b border-rule font-display font-semibold text-[28px] lg:text-[32px] tracking-[-0.02em]">
+      <div className="flex-1 px-6 py-8 lg:px-12 lg:py-9 flex flex-col gap-6 font-mono">
+        <h3 className="m-0 pb-3 border-b border-rule font-semibold text-[26px]">
           {greeting}
         </h3>
-        <p className="m-0 text-[17px] leading-[1.7] text-muted-foreground">
+        <p className="m-0 text-sm leading-[1.7] text-muted-foreground">
           {intro}
         </p>
-        <h4 className="m-0 pb-2 border-b border-rule font-display font-semibold text-xl">
+        <h4 className="m-0 pb-2 border-b border-rule font-semibold text-xl">
           Currently
         </h4>
-        <ul className="m-0 pl-[22px] list-disc text-base leading-[1.9] text-foreground-soft">
+        <ul className="m-0 pl-0 list-outside list-disc text-sm leading-[1.7] text-foreground-soft marker:text-muted-foreground">
           <li>
             {currently.role}{" "}
             <span className="text-brand">{currently.company}</span>
@@ -28,14 +28,14 @@ export function ReadmeCard({ className }: { className?: string }) {
           <li>Learning {currently.learning}</li>
           <li>Off the clock: {currently.offTheClock}</li>
         </ul>
-        <h4 className="m-0 pb-2 border-b border-rule font-display font-semibold text-xl">
+        <h4 className="m-0 pb-2 border-b border-rule font-semibold text-xl">
           Stack
         </h4>
         <ul className="m-0 p-0 list-none flex flex-wrap gap-2">
           {stack.map((item) => (
             <li
               key={item}
-              className="px-[11px] py-[5px] rounded-md bg-muted font-mono text-[13px]"
+              className="px-[11px] py-[5px] rounded-md bg-muted text-[13px]"
             >
               {item}
             </li>
