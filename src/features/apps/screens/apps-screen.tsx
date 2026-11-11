@@ -1,29 +1,31 @@
-import { H1, Lead } from "@/components/ui/typography";
-import ProjectCard from "@/components/project-card";
 import { getProjects } from "@/lib/projects";
+import { DirectoryCard } from "@/components/directory-card";
+import { PageHeader } from "@/components/page-header";
+import { PageShell } from "@/components/page-shell";
 
-const Apps = () => {
+export default function AppsScreen() {
   const apps = getProjects().filter((project) => project.isApp);
 
   return (
-    <div className="min-h-screen">
-      <div className="flex flex-col mb-8">
-        <H1>Apps</H1>
-        <Lead>Here are some of the apps I&apos;ve worked on.</Lead>
-      </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {apps.map((app) => (
-          <ProjectCard
-            key={app.slug}
-            title={app.title}
-            description={app.description}
-            image={app.icon}
-            href={`/apps/${app.slug}`}
-          />
-        ))}
-      </div>
-    </div>
+    <PageShell>
+      <PageHeader
+        back={{ href: "/", label: "portfolio/" }}
+        eyebrow="APPS"
+        title="Mobile apps"
+        lead="Apps I've built and shipped. Each has its own page with screenshots, FAQ, and policies."
+      />
+      <DirectoryCard
+        path={["smanzler", "portfolio", "apps/"]}
+        entries={apps.map((app) => ({
+          href: `/apps/${app.slug}`,
+          name: `${app.slug}/`,
+          title: app.title,
+          description: app.description,
+          icon: app.icon,
+          tags: app.tags,
+          note: app.link ? "on the App Store" : undefined,
+        }))}
+      />
+    </PageShell>
   );
-};
-
-export default Apps;
+}
