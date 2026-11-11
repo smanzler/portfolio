@@ -24,7 +24,7 @@ export function CaseStudyContents({
           <li key={id}>
             <a
               href={`#${id}`}
-              className="group flex items-baseline gap-4 py-3 border-b border-border text-[#7a7d87] hover:text-foreground transition-colors"
+              className="group flex items-baseline gap-4 py-3 border-b border-border text-faint hover:text-foreground transition-colors"
             >
               <span className="font-mono text-xs text-muted-foreground group-hover:text-brand">
                 {String(index + 1).padStart(2, "0")}

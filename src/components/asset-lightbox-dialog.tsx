@@ -33,8 +33,8 @@ function AssetCarouselItem({ asset }: AssetCarouselItemProps) {
 
   return (
     <CarouselItem className="min-w-[min(200px,100%)]">
-      <div className="flex items-center justify-center h-[calc(100vh-10rem)] w-full relative">
-        {loading && <Spinner />}
+      <div className="flex items-center justify-center h-[calc(100vh-12rem)] w-full relative">
+        {loading && <Spinner className="absolute size-6 text-glass-muted" />}
         {asset.type === "image" ? (
           <Image
             src={asset.path}
@@ -79,6 +79,9 @@ function AssetCarouselItem({ asset }: AssetCarouselItemProps) {
   );
 }
 
+const glassButton =
+  "glass rounded-full text-glass-foreground hover:bg-[rgb(48_49_56/0.9)] disabled:opacity-30 cursor-pointer";
+
 function AssetDialogContent({
   className,
   children,
@@ -86,12 +89,11 @@ function AssetDialogContent({
 }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
     <DialogPortal data-slot="dialog-portal">
-      <DialogOverlay className="bg-neutral-900/50 backdrop-blur-sm">
+      <DialogOverlay className="bg-foreground/80 backdrop-blur-md">
         <DialogPrimitive.Close data-slot="dialog-close" asChild>
           <Button
-            variant="outline"
-            size="icon"
-            className="absolute top-4 right-4"
+            size="icon-lg"
+            className={cn(glassButton, "absolute top-5 right-5")}
           >
             <XIcon />
             <span className="sr-only">Close</span>
@@ -102,7 +104,7 @@ function AssetDialogContent({
         data-slot="dialog-content"
         className={cn(
           "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200",
-          className
+          className,
         )}
         {...props}
       >
@@ -126,6 +128,7 @@ export function AssetLightboxDialog({
   initialIndex,
 }: AssetLightboxDialogProps) {
   const [api, setApi] = React.useState<CarouselApi>();
+  const [selected, setSelected] = React.useState(initialIndex);
   const dragStartRef = React.useRef<{ x: number; y: number } | null>(null);
   const isDraggingRef = React.useRef(false);
 
@@ -134,6 +137,16 @@ export function AssetLightboxDialog({
       api.scrollTo(initialIndex);
     }
   }, [api, initialIndex]);
+
+  React.useEffect(() => {
+    if (!api) return;
+    const handleSelect = () => setSelected(api.selectedScrollSnap());
+    handleSelect();
+    api.on("select", handleSelect);
+    return () => {
+      api.off("select", handleSelect);
+    };
+  }, [api]);
 
   React.useEffect(() => {
     if (!open || !api) return;
@@ -203,11 +216,34 @@ export function AssetLightboxDialog({
 
           {assets.length > 1 && (
             <div onClick={(e) => e.stopPropagation()}>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious
+                variant="default"
+                className={cn(
+                  glassButton,
+                  "size-9 sm:size-11 -left-9 sm:-left-14",
+                )}
+              />
+              <CarouselNext
+                variant="default"
+                className={cn(
+                  glassButton,
+                  "size-9 sm:size-11 -right-9 sm:-right-14",
+                )}
+              />
             </div>
           )}
         </Carousel>
+        <p className="m-0 flex justify-center gap-2 font-mono text-xs text-glass-muted">
+          <span className="text-code-keyword">
+            {String(selected + 1).padStart(2, "0")}
+          </span>
+          <span className="truncate">
+            {assets[selected]?.alt || assets[selected]?.path}
+          </span>
+          <span className="text-glass-faint">
+            / {String(assets.length).padStart(2, "0")}
+          </span>
+        </p>
       </AssetDialogContent>
     </Dialog>
   );
