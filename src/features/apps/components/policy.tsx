@@ -43,8 +43,8 @@ const Policy = ({ type }: { type: PolicyType }) => {
         <div className="flex flex-col items-center text-center justify-center py-20 gap-6">
           <H1>{title} Not Found</H1>
           <P>
-            Sorry, we couldn't find the app you're looking for. It might have
-            been moved or doesn't exist.
+            Sorry, we couldn&apos;t find the app you&apos;re looking for. It might have
+            been moved or doesn&apos;t exist.
           </P>
 
           <Button asChild>

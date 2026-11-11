@@ -62,8 +62,8 @@ const AppDetails = () => {
             </EmptyMedia>
             <EmptyTitle>App Not Found</EmptyTitle>
             <EmptyDescription>
-              Sorry, we couldn't find the app you're looking for. It might have
-              been moved or doesn't exist.
+              Sorry, we couldn&apos;t find the app you&apos;re looking for. It might have
+              been moved or doesn&apos;t exist.
             </EmptyDescription>
           </EmptyHeader>
           <EmptyContent>

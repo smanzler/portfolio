@@ -1,5 +1,5 @@
 import * as React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import {
   Dialog,
   DialogOverlay,
@@ -169,7 +169,7 @@ export function AssetLightboxDialog({
     }
   };
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     if (!isDraggingRef.current) {
       setOpen(false);
     }
