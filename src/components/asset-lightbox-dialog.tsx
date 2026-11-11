@@ -1,5 +1,4 @@
 import * as React from "react";
-import Image from "next/image";
 import {
   Dialog,
   DialogOverlay,
@@ -11,14 +10,15 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
+  CarouselPrevious
+  
 } from "@/components/ui/carousel";
+import type {CarouselApi} from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Asset } from "@/lib/projects";
+import type { Asset } from "@/lib/projects";
 import { Spinner } from "@/components/ui/spinner";
 
 interface AssetCarouselItemProps {
@@ -36,15 +36,13 @@ function AssetCarouselItem({ asset }: AssetCarouselItemProps) {
       <div className="flex items-center justify-center h-[calc(100vh-12rem)] w-full relative">
         {loading && <Spinner className="absolute size-6 text-glass-muted" />}
         {asset.type === "image" ? (
-          <Image
+          <img
             src={asset.path}
             alt={asset.alt || ""}
             width={asset.width}
             height={asset.height}
-            sizes="100vw"
             className="size-full object-contain"
             loading="lazy"
-            onLoadingComplete={handleImageLoad}
             onLoad={handleImageLoad}
           />
         ) : (
@@ -60,15 +58,13 @@ function AssetCarouselItem({ asset }: AssetCarouselItemProps) {
             onLoadedData={handleVideoLoad}
           >
             {asset.fallback && (
-              <Image
+              <img
                 src={asset.fallback}
                 alt={asset.alt || ""}
                 width={asset.width}
                 height={asset.height}
-                sizes="100vw"
                 className="size-full object-contain"
                 loading="lazy"
-                onLoadingComplete={handleImageLoad}
                 onLoad={handleImageLoad}
               />
             )}

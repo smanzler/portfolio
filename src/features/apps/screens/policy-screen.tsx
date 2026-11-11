@@ -1,10 +1,10 @@
-import { notFound } from "next/navigation";
-import { getProjectBySlug, getProjects, type Policy, type Project } from "@/lib/projects";
+import type { Policy, Project } from "@/lib/projects";
 import { PageHeader } from "@/components/page-header";
 import { PageShell } from "@/components/page-shell";
 import { LegalLinks } from "@/features/apps/components/legal-links";
 import { PolicyCard } from "@/features/apps/components/policy-card";
-import { policyTypes, type PolicyType } from "@/features/apps/lib/policies";
+import { policyTypes  } from "@/features/apps/lib/policies";
+import type {PolicyType} from "@/features/apps/lib/policies";
 
 export default function PolicyScreen({
   app,
@@ -34,25 +34,4 @@ export default function PolicyScreen({
       </div>
     </PageShell>
   );
-}
-
-export function policyStaticParams(type: PolicyType) {
-  return getProjects()
-    .filter((project) => project.isApp && policyTypes[type].get(project))
-    .map(({ slug }) => ({ slug }));
-}
-
-/** Loads the app and the policy for a route, or shows the 404 page. */
-export async function PolicyRoute({
-  type,
-  params,
-}: {
-  type: PolicyType;
-  params: Promise<{ slug: string }>;
-}) {
-  const app = getProjectBySlug((await params).slug);
-  const policy = app && policyTypes[type].get(app);
-  if (!app || !policy) notFound();
-
-  return <PolicyScreen app={app} type={type} policy={policy} />;
 }

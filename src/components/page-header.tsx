@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +29,7 @@ export function PageHeader({
     <header className={cn("flex flex-col gap-6", className)}>
       {back && (
         <Link
-          href={back.href}
+          to={back.href}
           className="self-start inline-flex items-center gap-2 py-2 font-mono text-[13px] text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="size-3.5" aria-hidden="true" />

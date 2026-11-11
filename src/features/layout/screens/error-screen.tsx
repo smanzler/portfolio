@@ -1,5 +1,4 @@
-"use client";
-
+import { useRouter } from "@tanstack/react-router";
 import { RotateCw } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { PageShell } from "@/components/page-shell";
@@ -7,13 +6,9 @@ import { UnderlineLink } from "@/components/underline-link";
 import { Button } from "@/components/ui/button";
 
 /** 500 page in the site style. */
-export function ErrorScreen({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export function ErrorScreen() {
+  const router = useRouter();
+
   return (
     <PageShell>
       <PageHeader
@@ -24,12 +19,9 @@ export function ErrorScreen({
         <p className="m-0 max-w-[560px] font-mono text-sm leading-[1.7] text-muted-foreground">
           <span className="text-brand">fatal:</span> this page did not load. Try
           again, or go back home.
-          {error.digest && (
-            <span className="block text-faint">digest: {error.digest}</span>
-          )}
         </p>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <Button size="pill" onClick={reset}>
+          <Button size="pill" onClick={() => void router.invalidate()}>
             <RotateCw aria-hidden="true" />
             Try again
           </Button>

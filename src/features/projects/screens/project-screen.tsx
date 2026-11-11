@@ -1,7 +1,6 @@
-"use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { AssetLightboxDialog } from "@/components/asset-lightbox-dialog";
@@ -86,7 +85,8 @@ export default function ProjectScreen({
       </div>
 
       <Link
-        href={`/projects/${next.slug}`}
+        to="/projects/$slug"
+        params={{ slug: next.slug }}
         className="group flex items-end justify-between gap-6 py-8 border-y border-border"
       >
         <span className="flex flex-col gap-2 min-w-0">

@@ -1,13 +1,15 @@
-import type { Policy, Project } from "@/lib/projects";
+import { notFound } from "@tanstack/react-router";
+import { getProjectBySlug   } from "@/lib/projects";
+import type {Policy, Project} from "@/lib/projects";
 
 export type PolicyType = "privacy" | "terms" | "accountDeletion";
 
 type PolicyDispatch = {
   title: string;
   fileName: string;
-  /** Route segment under /apps/[slug]. */
+  /** Route segment under /apps/$slug. */
   segment: string;
-  get(project: Project): Policy | undefined;
+  get: (project: Project) => Policy | undefined;
 };
 
 export const policyTypes: Record<PolicyType, PolicyDispatch> = {
@@ -40,6 +42,14 @@ export function projectPolicies(project: Project) {
       fileName,
       href: `/apps/${project.slug}/${segment}`,
     }));
+}
+
+/** Get the app and its policy for a route loader, or throw a not-found error. */
+export function loadPolicy(type: PolicyType, slug: string) {
+  const app = getProjectBySlug(slug);
+  const policy = app && policyTypes[type].get(app);
+  if (!app || !policy) throw notFound();
+  return { app, policy };
 }
 
 export function policyMarkdown(title: string, policy: Policy) {

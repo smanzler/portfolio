@@ -1,7 +1,5 @@
-"use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { AssetLightboxDialog } from "@/components/asset-lightbox-dialog";
@@ -59,12 +57,10 @@ export default function AppScreen({ app }: { app: Project }) {
         lead={app.description}
         aside={
           <span className="relative size-16 lg:size-24 shrink-0 rounded-[18px] lg:rounded-[24px] overflow-hidden bg-well shadow-[0_12px_32px_rgb(20_21_26/0.10)]">
-            <Image
+            <img
               src={app.icon}
               alt=""
-              fill
-              sizes="96px"
-              className="object-cover"
+              className="absolute inset-0 size-full object-cover"
             />
           </span>
         }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/projects";
@@ -27,7 +27,7 @@ export function LegalLinks({
         {policies.map(({ fileName, href }) => (
           <li key={href}>
             <Link
-              href={href}
+              to={href}
               aria-current={href === current ? "page" : undefined}
               className={cn(
                 "inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-border bg-card font-mono text-[13px] text-muted-foreground hover:text-foreground transition-colors",

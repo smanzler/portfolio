@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { UnderlineLink } from "@/components/underline-link";
@@ -28,10 +26,10 @@ export default function Hero() {
         <CareerTimeline />
         <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-7 pt-1 lg:pt-2">
           <Button asChild size="pill">
-            <Link href="#projects">
+            <a href="#projects">
               See my work
               <ArrowRight aria-hidden="true" />
-            </Link>
+            </a>
           </Button>
           <UnderlineLink
             href="mailto:simanzler@gmail.com"
@@ -44,13 +42,11 @@ export default function Hero() {
 
       <div className="w-full max-w-[420px] lg:max-w-[600px] mx-auto lg:mx-0 lg:flex-[0_0_600px] flex flex-col">
         <div className="relative self-end w-[270px] h-[340px] lg:w-[400px] lg:h-[500px] rounded-3xl lg:rounded-[28px] overflow-hidden bg-well">
-          <Image
-            src="/simon.jpeg"
+          <img
+            src="/simon.webp"
             alt="Portrait of Simon Manzler"
-            fill
-            sizes="(min-width: 1024px) 400px, 270px"
-            className="object-cover"
-            priority
+            fetchPriority="high"
+            className="absolute inset-0 size-full object-cover"
           />
         </div>
         <EngineerCard className="relative self-start -mt-8 lg:-mt-12 w-[300px] lg:w-[440px]" />

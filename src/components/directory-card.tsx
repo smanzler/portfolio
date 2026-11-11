@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Folder } from "lucide-react";
 import { FileCard } from "@/components/file-card";
 
@@ -34,17 +33,16 @@ export function DirectoryCard({
         {entries.map((entry) => (
           <li key={entry.href} className="border-b border-rule last:border-b-0">
             <Link
-              href={entry.href}
+              to={entry.href}
               className="group grid grid-cols-[48px_minmax(0,1fr)_auto] items-center gap-x-5 gap-y-1 px-5 py-5 lg:px-8 hover:bg-muted/60 transition-colors"
             >
               <span className="row-span-2 lg:row-span-1 relative size-12 rounded-xl overflow-hidden bg-well">
                 {entry.icon && (
-                  <Image
+                  <img
                     src={entry.icon}
                     alt=""
-                    fill
-                    sizes="48px"
-                    className="object-cover"
+                    loading="lazy"
+                    className="absolute inset-0 size-full object-cover"
                   />
                 )}
               </span>

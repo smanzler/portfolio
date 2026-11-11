@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { GlassWindow } from "@/components/glass-window";
@@ -15,7 +15,8 @@ export function SideProjectsTerminal({ projects }: { projects: Project[] }) {
           {projects.map((project) => (
             <li key={project.slug}>
               <Link
-                href={`/projects/${project.slug}`}
+                to="/projects/$slug"
+                params={{ slug: project.slug }}
                 className="group flex flex-wrap md:flex-nowrap items-center px-6 text-glass-foreground hover:bg-white/10 hover:shadow-[inset_3px_0_0_var(--color-code-keyword)] transition-colors"
               >
                 <span className="w-[12ch] shrink-0 text-code-keyword font-bold underline-offset-3 group-hover:underline">

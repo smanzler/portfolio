@@ -1,5 +1,6 @@
 import * as React from "react";
-import { type HTMLMotionProps, motion, type Transition } from "motion/react";
+import {  motion  } from "motion/react";
+import type {HTMLMotionProps, Transition} from "motion/react";
 import { cn } from "@/lib/utils";
 
 type ShimmeringTextProps = {
@@ -32,7 +33,7 @@ function ShimmeringText({
       }
       {...props}
     >
-      {text?.split("")?.map((char, i) => (
+      {text.split("").map((char, i) => (
         <motion.span
           key={i}
           className="inline-block whitespace-pre [transform-style:preserve-3d]"

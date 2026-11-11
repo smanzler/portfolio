@@ -11,44 +11,44 @@
     "heroAsset": {
       "type": "video",
       "path": "/written/video1.mov",
-      "fallbackPath": "/written/video1-fallback.png",
+      "fallbackPath": "/written/video1-fallback.webp",
       "alt": "Writing Demo",
       "width": 3,
       "height": 2
     },
-    "icon": "/written/icon.png",
+    "icon": "/written/icon.webp",
     "assets": [
       {
         "type": "image",
-        "path": "/written/image1.png",
+        "path": "/written/image1.webp",
         "alt": "Written Home",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/written/image2.png",
+        "path": "/written/image2.webp",
         "alt": "Sidebar",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/written/image3.png",
+        "path": "/written/image3.webp",
         "alt": "Journal Entry",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/written/image4.png",
+        "path": "/written/image4.webp",
         "alt": "Account Settings",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/written/image5.png",
+        "path": "/written/image5.webp",
         "alt": "Security Settings",
         "width": 3,
         "height": 2
@@ -56,21 +56,21 @@
       {
         "type": "video",
         "path": "/written/video2.mov",
-        "fallbackPath": "/written/video2-fallback.png",
+        "fallbackPath": "/written/video2-fallback.webp",
         "alt": "Appearance Settings",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/written/image6.png",
+        "path": "/written/image6.webp",
         "alt": "AI Settings",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/written/image7.png",
+        "path": "/written/image7.webp",
         "alt": "Login Screen",
         "width": 3,
         "height": 2
@@ -128,11 +128,11 @@
     "longDescription": "Rep is a workout tracking app built to support consistent strength training without unnecessary complexity. Inspired by existing apps like Strong, Rep focuses on fast workout logging, offline reliability, and meaningful progress tracking.\n\nThe app uses a local-first architecture and is designed around real gym usage, with features added only when they proved necessary.",
     "tags": ["React Native", "Supabase", "Expo"],
     "featured": true,
-    "icon": "/rep/icon.png",
+    "icon": "/rep/icon.webp",
     "heroAsset": {
       "type": "video",
       "path": "/rep/video1.mov",
-      "fallbackPath": "/rep/video1-fallback.png",
+      "fallbackPath": "/rep/video1-fallback.webp",
       "alt": "Workout Demo",
       "width": 195,
       "height": 422
@@ -140,98 +140,98 @@
     "assets": [
       {
         "type": "image",
-        "path": "/rep/image1.png",
+        "path": "/rep/image1.webp",
         "alt": "Profile Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image2.png",
+        "path": "/rep/image2.webp",
         "alt": "Start Workout Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image3.png",
+        "path": "/rep/image3.webp",
         "alt": "History Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image4.png",
+        "path": "/rep/image4.webp",
         "alt": "Details Modal",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image5.png",
+        "path": "/rep/image5.webp",
         "alt": "Add Exercise Modal",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image6.png",
+        "path": "/rep/image6.webp",
         "alt": "Add Exercise Modal 2",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image7.png",
+        "path": "/rep/image7.webp",
         "alt": "Workout Modal",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image8.png",
+        "path": "/rep/image8.webp",
         "alt": "Completing Sets",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image9.png",
+        "path": "/rep/image9.webp",
         "alt": "Completed Workout",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image10.png",
+        "path": "/rep/image10.webp",
         "alt": "Explore Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image11.png",
+        "path": "/rep/image11.webp",
         "alt": "Create Post Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image12.png",
+        "path": "/rep/image12.webp",
         "alt": "Add Workout To Post",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image13.png",
+        "path": "/rep/image13.webp",
         "alt": "Settings Dropdown",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/rep/image14.png",
+        "path": "/rep/image14.webp",
         "alt": "Notifications Page",
         "width": 195,
         "height": 422
@@ -548,11 +548,11 @@
     "description": "Find and rsvp to events made by others and invite friends through QR codes.",
     "longDescription": "INVT simplifies event discovery and RSVP management through a clean, intuitive interface. Users can create events, share invitations via QR codes, sell tickets, and track attendance.\n\nThe platform is built with React and styled using shadcn/ui and TailwindCSS, with Supabase handling authentication, storage, and real-time data.",
     "tags": ["React", "TypeScript", "TailwindCSS", "Shadcn UI", "Supabase"],
-    "icon": "/invt/icon.png",
+    "icon": "/invt/icon.webp",
     "heroAsset": {
       "type": "video",
       "path": "/invt/video1.mov",
-      "fallbackPath": "/invt/video1-fallback.png",
+      "fallbackPath": "/invt/video1-fallback.webp",
       "alt": "Event Details",
       "width": 3,
       "height": 2
@@ -560,56 +560,56 @@
     "assets": [
       {
         "type": "image",
-        "path": "/invt/image2.png",
+        "path": "/invt/image2.webp",
         "alt": "Main Page",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/invt/image3.png",
+        "path": "/invt/image3.webp",
         "alt": "Create Event Page",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/invt/image4.png",
+        "path": "/invt/image4.webp",
         "alt": "RSVPs Page",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/invt/image5.png",
+        "path": "/invt/image5.webp",
         "alt": "Map View",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/invt/image6.png",
+        "path": "/invt/image6.webp",
         "alt": "Profile Page",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/invt/image7.png",
+        "path": "/invt/image7.webp",
         "alt": "Notifications Page",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/invt/image8.png",
+        "path": "/invt/image8.webp",
         "alt": "Past Events",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/invt/image9.png",
+        "path": "/invt/image9.webp",
         "alt": "Sign In Page",
         "width": 3,
         "height": 2
@@ -669,65 +669,65 @@
     "tags": ["Next.js", "React", "TypeScript", "TailwindCSS", "Shadcn UI", "motion", "Vercel"],
     "heroAsset": {
       "type": "image",
-      "path": "/portfolio/image1.png",
+      "path": "/portfolio/image1.webp",
       "alt": "Portfolio Homepage",
       "width": 3,
       "height": 2
     },
-    "icon": "/portfolio/icon.png",
+    "icon": "/portfolio/icon.webp",
     "assets": [
       {
         "type": "image",
-        "path": "/portfolio/image2.png",
+        "path": "/portfolio/image2.webp",
         "alt": "Featured Projects",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/portfolio/image3.png",
+        "path": "/portfolio/image3.webp",
         "alt": "Skills",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/portfolio/image4.png",
+        "path": "/portfolio/image4.webp",
         "alt": "About Me",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/portfolio/image5.png",
+        "path": "/portfolio/image5.webp",
         "alt": "Experience",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/portfolio/image6.png",
+        "path": "/portfolio/image6.webp",
         "alt": "Contact",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/portfolio/image7.png",
+        "path": "/portfolio/image7.webp",
         "alt": "Footer",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/portfolio/image8.png",
+        "path": "/portfolio/image8.webp",
         "alt": "Projects Page",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/portfolio/image9.png",
+        "path": "/portfolio/image9.webp",
         "alt": "Project Details Page",
         "width": 3,
         "height": 2
@@ -785,86 +785,86 @@
     "isApp": true,
     "heroAsset": {
       "type": "image",
-      "path": "/dash/image1.png",
+      "path": "/dash/image1.webp",
       "alt": "Tracks Page",
       "width": 195,
       "height": 422
     },
-    "icon": "/dash/icon.png",
+    "icon": "/dash/icon.webp",
     "assets": [
       {
         "type": "image",
-        "path": "/dash/image2.png",
+        "path": "/dash/image2.webp",
         "alt": "Start Run",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image3.png",
+        "path": "/dash/image3.webp",
         "alt": "Running",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image4.png",
+        "path": "/dash/image4.webp",
         "alt": "Finished Run",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image5.png",
+        "path": "/dash/image5.webp",
         "alt": "Upload Run",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image6.png",
+        "path": "/dash/image6.webp",
         "alt": "My Runs Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image7.png",
+        "path": "/dash/image7.webp",
         "alt": "Run Details",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image8.png",
+        "path": "/dash/image8.webp",
         "alt": "Leaderboard Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image9.png",
+        "path": "/dash/image9.webp",
         "alt": "Login Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image10.png",
+        "path": "/dash/image10.webp",
         "alt": "Register Page",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image11.png",
+        "path": "/dash/image11.webp",
         "alt": "Create Profile",
         "width": 195,
         "height": 422
       },
       {
         "type": "image",
-        "path": "/dash/image12.png",
+        "path": "/dash/image12.webp",
         "alt": "Settings Page",
         "width": 195,
         "height": 422
@@ -1093,37 +1093,37 @@
     "heroAsset": {
       "type": "video",
       "path": "/mclist/video1.mov",
-      "fallbackPath": "/mclist/video1-fallback.png",
+      "fallbackPath": "/mclist/video1-fallback.webp",
       "alt": "MCList Video 1",
       "width": 3,
       "height": 2
     },
-    "icon": "/mclist/icon.png",
+    "icon": "/mclist/icon.webp",
     "assets": [
       {
         "type": "image",
-        "path": "/mclist/image1.png",
+        "path": "/mclist/image1.webp",
         "alt": "MCList Image 1",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/mclist/image2.png",
+        "path": "/mclist/image2.webp",
         "alt": "MCList Image 2",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/mclist/image3.png",
+        "path": "/mclist/image3.webp",
         "alt": "MCList Image 3",
         "width": 3,
         "height": 2
       },
       {
         "type": "image",
-        "path": "/mclist/image4.png",
+        "path": "/mclist/image4.webp",
         "alt": "MCList Image 4",
         "width": 3,
         "height": 2
@@ -1159,10 +1159,10 @@
     "longDescription": "Pantry is a grocery list app built to help you manage your groceries. It enables users to create a grocery list, add items to the list, and share the list with others. The app features offline-first architecture, ensuring users can create a grocery list without internet connectivity, with automatic synchronization when connection is restored. Supabase provides real-time data sync, authentication, and cloud storage.",
     "tags": ["React Native", "Expo", "TypeScript", "Supabase"],
     "isApp": true,
-    "icon": "/pantry/icon.png",
+    "icon": "/pantry/icon.webp",
     "heroAsset": {
       "type": "image",
-      "path": "/pantry/image1.png",
+      "path": "/pantry/image1.webp",
       "alt": "Pantry Home",
       "width": 195,
       "height": 422

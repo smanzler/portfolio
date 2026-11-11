@@ -1,5 +1,5 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
 import { PageHeader } from "@/components/page-header";
 import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export function NotFoundScreen({
           anything in {folder}. It may have moved, or it never existed.
         </p>
         <Button asChild size="pill" className="self-start">
-          <Link href={back.href}>
+          <Link to={back.href}>
             <ArrowLeft aria-hidden="true" />
             {back.label}
           </Link>

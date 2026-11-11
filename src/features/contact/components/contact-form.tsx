@@ -1,15 +1,13 @@
-"use client";
-
 import { useState } from "react";
-import Image from "next/image";
 import { ArrowRight, CircleDot, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FileCard } from "@/components/file-card";
 import { Button } from "@/components/ui/button";
 import {
-  sendContactEmail,
-  type ContactFormData,
-} from "@/features/contact/actions/send-email";
+  sendContactEmail
+  
+} from "@/features/contact/lib/send-email";
+import type {ContactFormData} from "@/features/contact/lib/send-email";
 
 const labels = ["role", "project", "just saying hi"];
 
@@ -50,7 +48,7 @@ export default function ContactForm() {
     setStatus({ type: "idle" });
 
     try {
-      const result = await sendContactEmail(form);
+      const result = await sendContactEmail({ data: form });
       if (result.success) {
         setStatus({ type: "success" });
         setForm(emptyForm);
@@ -180,8 +178,8 @@ export default function ContactForm() {
           <div className="flex flex-col gap-2.5 pb-[18px] border-b border-rule">
             <span className={fieldLabel}>ASSIGNEE</span>
             <span className="flex items-center gap-2.5 font-medium">
-              <Image
-                src="/simon-icon.png"
+              <img
+                src="/simon-icon.webp"
                 alt=""
                 width={28}
                 height={28}
